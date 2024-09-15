@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 22:12:40 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/15 13:57:41 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/15 14:27:24 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ bool	engine_texture_load(const char *filename, t_texture *texture)
 	texture->height = texture->mlx_texture->height;
 	return (true);
 }
+
+
+/*ability to convert error numerical codes to English text string*/
+//#ifndef LODEPNG_NO_COMPILE_ERROR_TEXT
+/*pass -DLODEPNG_NO_COMPILE_ERROR_TEXT to the compiler to disable this,
+or comment out LODEPNG_COMPILE_ERROR_TEXT below*/
+//#define LODEPNG_COMPILE_ERROR_TEXT
+//#endif
 
 bool	engine_textures_load(t_engine *engine)
 {

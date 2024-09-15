@@ -6,12 +6,13 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 13:53:10 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/15 13:55:45 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/15 14:15:01 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "texture.h"
+
+#include <stdio.h>
 
 void	texture_init(t_texture *texture)
 {

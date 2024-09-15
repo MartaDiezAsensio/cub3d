@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 22:43:14 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/11 20:12:57 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/15 14:19:59 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	error_perror_critical(void)
 	perror("Error\n\t");
 }
 
+/* We  must NOT do a free because it is a const char * 
+from an internal array of mlx it nos not created by malloc*/
 void	error_print_mlx_perror(void)
 {
 	char	*str_mlx_error;
@@ -54,5 +56,5 @@ void	error_print_mlx_perror(void)
 		return ;
 	}
 	error_print_critical(str_mlx_error);
-	free(str_mlx_error);
+	//free(str_mlx_error);
 }
