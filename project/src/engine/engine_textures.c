@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 22:12:40 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/12 18:49:17 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/15 14:27:24 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,63 +18,48 @@
 #include "MLX42/MLX42.h"
 #include "libft.h"
 #include "error.h"
+#include "texture.h"
 
 //void	*mlx_png_file_to_image(void *mlx_ptr, char *filename, int *width, int *height);
-bool	engine_texture_load(const char *filename, t_texture *texture, t_engine engine)
+bool	engine_texture_load(const char *filename, t_texture *texture)
 {
-	char	*line;
-/*	
-	texture->mlx_image = mlx_xpm_file_to_image(engine.mlx, (char *)filename, \
-		&texture->width, &texture->height);
-	if (texture->mlx_image == NULL)
-	{
-		line = ft_strjoin(filename, " cannot be loaded.");
-		if (line == NULL)
-			return (error_perror_critical(),false);
-		error_print_critical(line);
-		free(line);
-		return (false);
-	}
-*/
-
-	(void)line;
-	(void)filename;
-	(void)texture;
-	(void)engine;	
+	//mlx_texture_t* mlx_load_png(const char* path);
+	texture->mlx_texture = mlx_load_png(filename);
+	if (texture->mlx_texture == NULL)
+		return (error_print_mlx_perror(), false);
+	texture->width = texture->mlx_texture->width;
+	texture->height = texture->mlx_texture->height;
 	return (true);
 }
+
+
+/*ability to convert error numerical codes to English text string*/
+//#ifndef LODEPNG_NO_COMPILE_ERROR_TEXT
+/*pass -DLODEPNG_NO_COMPILE_ERROR_TEXT to the compiler to disable this,
+or comment out LODEPNG_COMPILE_ERROR_TEXT below*/
+//#define LODEPNG_COMPILE_ERROR_TEXT
+//#endif
 
 bool	engine_textures_load(t_engine *engine)
 {
 	t_config	*cfg;
 
 	cfg = engine->cfg;
-	if (!engine_texture_load(cfg->north_texture, &engine->textures[TEXTURE_NORTH], *engine))
+	if (!engine_texture_load(cfg->north_texture, &engine->textures[TEXTURE_NORTH]))
 		return (false);
-	if (!engine_texture_load(cfg->south_texture, &engine->textures[TEXTURE_SOUTH], *engine))
+	if (!engine_texture_load(cfg->south_texture, &engine->textures[TEXTURE_SOUTH]))
 		return (false);
-	if (!engine_texture_load(cfg->west_texture, &engine->textures[TEXTURE_WEST], *engine))
+	if (!engine_texture_load(cfg->west_texture, &engine->textures[TEXTURE_WEST]))
 		return (false);
-	if (!engine_texture_load(cfg->east_texture, &engine->textures[TEXTURE_EAST], *engine))
+	if (!engine_texture_load(cfg->east_texture, &engine->textures[TEXTURE_EAST]))
 		return (false);
 	return (true);	
 }
 
-static void	engine_texture_destroy(t_engine *engine, t_texture *texture)
-{
-	/*
-	mlx_destroy_image(engine->mlx, texture->mlx_image);
-	texture->mlx_image = NULL;
-	*/
-	(void)engine;
-	(void)texture;
-	
-}
-
 void	engine_textures_destroy(t_engine *engine)
 {
-	engine_texture_destroy(engine, &engine->textures[TEXTURE_NORTH]);
-	engine_texture_destroy(engine, &engine->textures[TEXTURE_SOUTH]);
-	engine_texture_destroy(engine, &engine->textures[TEXTURE_WEST]);
-	engine_texture_destroy(engine, &engine->textures[TEXTURE_EAST]);	
+	texture_destroy(&engine->textures[TEXTURE_NORTH]);
+	texture_destroy(&engine->textures[TEXTURE_SOUTH]);
+	texture_destroy(&engine->textures[TEXTURE_WEST]);
+	texture_destroy(&engine->textures[TEXTURE_EAST]);
 }

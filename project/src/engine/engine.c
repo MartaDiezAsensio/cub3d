@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:33:19 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/11 20:03:03 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/15 13:58:52 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@
 #include "MLX42/MLX42.h"
 #include "libft.h"
 #include "error.h"
+#include "texture.h"
 
 bool	engine_init(t_engine *engine, t_config *cfg)
 {
 	engine->mlx = NULL;
 	engine->cfg = cfg;
-	engine->textures[TEXTURE_NORTH].mlx_image = NULL;
-	engine->textures[TEXTURE_SOUTH].mlx_image = NULL;
-	engine->textures[TEXTURE_WEST].mlx_image = NULL;
-	engine->textures[TEXTURE_EAST].mlx_image = NULL;
+	texture_init(&engine->textures[TEXTURE_NORTH]);
+	texture_init(&engine->textures[TEXTURE_SOUTH]);
+	texture_init(&engine->textures[TEXTURE_WEST]);
+	texture_init(&engine->textures[TEXTURE_EAST]);
 	engine->map.map = NULL;
 	engine->screen.title = NULL;
 	engine->img = NULL;
