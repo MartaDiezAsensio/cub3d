@@ -6,7 +6,7 @@
 #    By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-#    Updated: 2024/09/12 21:36:40 by gabriel          ###   ########.fr        #
+#    Updated: 2024/09/15 13:56:03 by gabriel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,8 @@ SRC		=	main.c							\
 			camera.c						\
 			color.c							\
 			error.c							\
-			screen.c
+			screen.c						\
+			texture.c
 
 SRC		+=	config/config_header_parser.c		\
 			config/config_loader.c				\

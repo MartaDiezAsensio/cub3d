@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:43:45 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/11 19:19:36 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/15 13:49:31 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	engine_destroy(t_engine *engine);
 void	engine_render(void *param);
 
 //engine/engine_texture.c
-bool	engine_texture_load(const char *filename, t_texture *texture, t_engine engine);
+bool	engine_texture_load(const char *filename, t_texture *texture);
 bool	engine_textures_load(t_engine *engine);
 void	engine_textures_destroy(t_engine *engine);
 
