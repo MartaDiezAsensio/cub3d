@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+         #
+#    By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2024/09/16 18:33:38 by mdiez-as         ###   ########.fr        #
-=======
-#    Updated: 2024/09/15 14:59:00 by gabriel          ###   ########.fr        #
->>>>>>> main
+#    Updated: 2024/09/16 19:21:59 by gabriel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -183,13 +179,10 @@ compile:
 	@echo "${CYAN}Making get_next_line...${RST}"
 	@make --no-print-directory -C ${GNL_DIR}
 	@echo "${CYAN}Making minilibx...${RST}"
-<<<<<<< HEAD
 	${MLX42_BUILD_CMD}
-=======
 #	@make --no-print-directory -C ${MINILIBX_DIR}
-	cmake  -S ${MINILIBX_DIR} -B ${MINILIBX_DIR}/build 
-	cmake  --build ${MINILIBX_DIR}/build -j4
->>>>>>> main
+#	cmake  -S ${MINILIBX_DIR} -B ${MINILIBX_DIR}/build 
+#	cmake  --build ${MINILIBX_DIR}/build -j4
 	@echo "${CYAN}Making ${NAME}...${RST}"
 	@make --no-print-directory ${NAME}
 
