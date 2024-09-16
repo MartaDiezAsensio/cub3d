@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:33:19 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/15 13:58:52 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/15 16:58:13 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ bool	engine_start(t_engine *engine)
 	engine_mlx_settings();
 	if (!screen_init(&(engine->screen)))
 		return (false);
+	if(!engine_textures_load(engine))
+		return (false);
 	engine->mlx = mlx_init(engine->screen.x, engine->screen.y, engine->screen.title, engine->screen.resize);
 	if (engine->mlx == NULL)
 		return (error_print_mlx_perror(), false);
 	mlx_get_monitor_size(0, (int32_t *)&engine->screen.x, (int32_t *)&engine->screen.y);
 	engine->screen.middle_y = engine->screen.y / 2;
-	if(!engine_textures_load(engine))
-		return (false);
+	mlx_set_window_size(engine->mlx, engine->screen.x, engine->screen.y);
 	engine->img = mlx_new_image(engine->mlx, engine->screen.x, engine->screen.y);
 	if (engine->img == NULL)
 		return(error_print_mlx_perror(), false);

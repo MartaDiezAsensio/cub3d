@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 22:20:03 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/11 20:02:05 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/15 16:42:57 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 
 static void	engine_render_background(t_engine *engine)
 {
-	size_t	i;
-	size_t	j;
-	t_color	color;
+	size_t		i;
+	size_t		j;
+	t_color		color;
 	uint32_t	rgbacolor;
 
 	i = 0;
