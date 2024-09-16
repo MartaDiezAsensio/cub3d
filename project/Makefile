@@ -6,7 +6,11 @@
 #    By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2024/09/16 18:33:38 by mdiez-as         ###   ########.fr        #
+=======
+#    Updated: 2024/09/15 14:59:00 by gabriel          ###   ########.fr        #
+>>>>>>> main
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +91,8 @@ SRC		=	main.c							\
 			camera.c						\
 			color.c							\
 			error.c							\
-			screen.c
+			screen.c						\
+			texture.c
 
 SRC		+=	config/config_header_parser.c		\
 			config/config_loader.c				\
@@ -172,12 +177,19 @@ ${NAME}			:	${OBJS} ${LIBFT_DIR}/libft.a ${GNL_DIR}/libgnl.a ${MINILIBX_DIR}/bui
 	@echo "$(GREEN)Binary $(NAME) compiled! $(RST)"
 
 compile:
+	git submodule update --init
 	@echo "${CYAN}Making libft...${RST}"
 	@make --no-print-directory -C ${LIBFT_DIR}
 	@echo "${CYAN}Making get_next_line...${RST}"
 	@make --no-print-directory -C ${GNL_DIR}
 	@echo "${CYAN}Making minilibx...${RST}"
+<<<<<<< HEAD
 	${MLX42_BUILD_CMD}
+=======
+#	@make --no-print-directory -C ${MINILIBX_DIR}
+	cmake  -S ${MINILIBX_DIR} -B ${MINILIBX_DIR}/build 
+	cmake  --build ${MINILIBX_DIR}/build -j4
+>>>>>>> main
 	@echo "${CYAN}Making ${NAME}...${RST}"
 	@make --no-print-directory ${NAME}
 

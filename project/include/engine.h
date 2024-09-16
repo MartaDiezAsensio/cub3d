@@ -6,7 +6,11 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:43:45 by gabriel           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/09/16 18:33:40 by mdiez-as         ###   ########.fr       */
+=======
+/*   Updated: 2024/09/15 13:49:31 by gabriel          ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +67,7 @@ void	engine_destroy(t_engine *engine);
 void	engine_render(void *param);
 
 //engine/engine_texture.c
-bool	engine_texture_load(const char *filename, t_texture *texture, t_engine engine);
+bool	engine_texture_load(const char *filename, t_texture *texture);
 bool	engine_textures_load(t_engine *engine);
 void	engine_textures_destroy(t_engine *engine);
 
