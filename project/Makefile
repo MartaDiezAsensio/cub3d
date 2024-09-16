@@ -6,7 +6,7 @@
 #    By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-#    Updated: 2024/09/16 19:21:59 by gabriel          ###   ########.fr        #
+#    Updated: 2024/09/16 20:57:26 by gabriel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,9 +90,11 @@ SRC		=	main.c							\
 			screen.c						\
 			texture.c
 
-SRC		+=	config/config_header_parser.c		\
+SRC		+=	config/config_colors.c				\
+			config/config_header_parser.c		\
 			config/config_loader.c				\
 			config/config_map_parser.c			\
+			config/config_textures.c			\
 			config/config_validator_map.c		\
 			config/config_validator.c			\
 			config/config.c
