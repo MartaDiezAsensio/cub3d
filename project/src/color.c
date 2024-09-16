@@ -6,11 +6,22 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 20:58:02 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/08 02:32:33 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/16 21:32:13 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
+
+t_color	color_new_3(unsigned char _r, unsigned char _g, unsigned char _b)
+{
+	t_color color;
+
+	color.r = _r;
+	color.g = _g;
+	color.b = _b;
+	color.a = 255;
+	return (color);
+}
 
 t_color	color_new(unsigned char _r, unsigned char _g, unsigned char _b, unsigned char _a)
 {

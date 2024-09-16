@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 21:41:43 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/16 20:26:57 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/16 21:37:49 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,6 @@
 #include "ft_get_next_line.h"
 #include "error.h"
 #include "color.h"
-
-static	bool	config_parse_colors(t_color *color, const char *colors_line)
-{
-	char	**token_list;
-	size_t	i;
-	size_t	color_component;
-
-	token_list = ft_split(colors_line, ',');
-	if (token_list == NULL)
-		return (error_perror_critical(), false);
-	i = 0;
-	color->a = 255;
-	while (token_list[i] != NULL)
-	{
-		color_component = ft_atoi(token_list[i]);
-		if (i == 0)
-			color->r = color_component;
-		if (i == 1)
-			color->g = color_component;
-		if (i == 2)
-			color->b = color_component;
-		i++;
-	}
-	ft_ptr_free_double_ptr(token_list);
-	return (true);
-	
-}
 
 static	bool	config_set_colors(t_config *cfg, const char *line)
 {
@@ -79,7 +52,7 @@ bool	config_parse_header(t_config *cfg, int fd)
 			return (false);
 		if (line != NULL && ft_strlen(line) > 0)
 		{
-			if (ft_strncmp(line, "F ", 2) == 0 || ft_strncmp(line, "C ", 2) == 0)
+			if (config_is_color_line(line))
 			{
 				if (!config_set_colors(cfg, line))
 					return (free(line), false);
