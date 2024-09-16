@@ -3,10 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+         #
+#    By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
+<<<<<<< HEAD
+#    Updated: 2024/09/16 18:33:38 by mdiez-as         ###   ########.fr        #
+=======
 #    Updated: 2024/09/15 14:59:00 by gabriel          ###   ########.fr        #
+>>>>>>> main
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +29,27 @@ CYAN			= \033[0;96m
 WHITE			= \033[0;97m
 
 ################################################################################
+# Detect Operating System
+################################################################################
+
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S),Darwin)
+    # Commands for MacOS
+    LIBS          = -lm -lgnl -lft -lmlx42 -lglfw
+    LIBS_FOLDERS  = -L${LIBFT_DIR} -L${MINILIBX_DIR}/build -L${GNL_DIR} -L/opt/homebrew/lib
+    CFLAGS        += -D MACOS
+    # Specific compile command for macOS
+    MLX42_BUILD_CMD = cd ${MINILIBX_DIR} && mkdir -p build && cd build && cmake .. && cmake --build . -j4
+else
+    # Commands for Linux
+    LIBS          = -lm -lgnl -lft -lmlx42 -ldl -lglfw -pthread
+    LIBS_FOLDERS  = -L${LIBFT_DIR} -L${MINILIBX_DIR}/build -L${GNL_DIR}
+    # Specific compile command for Linux
+    MLX42_BUILD_CMD = cd ${MINILIBX_DIR} && mkdir -p build && cd build && cmake .. && cmake --build . -j4
+endif
+
+################################################################################
 #Folders
 ################################################################################
 
@@ -32,7 +57,6 @@ SRC_DIR			=	./src
 INC_DIR			=	./include
 BUILD_DIR		=	./build
 LIBFT_DIR		=	./libft
-#MINILIBX_DIR	=	./mlx
 MINILIBX_DIR	=	./mlx42
 GNL_DIR			=	./gnl
 
@@ -42,15 +66,16 @@ GNL_DIR			=	./gnl
 
 CC				=	cc
 CFLAGS			=	-Wall -Werror -Wextra
+
 ifdef	CSANITIZE
 	SANITIZE_FLAGS	= -g -O3 -fsanitize=address -fsanitize=leak
 endif
+
 DEBUG_FLAG		=	-D DEBUG_FLAG=0
 DEP_FLAGS		=	-MMD -MP
 CFLAGS			+=	${DEP_FLAGS}
-#LIBS			=	-lm -lft -lgnl -lmlx_Linux
-LIBS			=	-lm -lgnl -lft -lmlx42
-LIBS_FOLDERS	=	-L${LIBFT_DIR} -L${MINILIBX_DIR}/build -L${GNL_DIR}
+#LIBS			=	${LIBS}
+#LIBS_FOLDERS	=	${LIBS_FOLDERS}
 
 ################################################################################
 # Name of exec
@@ -158,9 +183,13 @@ compile:
 	@echo "${CYAN}Making get_next_line...${RST}"
 	@make --no-print-directory -C ${GNL_DIR}
 	@echo "${CYAN}Making minilibx...${RST}"
+<<<<<<< HEAD
+	${MLX42_BUILD_CMD}
+=======
 #	@make --no-print-directory -C ${MINILIBX_DIR}
 	cmake  -S ${MINILIBX_DIR} -B ${MINILIBX_DIR}/build 
 	cmake  --build ${MINILIBX_DIR}/build -j4
+>>>>>>> main
 	@echo "${CYAN}Making ${NAME}...${RST}"
 	@make --no-print-directory ${NAME}
 
