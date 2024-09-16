@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:43:45 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/15 13:49:31 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/16 19:22:31 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "map.h"
 # include "texture.h"
 # include "config.h"
-# include "MLX42/MLX42.h"
+# include "MLX42/MLX42.h" // mlx42/mlx42.h?
 
 enum e_engine_events
 {
