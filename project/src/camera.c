@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 20:43:00 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/17 18:09:55 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/17 22:37:55 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,3 @@ t_camera	camera_new(t_point origin, t_orientations orientation)
 	return (camera);
 
 }
-

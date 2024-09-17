@@ -6,7 +6,7 @@
 #    By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-#    Updated: 2024/09/16 20:57:26 by gabriel          ###   ########.fr        #
+#    Updated: 2024/09/17 22:52:09 by gabriel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,8 +83,7 @@ NAME	=	cube3d
 # Files
 ################################################################################
 
-SRC		=	main.c							\
-			camera.c						\
+SRC		=	camera.c						\
 			color.c							\
 			error.c							\
 			screen.c						\
@@ -124,6 +123,12 @@ SRC		+=	map/map.c							\
 			map/map_parser.c					\
 			map/tile.c
 
+SRC		+=	raycasting/raycasting.c
+
+#SRC_TEST = 		${SRC} \
+#				ray_test.c
+				
+SRC		+=	main.c
 
 HEADERS			=	camera.h		\
 					color.h			\
@@ -139,6 +144,7 @@ HEADERS			=	camera.h		\
 					player.h		\
 					point.h			\
 					radiants.h		\
+					raycasting.h	\
 					screen.h		\
 					texture.h		\
 					tile.h			\
@@ -149,6 +155,9 @@ SRCS			=	$(addprefix ${SRC_DIR}/, ${SRC})
 OBJS			=	$(patsubst %.c, ${BUILD_DIR}/%.o, ${SRC})
 DEPS			=	$(patsubst %.c, ${BUILD_DIR}/%.d, ${SRC})
 HDRS			=	$(addprefix ${INC_DIR}/, ${HEADERS})
+
+SRC_TEST		=   $(patsubst main.c, ray_test.c, ${SRC})
+OBJS_TEST		=	$(patsubst %.c, ${BUILD_DIR}/%.o, ${SRC_TEST})
 
 #SRCS			=	$(addprefix ${SRC_DIR}/, $(addsuffix .c, ${SRC}))
 #OBJS			=	$(patsubst %.c)$(addprefix ${BUILD_DIR}/, $(addsuffix .o, ${SRC}))
@@ -165,13 +174,13 @@ HDRS			=	$(addprefix ${INC_DIR}/, ${HEADERS})
 #The rule  ${NAME} has as dependency the .a lib and compares the date of 
 # the timestamp of ${NAME} with the timestamp of the .a .o and Makefile files to link or not.
 
-
 all				:	${BUILD_DIR} compile
 
 ${NAME}			:	${OBJS} ${LIBFT_DIR}/libft.a ${GNL_DIR}/libgnl.a ${MINILIBX_DIR}/build/libmlx42.a Makefile
 	@echo "${CYAN}Linking all together${RST}"
 #	${CC} ${CFLAGS} ${SANITIZE_FLAGS} -o ${NAME} ${OBJS} -L/usr/lib -L/usr/local/lib ${LIBS_FOLDERS} ${LIBS} -lXext -lX11 -lz
-	${CC} ${CFLAGS} ${SANITIZE_FLAGS} -o ${NAME} ${OBJS} -L/usr/lib -L/usr/local/lib ${LIBS_FOLDERS} ${LIBS} -ldl -lglfw -pthread
+#	${CC} ${CFLAGS} ${SANITIZE_FLAGS} -o ${NAME} ${OBJS} -L/usr/lib -L/usr/local/lib ${LIBS_FOLDERS} ${LIBS} -ldl -lglfw -pthread
+	${CC} ${CFLAGS} ${SANITIZE_FLAGS} -o ${NAME} ${OBJS} -L/usr/lib -L/usr/local/lib ${LIBS_FOLDERS} ${LIBS}
 	@echo "$(GREEN)Binary $(NAME) compiled! $(RST)"
 
 compile:
@@ -197,11 +206,15 @@ ${BUILD_DIR}:
 	mkdir -p ${BUILD_DIR}/flooding
 	mkdir -p ${BUILD_DIR}/geometry
 	mkdir -p ${BUILD_DIR}/map
+	mkdir -p ${BUILD_DIR}/raycasting
 
 ${BUILD_DIR}/%.o	:	${SRC_DIR}/%.c Makefile
 	@echo "\t${YELLOW}Compiling ${NAME} ->${RST} $<"
 #	@mkdir -p ${BUILD_DIR}
 	@${CC} ${CFLAGS} -I${INC_DIR} -I${MINILIBX_DIR}/include -I${LIBFT_DIR}/include -I${GNL_DIR}/include ${DEBUG_FLAG} -c $< -o $@ 
+
+test:   ${OBJS_TEST}
+		${CC} ${CFLAGS} ${SANITIZE_FLAGS} -o $@ ${OBJS_TEST} -L/usr/lib -L/usr/local/lib ${LIBS_FOLDERS} ${LIBS}
 
 clean			:
 	@make --no-print-directory clean -C ${LIBFT_DIR}
