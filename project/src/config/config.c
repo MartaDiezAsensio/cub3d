@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 21:08:30 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/16 21:23:20 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/17 19:49:18 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ bool	config_is_header_initialized(t_config config)
 {
 	if (config.north_texture == NULL || config.south_texture == NULL || \
 			config.east_texture == NULL || config.east_texture == NULL)
-		return false;
+		return (false);
 	if (config.ceiling_color.r < 0 || config.ceiling_color.g < 0 || \
 		config.ceiling_color.b < 0)
 		return (false);

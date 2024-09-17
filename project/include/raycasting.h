@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera.h                                           :+:      :+:    :+:   */
+/*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 20:35:03 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/17 18:04:51 by mdiez-as         ###   ########.fr       */
+/*   Created: 2024/09/17 18:03:17 by mdiez-as          #+#    #+#             */
+/*   Updated: 2024/09/17 19:38:31 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAMERA_H
-# define CAMERA_H
+#include "camera.h"
 
-# include "types.h"
-# include "point.h"
-# include "vector.h"
+// Funcion para un solo rayo. Input: rayo x, width de pantalla, camara (para direccion)
+t_vector    raycasting_new_ray(int x, int w, t_camera camera);
+t_vector    *raycasting_n_ray(int w, t_camera camera);
 
-# define FOV	0.66f
-
-typedef struct s_camera
-{
-	t_point		position;
-	t_vector	direction;
-	t_vector	camera_panel;
-} t_camera;
-
-t_camera	camera_new(t_point origin, t_orientations orientation);
-
-#endif
