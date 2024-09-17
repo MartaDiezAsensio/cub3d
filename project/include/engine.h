@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   engine.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:43:45 by gabriel           #+#    #+#             */
 /*   Updated: 2024/09/17 19:22:13 by mdiez-as         ###   ########.fr       */
