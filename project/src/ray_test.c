@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_test.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 22:08:37 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/18 21:15:43 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/09/19 00:06:14 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #include "vector.h"
 #include "camera.h"
 #include "map.h"
+#include "radiants.h"
 
 //#define WIDTH 640
 //#define HEIGHT 480
@@ -93,7 +94,7 @@ static	bool	dda_is_inside_map(t_point point, t_map map)
 {
 	if(point.x < 0 || point.y < 0)
 		return (false);
-	if(point.x > (int)map.width || point.y > (int)map.height)
+	if(point.x >= (int)map.width || point.y >= (int)map.height)
 		return(false);
 	return (true);
 }
@@ -121,7 +122,7 @@ t_tile *dda_calculate_hit2(t_point	origin, t_vector direction,t_data *data)
 	i = 0;
 	//printf("dx : %f dy: %f\n",dda_data.dx,dda_data.dy);
 	//printf("origin.x %d origin.y %d destiny.x %d destiny.y %d \n", origin.x, origin.y, dda_data.final.x, dda_data.final.y);
-	printf("STEP es: %f \n", dda_data.step);
+	//printf("STEP es: %f \n", dda_data.step);
 	while( i <= dda_data.step)
 	{
 		point = point_new(round(dda_data.x), round(dda_data.y));
@@ -145,10 +146,16 @@ t_tile *dda_calculate_hit2(t_point	origin, t_vector direction,t_data *data)
 
 void	paint_player(t_data *data)
 {
-	mlx_put_pixel(data->img, data->width / 2, data->height / 2, create_color(0xFF, 0xFF, 0xFF));
-	mlx_put_pixel(data->img, data->width / 2 + 1, data->height / 2, create_color(0xFF, 0xFF, 0xFF));
-	mlx_put_pixel(data->img, data->width / 2, data->height / 2 + 1, create_color(0xFF, 0xFF, 0xFF));
-	mlx_put_pixel(data->img, data->width / 2 + 1, data->height / 2 + 1, create_color(0xFF, 0xFF, 0xFF));
+	mlx_put_pixel(data->img, data->camera.position.x, data->camera.position.y, create_color(0xFF, 0xFF, 0xFF));
+	mlx_put_pixel(data->img, data->camera.position.x + 1, data->camera.position.y, create_color(0xFF, 0xFF, 0xFF));
+	mlx_put_pixel(data->img, data->camera.position.x, data->camera.position.y + 1, create_color(0xFF, 0xFF, 0xFF));
+	mlx_put_pixel(data->img, data->camera.position.x + 1, data->camera.position.y + 1, create_color(0xFF, 0xFF, 0xFF));
+
+
+//	mlx_put_pixel(data->img, data->width / 2, data->height / 2, create_color(0xFF, 0xFF, 0xFF));
+//	mlx_put_pixel(data->img, data->width / 2 + 1, data->height / 2, create_color(0xFF, 0xFF, 0xFF));
+//	mlx_put_pixel(data->img, data->width / 2, data->height / 2 + 1, create_color(0xFF, 0xFF, 0xFF));
+//	mlx_put_pixel(data->img, data->width / 2 + 1, data->height / 2 + 1, create_color(0xFF, 0xFF, 0xFF));
 
 	/*
 	mlx_put_pixel(data->img, data->width / 2, data->height / 2 + 2, create_color(0xFF, 0xFF, 0xFF));
@@ -158,6 +165,28 @@ void	paint_player(t_data *data)
 	*/
 }
 
+
+void	clear_img(t_data *data)
+{
+	int		x;
+	int		y;
+	t_color		tcolor;
+	uint32_t	color;
+
+	x = 0;
+	tcolor  = color_new_3(0x00,0x00,0x00);
+	color  = color_2_mlx(tcolor);
+	while (x < data->width)
+	{
+		y = 0;
+		while ( y < data->height)
+		{
+			mlx_put_pixel(data->img,x,y,color);
+			y++;
+		}
+		x++;
+	}
+}
 //bool		raycasting_n_ray(int w, t_camera camera, t_vector **rays);
 //t_vector	raycasting_new_ray(int x, int w, t_camera camera);
 void	loop(void *param)
@@ -168,6 +197,7 @@ void	loop(void *param)
 
 	data = (t_data *)param;
 	
+	clear_img(data);
 	i = 0;
 	//while(i < (size_t)data->width)
 	while(i <= (size_t)WIDTH_MAP)
@@ -178,6 +208,8 @@ void	loop(void *param)
 		i++;
 	}
 	paint_player(data);
+	printf("Camera pane: x %f  y %f \n", data->camera.camera_panel.x, data->camera.camera_panel.y);
+	printf("Camera direction: x %f y %f \n", data->camera.direction.x, data->camera.direction.y);
 }
 
 
@@ -189,13 +221,56 @@ static	t_data	data_init(void)
 	data.width = WIDTH;
 	data.height = HEIGHT;
 	origin = point_new(data.width / 2, data.height /2);
-	data.camera = camera_new(origin, WEST);
+	data.camera = camera_new(origin, SOUTH);
 	printf("Camera pane: x %f  y %f \n", data.camera.camera_panel.x, data.camera.camera_panel.y);
 	printf("Camera direction: x %f y %f \n", data.camera.direction.x, data.camera.direction.y);
 	//data.camera.camera_panel.x = 0.1;
 	data.map.height = data.height;
 	data.map.width = data.width;
 	return (data);
+}
+
+//t_vector	vector_rotate(t_vector vector, float rad_angle, bool normalize)
+
+void	on_keypress(mlx_key_data_t keydata, void * param)
+{
+	t_data	*data;
+	float angle;
+
+	data = (t_data *)param;
+	angle = angle_to_radiants(1);
+	if (keydata.key == MLX_KEY_ESCAPE)
+	{
+		mlx_close_window(data->mlx);
+	}
+	if (keydata.key == MLX_KEY_A)
+	{
+		data->camera.position.x--;
+	}
+	if (keydata.key == MLX_KEY_D)
+	{
+		data->camera.position.x++;
+	}
+	if (keydata.key == MLX_KEY_W)
+	{
+		data->camera.position.y--;
+	}
+	if (keydata.key == MLX_KEY_S)
+	{
+		data->camera.position.y++;
+	}
+	if (keydata.key == MLX_KEY_RIGHT)
+	{
+		data->camera.direction = vector_rotate(data->camera.direction, angle, true);
+		data->camera.camera_panel =  vector_rotate(data->camera.camera_panel, angle, true);
+	}
+	if (keydata.key == MLX_KEY_LEFT)
+	{
+		data->camera.direction = vector_rotate(data->camera.direction, -angle, true);
+		data->camera.camera_panel =  vector_rotate(data->camera.camera_panel, -angle, true);
+	}
+
+
 }
 
 
@@ -213,6 +288,7 @@ int	main(void)
 	data.img = mlx_new_image(data.mlx,data.width, data.height);
 	mlx_image_to_window(data.mlx, data.img,0,0);
 	mlx_loop_hook(data.mlx, loop, &data);
+	mlx_key_hook(data.mlx, on_keypress, &data);
 	mlx_loop(data.mlx);
 	printf("EXIT loop\n");
 	mlx_delete_image(data.mlx, data.img);
