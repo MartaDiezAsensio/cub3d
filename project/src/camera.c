@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 20:43:00 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/19 00:01:21 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/19 00:16:56 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_vector	camera_init_screen_plan(t_orientations orientation)
 	else
 		return (vector_new_from_values(0.0f, FOV, false));
 	*/
+
 	if (orientation == NORTH)
 		return (vector_new_from_values(FOV, 0.0f, false));
 	if (orientation == SOUTH)
@@ -29,6 +30,7 @@ t_vector	camera_init_screen_plan(t_orientations orientation)
 		return (vector_new_from_values(0.0f, FOV, false));
 	//if (orientation == EAST)
 	return (vector_new_from_values(0.0f,-FOV, false));
+
 }
 
 t_camera	camera_new(t_point origin, t_orientations orientation)

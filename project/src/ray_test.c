@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 22:08:37 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/19 00:06:14 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/19 00:23:21 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,8 +208,8 @@ void	loop(void *param)
 		i++;
 	}
 	paint_player(data);
-	printf("Camera pane: x %f  y %f \n", data->camera.camera_panel.x, data->camera.camera_panel.y);
-	printf("Camera direction: x %f y %f \n", data->camera.direction.x, data->camera.direction.y);
+//	printf("Camera pane: x %f  y %f \n", data->camera.camera_panel.x, data->camera.camera_panel.y);
+//	printf("Camera direction: x %f y %f \n", data->camera.direction.x, data->camera.direction.y);
 }
 
 
@@ -261,13 +261,13 @@ void	on_keypress(mlx_key_data_t keydata, void * param)
 	}
 	if (keydata.key == MLX_KEY_RIGHT)
 	{
-		data->camera.direction = vector_rotate(data->camera.direction, angle, true);
-		data->camera.camera_panel =  vector_rotate(data->camera.camera_panel, angle, true);
+		data->camera.direction = vector_rotate(data->camera.direction, angle, false);
+		data->camera.camera_panel =  vector_rotate(data->camera.camera_panel, angle, false);
 	}
 	if (keydata.key == MLX_KEY_LEFT)
 	{
-		data->camera.direction = vector_rotate(data->camera.direction, -angle, true);
-		data->camera.camera_panel =  vector_rotate(data->camera.camera_panel, -angle, true);
+		data->camera.direction = vector_rotate(data->camera.direction, -angle, false);
+		data->camera.camera_panel =  vector_rotate(data->camera.camera_panel, -angle, false);
 	}
 
 
