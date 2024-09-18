@@ -6,7 +6,7 @@
 /*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 22:08:37 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/18 19:42:12 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/09/18 21:15:43 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 #define WIDTH 800
 #define HEIGHT 600
 
-#define WIDTH_MAP 8
+#define WIDTH_MAP 3
 
 
 typedef struct s_data
@@ -93,7 +93,7 @@ static	bool	dda_is_inside_map(t_point point, t_map map)
 {
 	if(point.x < 0 || point.y < 0)
 		return (false);
-	if((size_t)point.x > map.width || (size_t)point.y > map.height)
+	if(point.x > (int)map.width || point.y > (int)map.height)
 		return(false);
 	return (true);
 }
@@ -108,7 +108,8 @@ static t_tile *dda_check_hit(t_point point, t_map map)
 
 //https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)
 
-t_tile *dda_calculate_hit2(t_point	origin, t_vector direction, t_map map, t_data *data)
+#include <stdio.h>
+t_tile *dda_calculate_hit2(t_point	origin, t_vector direction,t_data *data)
 {
 	t_dda		dda_data;
 	int			i;
@@ -116,14 +117,18 @@ t_tile *dda_calculate_hit2(t_point	origin, t_vector direction, t_map map, t_data
 	uint32_t	color;
 
 	color = create_color(0xAA, 0x00, 0x00);
-	dda_data.final = point_new(origin.x + direction.x * INT_MAX, origin.y + direction.y * INT_MAX);
 	dda_data = dda_init(origin, direction);
 	i = 0;
+	//printf("dx : %f dy: %f\n",dda_data.dx,dda_data.dy);
+	//printf("origin.x %d origin.y %d destiny.x %d destiny.y %d \n", origin.x, origin.y, dda_data.final.x, dda_data.final.y);
+	printf("STEP es: %f \n", dda_data.step);
 	while( i <= dda_data.step)
 	{
 		point = point_new(round(dda_data.x), round(dda_data.y));
-		if (!dda_is_inside_map(point, map))
+		if (!dda_is_inside_map(point, data->map))
 			return (NULL);
+		(void)data;
+		//printf("Punto: ");
 		mlx_put_pixel(data->img, point.x, point.y, color);
 		//tile = dda_check_hit(point, map);
 		//if (tile != NULL)
@@ -138,16 +143,19 @@ t_tile *dda_calculate_hit2(t_point	origin, t_vector direction, t_map map, t_data
 
 
 
-
-
-
-
 void	paint_player(t_data *data)
 {
+	mlx_put_pixel(data->img, data->width / 2, data->height / 2, create_color(0xFF, 0xFF, 0xFF));
+	mlx_put_pixel(data->img, data->width / 2 + 1, data->height / 2, create_color(0xFF, 0xFF, 0xFF));
+	mlx_put_pixel(data->img, data->width / 2, data->height / 2 + 1, create_color(0xFF, 0xFF, 0xFF));
+	mlx_put_pixel(data->img, data->width / 2 + 1, data->height / 2 + 1, create_color(0xFF, 0xFF, 0xFF));
+
+	/*
 	mlx_put_pixel(data->img, data->width / 2, data->height / 2 + 2, create_color(0xFF, 0xFF, 0xFF));
 	mlx_put_pixel(data->img, data->width / 2 + 1, data->height / 2 + 2, create_color(0xFF, 0xFF, 0xFF));
 	mlx_put_pixel(data->img, data->width / 2, data->height / 2 + 1 + 2, create_color(0xFF, 0xFF, 0xFF));
 	mlx_put_pixel(data->img, data->width / 2 + 1, data->height / 2 + 1 + 2, create_color(0xFF, 0xFF, 0xFF));
+	*/
 }
 
 //bool		raycasting_n_ray(int w, t_camera camera, t_vector **rays);
@@ -159,16 +167,17 @@ void	loop(void *param)
 	t_vector	ray_direction;
 
 	data = (t_data *)param;
-	paint_player(data);
+	
 	i = 0;
 	//while(i < (size_t)data->width)
 	while(i <= (size_t)WIDTH_MAP)
 	{
 		//ray_direction = raycasting_new_ray(i, data->width, data->camera);
 		ray_direction = raycasting_new_ray(i, WIDTH_MAP, data->camera);
-		dda_calculate_hit2(data->camera.position, ray_direction, data->map, data);
+		dda_calculate_hit2(data->camera.position, ray_direction, data);
 		i++;
 	}
+	paint_player(data);
 }
 
 
@@ -180,7 +189,10 @@ static	t_data	data_init(void)
 	data.width = WIDTH;
 	data.height = HEIGHT;
 	origin = point_new(data.width / 2, data.height /2);
-	data.camera = camera_new(origin, NORTH);
+	data.camera = camera_new(origin, WEST);
+	printf("Camera pane: x %f  y %f \n", data.camera.camera_panel.x, data.camera.camera_panel.y);
+	printf("Camera direction: x %f y %f \n", data.camera.direction.x, data.camera.direction.y);
+	//data.camera.camera_panel.x = 0.1;
 	data.map.height = data.height;
 	data.map.width = data.width;
 	return (data);
@@ -202,6 +214,8 @@ int	main(void)
 	mlx_image_to_window(data.mlx, data.img,0,0);
 	mlx_loop_hook(data.mlx, loop, &data);
 	mlx_loop(data.mlx);
+	printf("EXIT loop\n");
+	mlx_delete_image(data.mlx, data.img);
 	mlx_terminate(data.mlx);
 	return (EXIT_SUCCESS);
 }
