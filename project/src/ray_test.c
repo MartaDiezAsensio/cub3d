@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 22:08:37 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/19 00:23:21 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/19 22:58:58 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 #define WIDTH 800
 #define HEIGHT 600
 
-#define WIDTH_MAP 3
+#define WIDTH_MAP 7
 
 
 typedef struct s_data
@@ -66,13 +66,16 @@ uint32_t	create_color(unsigned char r, unsigned char g, unsigned char b)
 	Es decir si x es la mayor, en cada iteracion avanzamos 1 en x  (dx/dx) y dy /dx en y. 
 	Y viceversa
 */
+#include <stdio.h>
 static t_dda	dda_init(t_point origin, t_vector direction)
 {
 	t_dda	dda_data;
 
 	dda_data.x = origin.x;
 	dda_data.y = origin.y;
-	dda_data.final = point_new(origin.x + direction.x * INT_MAX, origin.y + direction.y * INT_MAX);
+//	dda_data.final = point_new(origin.x + direction.x * INT_MAX, origin.y + direction.y * INT_MAX);
+	dda_data.final = point_new(origin.x + direction.x * 10000, origin.y + direction.y * 10000);
+	printf("punto final: x %d,  y %d direction.y %f origin y %d\n", dda_data.final.x, dda_data.final.y, direction.y, origin.y );
 	dda_data.dx = dda_data.final.x - dda_data.x;
 	dda_data.dy = dda_data.final.y - dda_data.y;
 	if (fabs(dda_data.dx) >= fabs(dda_data.dy))
@@ -110,13 +113,14 @@ static t_tile *dda_check_hit(t_point point, t_map map)
 //https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)
 
 #include <stdio.h>
-t_tile *dda_calculate_hit2(t_point	origin, t_vector direction,t_data *data)
+t_tile *dda_calculate_hit2(t_point	origin, t_vector direction,t_data *data, int n)
 {
 	t_dda		dda_data;
 	int			i;
 	t_point		point;
 	uint32_t	color;
 
+	(void) color;
 	color = create_color(0xAA, 0x00, 0x00);
 	dda_data = dda_init(origin, direction);
 	i = 0;
@@ -129,7 +133,10 @@ t_tile *dda_calculate_hit2(t_point	origin, t_vector direction,t_data *data)
 		if (!dda_is_inside_map(point, data->map))
 			return (NULL);
 		(void)data;
-		//printf("Punto: ");
+		//(void)n;
+		//printf("Color %u \n", 255 / n);
+		color = create_color(0xAA / (n + 1), 0x00 / (n + 1), 0x00 / (n + 1));
+//		color = create_color(0xAA, 0x00, 0x00);
 		mlx_put_pixel(data->img, point.x, point.y, color);
 		//tile = dda_check_hit(point, map);
 		//if (tile != NULL)
@@ -200,11 +207,16 @@ void	loop(void *param)
 	clear_img(data);
 	i = 0;
 	//while(i < (size_t)data->width)
+	printf("i = %ld Direction .x %f Direction y %f  Plane x %f Plane y %f\n", i, data->camera.direction.x, data->camera.direction.y, data->camera.camera_panel.x, data->camera.camera_panel.y);
 	while(i <= (size_t)WIDTH_MAP)
 	{
 		//ray_direction = raycasting_new_ray(i, data->width, data->camera);
-		ray_direction = raycasting_new_ray(i, WIDTH_MAP, data->camera);
-		dda_calculate_hit2(data->camera.position, ray_direction, data);
+		ray_direction = raycasting_new_ray(i, WIDTH_MAP, data->camera);	
+	//if ( i == WIDTH_MAP / 2)
+//		{
+			printf("RAYO = %ld Direction .x %f Direction y %f  Plane x %f Plane y %f\n", i, ray_direction.x, ray_direction.y, data->camera.camera_panel.x, data->camera.camera_panel.y);
+//		}
+		dda_calculate_hit2(data->camera.position, ray_direction, data, i);
 		i++;
 	}
 	paint_player(data);
