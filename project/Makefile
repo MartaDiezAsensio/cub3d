@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+         #
+#    By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-#    Updated: 2024/09/16 19:21:59 by gabriel          ###   ########.fr        #
+#    Updated: 2024/09/19 20:28:03 by mdiez-as         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,7 +102,8 @@ SRC		+=	dda/dda.c							\
 SRC		+=	engine/engine.c						\
 			engine/engine_mlx_config.c			\
 			engine/engine_render.c				\
-			engine/engine_textures.c
+			engine/engine_textures.c			\
+			engine/engine_render_column.c
 
 SRC		+=	events/handler_key_events.c			\
 			events/handler_destroy_event.c		\
@@ -116,6 +117,9 @@ SRC		+=	geometry/point.c					\
 			geometry/radiants.c					\
 			geometry/vector_arithmetic.c		\
 			geometry/vector.c
+
+SRC		+=	raycasting/raycasting.c				\
+			raycasting/raycasting_paint.c
 
 SRC		+=	map/map.c							\
 			map/map_loader.c					\
@@ -137,6 +141,7 @@ HEADERS			=	camera.h		\
 					player.h		\
 					point.h			\
 					radiants.h		\
+					raycasting.h	\
 					screen.h		\
 					texture.h		\
 					tile.h			\
@@ -195,6 +200,7 @@ ${BUILD_DIR}:
 	mkdir -p ${BUILD_DIR}/flooding
 	mkdir -p ${BUILD_DIR}/geometry
 	mkdir -p ${BUILD_DIR}/map
+	mkdir -p ${BUILD_DIR}/raycasting
 
 ${BUILD_DIR}/%.o	:	${SRC_DIR}/%.c Makefile
 	@echo "\t${YELLOW}Compiling ${NAME} ->${RST} $<"

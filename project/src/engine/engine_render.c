@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine_render.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 22:20:03 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/11 20:02:05 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/19 20:41:15 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 #include "engine.h"
 #include "error.h"
 #include "MLX42/MLX42.h"
+#include "raycasting.h"
 
-
+/*
 static void	engine_render_background(t_engine *engine)
 {
 	size_t	i;
@@ -42,10 +43,12 @@ static void	engine_render_background(t_engine *engine)
 		i++;
 	}
 }
+*/
 
 static bool	engine_render_create_frame(t_engine *engine)
 {
-	engine_render_background(engine);
+//	engine_render_background(engine);
+	raycasting_paint(engine);
 	return (true);
 }
 

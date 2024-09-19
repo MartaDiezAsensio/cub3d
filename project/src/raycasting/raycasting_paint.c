@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:15:21 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/18 18:48:54 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/19 20:55:24 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ static int  raycasting_calculate_wall(double distance, int screen_height)
 {
     (void)distance;
     (void)screen_height;
-    return (1);   
+    return (500);   
 }
 
+//#include <>
 
 bool    raycasting_paint(t_engine *engine)
 {
@@ -42,22 +43,23 @@ bool    raycasting_paint(t_engine *engine)
         // liberar recursos ( si fuera necesario)
     size_t      x;
     t_vector    ray_direction;
-    t_tile      tile_colition;
     t_point     point_colition;
     double      distance;
     int         num_pixels_wall;
 
+
     x = 0;
+    (void)ray_direction;
+    (void)point_colition;
     while(x < engine->screen.x)
     {
-        ray_direction = rays_casting_new_ray(x, engine->screen.x, engine->camera);
-        tile_colition = dda_calculate_hit(engine->camera.position, ray_direction, engine->map);
-        if (tile_colition == NULL)
-            return (false);
-        point_colition = point_new(tile->x, tile->y);
-        distance = point_calculate_distance(engine->camera.position,  point_colition);
+        //ray_direction = raycasting_new_ray(x, engine->screen.x, engine->camera);
+        //if (!dda_calculate_hit(engine->camera.position, ray_direction, engine->map, &point_colition))
+        //    return (false);
+        //distance = point_calculate_distance(engine->camera.position,  point_colition);
+        distance = 0.3f;
         num_pixels_wall = raycasting_calculate_wall(distance, engine->screen.y);
-        //engine_render_column(engine, x, num_pixels_wall);
+        engine_render_column(*engine, x, num_pixels_wall);
         //revisasr si hace falta liberar recursos.
         x++;
     }
