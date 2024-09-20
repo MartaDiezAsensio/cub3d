@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+         #
+#    By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-#    Updated: 2024/09/17 22:52:09 by gabriel          ###   ########.fr        #
+#    Updated: 2024/09/20 08:10:13 by greus-ro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,7 +103,8 @@ SRC		+=	dda/dda.c							\
 SRC		+=	engine/engine.c						\
 			engine/engine_mlx_config.c			\
 			engine/engine_render.c				\
-			engine/engine_textures.c
+			engine/engine_textures.c			\
+			engine/engine_render_column.c
 
 SRC		+=	events/handler_key_events.c			\
 			events/handler_destroy_event.c		\
@@ -118,12 +119,13 @@ SRC		+=	geometry/point.c					\
 			geometry/vector_arithmetic.c		\
 			geometry/vector.c
 
+SRC		+=	raycasting/raycasting.c				\
+			raycasting/raycasting_paint.c
+
 SRC		+=	map/map.c							\
 			map/map_loader.c					\
 			map/map_parser.c					\
 			map/tile.c
-
-SRC		+=	raycasting/raycasting.c
 
 #SRC_TEST = 		${SRC} \
 #				ray_test.c
@@ -180,7 +182,7 @@ ${NAME}			:	${OBJS} ${LIBFT_DIR}/libft.a ${GNL_DIR}/libgnl.a ${MINILIBX_DIR}/bui
 	@echo "${CYAN}Linking all together${RST}"
 #	${CC} ${CFLAGS} ${SANITIZE_FLAGS} -o ${NAME} ${OBJS} -L/usr/lib -L/usr/local/lib ${LIBS_FOLDERS} ${LIBS} -lXext -lX11 -lz
 #	${CC} ${CFLAGS} ${SANITIZE_FLAGS} -o ${NAME} ${OBJS} -L/usr/lib -L/usr/local/lib ${LIBS_FOLDERS} ${LIBS} -ldl -lglfw -pthread
-	${CC} ${CFLAGS} ${SANITIZE_FLAGS} -o ${NAME} ${OBJS} -L/usr/lib -L/usr/local/lib ${LIBS_FOLDERS} ${LIBS}
+	${CC} ${CFLAGS} ${SANITIZE_FLAGS} -o ${NAME} ${OBJS} -L/usr/lib -L/usr/local/lib ${LIBS_FOLDERS} ${LIBS} 
 	@echo "$(GREEN)Binary $(NAME) compiled! $(RST)"
 
 compile:

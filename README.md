@@ -24,3 +24,4 @@ NOTA 1909.
 - https://medium.com/@afatir.ahmedfatir/cub3d-tutorial-af5dd31d2fcf
 - https://reactive.so/post/42-a-comprehensive-guide-to-cub3d/
 - https://harm-smits.github.io/42docs/projects/cub3d.html
+- https://github.com/jareste/Cub3d/blob/main/SRC/main.c

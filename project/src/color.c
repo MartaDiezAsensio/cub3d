@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 20:58:02 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/16 21:32:13 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/20 07:52:13 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,15 @@ uint32_t	color_2_mlx(t_color tcolor)
 
 	color = (tcolor.r << 24 | tcolor.g << 16 | tcolor.b << 8 | tcolor.a);
 	return (color);
+}
+
+uint32_t	color_new_mlx(unsigned char _r, unsigned char _g, unsigned char _b)
+{
+	t_color color;
+
+	color.r = _r;
+	color.g = _g;
+	color.b = _b;
+	color.a = 0xFF;
+	return (color_2_mlx(color));
 }

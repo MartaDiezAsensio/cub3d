@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:32:51 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/05 18:46:07 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/19 20:55:07 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,35 @@ static	void	dda_next_step(t_dda *dda)
 static	bool	dda_is_inside_map(t_point point, t_map map)
 {
 
-	(void)point;
-	(void)map;
+	if(point.x < 0 || point.y < 0)
+		return (false);
+	if(point.x >= (int)map.width || point.y >= (int)map.height)
+		return(false);
 	return (true);
 }
 
-static t_tile *dda_check_hit(t_point point, t_map map)
+/*static t_tile *dda_check_hit(t_point point, t_map map)
 {
-	(void)point;
-	(void)map;
+	if ((map.map[point.x][point.y]) == MAP_TILE_WALL)
 	return (NULL);
+}*/
+
+static bool	dda_check_hit(t_point point, t_map map)
+{
+	if ((map.map[point.x][point.y]) == MAP_TILE_WALL)
+		return (true);
+	return (false);
 }
 
 //https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)
 
-t_tile *dda_calculate_hit(t_point	origin, t_vector direction, t_map map)
+//t_tile *dda_calculate_hit(t_point	origin, t_vector direction, t_map map)
+bool dda_calculate_hit(t_point	origin, t_vector direction, t_map map, \
+		t_point *hit)
 {
 	t_dda	dda_data;
 	int		i;
 	t_point	point;
-	t_tile	*tile;
 
 	dda_data.final = point_new(origin.x + direction.x * INT_MAX, origin.y + direction.y * INT_MAX);
 	dda_data = dda_init(origin, direction);
@@ -76,12 +85,14 @@ t_tile *dda_calculate_hit(t_point	origin, t_vector direction, t_map map)
 	{
 		point = point_new(round(dda_data.x), round(dda_data.y));
 		if (!dda_is_inside_map(point, map))
-			return (NULL);
-		tile = dda_check_hit(point, map);
-		if (tile != NULL)
-			return (tile);
+			return (false);
+		if(dda_check_hit(point, map))
+		{
+			*hit = point;
+			return (true);
+		}
 		dda_next_step(&dda_data);
 		i++;
 	}
-	return (NULL);
+	return (false);
 }
