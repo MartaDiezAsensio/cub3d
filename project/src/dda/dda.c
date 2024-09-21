@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:32:51 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/19 20:55:07 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/21 18:43:20 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@
 /*
 	EN step ponemos el menor entre dx y dy para que en cada iteracion avancemos un paso en el x o y que tenga mayor diferencia.
 	Es decir si x es la mayor, en cada iteracion avanzamos 1 en x  (dx/dx) y dy /dx en y. 
-	Y viceversa
+	Y viceversa.
+
+
+	Ponemos 10000 para evitar un overfload en las coordenadas.
 */
 static t_dda	dda_init(t_point origin, t_vector direction)
 {
@@ -27,7 +30,7 @@ static t_dda	dda_init(t_point origin, t_vector direction)
 
 	dda_data.x = origin.x;
 	dda_data.y = origin.y;
-	dda_data.final = point_new(origin.x + direction.x * INT_MAX, origin.y + direction.y * INT_MAX);
+	dda_data.final = point_new(origin.x + direction.x * 10000, origin.y + direction.y * 10000);
 	dda_data.dx = dda_data.final.x - dda_data.x;
 	dda_data.dy = dda_data.final.y - dda_data.y;
 	if (fabs(dda_data.dx) >= fabs(dda_data.dy))
@@ -78,7 +81,7 @@ bool dda_calculate_hit(t_point	origin, t_vector direction, t_map map, \
 	int		i;
 	t_point	point;
 
-	dda_data.final = point_new(origin.x + direction.x * INT_MAX, origin.y + direction.y * INT_MAX);
+	dda_data.final = point_new(origin.x + direction.x * 10000, origin.y + direction.y * 10000);
 	dda_data = dda_init(origin, direction);
 	i = 0;
 	while( i <= dda_data.step)

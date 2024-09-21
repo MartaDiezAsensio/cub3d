@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_test.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 22:08:37 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/19 22:58:58 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/21 18:41:05 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,10 +133,10 @@ t_tile *dda_calculate_hit2(t_point	origin, t_vector direction,t_data *data, int 
 		if (!dda_is_inside_map(point, data->map))
 			return (NULL);
 		(void)data;
-		//(void)n;
+		(void)n;
 		//printf("Color %u \n", 255 / n);
-		color = create_color(0xAA / (n + 1), 0x00 / (n + 1), 0x00 / (n + 1));
-//		color = create_color(0xAA, 0x00, 0x00);
+		//color = create_color(0xAA / (n + 1), 0x00 / (n + 1), 0x00 / (n + 1));
+		color = create_color(0xAA, 0x00, 0x00);
 		mlx_put_pixel(data->img, point.x, point.y, color);
 		//tile = dda_check_hit(point, map);
 		//if (tile != NULL)
