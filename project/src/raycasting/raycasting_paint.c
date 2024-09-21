@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:15:21 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/19 20:55:24 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/20 19:39:00 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include "tile.h"
 #include "error.h"
 #include "point.h"
+
+
+#include <stdio.h>
 
 //t_vector    raycasting_new_ray(int x, int w, t_camera camera);
 //t_tile *dda_calculate_hit(t_point	origin, t_vector direction, t_map map);
@@ -28,8 +31,6 @@ static int  raycasting_calculate_wall(double distance, int screen_height)
     return (500);   
 }
 
-//#include <>
-
 bool    raycasting_paint(t_engine *engine)
 {
 
@@ -41,21 +42,33 @@ bool    raycasting_paint(t_engine *engine)
         // calculamos el numero de pixeles de pared segun la distancia de colision ( en el futuro , calcularemos tb la textura N,X,W,E)
         // pintamos la columna de pixeles x con el techo, pared y suelo.
         // liberar recursos ( si fuera necesario)
-    size_t      x;
-    t_vector    ray_direction;
-    t_point     point_colition;
-    double      distance;
-    int         num_pixels_wall;
+
+	size_t		x;
+	t_vector	ray_direction;
+	t_point		point_colition;
+	double		distance;
+	int			num_pixels_wall;
 
 
-    x = 0;
-    (void)ray_direction;
-    (void)point_colition;
-    while(x < engine->screen.x)
-    {
-        //ray_direction = raycasting_new_ray(x, engine->screen.x, engine->camera);
-        //if (!dda_calculate_hit(engine->camera.position, ray_direction, engine->map, &point_colition))
-        //    return (false);
+	x = 0;
+	(void)ray_direction;
+	(void)point_colition;
+
+
+
+	printf("%f ", engine->camera.camera_panel.x);
+
+	
+
+	while(x < engine->screen.x)
+	{
+		ray_direction = raycasting_new_ray(x, engine->screen.x, engine->camera); 
+		//printf("%.2f", ray_direction.x);
+		/*if (!dda_calculate_hit(engine->camera.position, ray_direction, engine->map, &point_colition))
+		{
+			printf("%s", "dda not working");
+			return (false);
+		}*/
         //distance = point_calculate_distance(engine->camera.position,  point_colition);
         distance = 0.3f;
         num_pixels_wall = raycasting_calculate_wall(distance, engine->screen.y);

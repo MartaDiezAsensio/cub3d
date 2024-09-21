@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 21:58:10 by gabriel           #+#    #+#             */
-/*   Updated: 2024/08/24 21:01:02 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/20 18:23:31 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef	struct s_vector
 	double	x;
 	double	y;
 	double	modulus;
-		
 }	t_vector;
 
 

@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 19:35:14 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/19 20:31:45 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/20 19:33:57 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 #include "raycasting.h"
 #include "error.h"
+
+
+#include <stdio.h>
 
 // Funcion para un solo rayo. Input: rayo x, width de pantalla, camara (para direccion)
 t_vector    raycasting_new_ray(int x, int w, t_camera camera)
@@ -24,9 +27,10 @@ t_vector    raycasting_new_ray(int x, int w, t_camera camera)
     double  rayDirY;
 
     cameraX = 2 * x / (double)w -1;
-    rayDirX = camera.direction.x + camera.camera_panel.x * cameraX;
+    rayDirX = camera.direction.x + camera.camera_panel.x * cameraX; // 
+	printf("%.f", camera.direction.x);
     rayDirY = camera.direction.y + camera.camera_panel.y * cameraX;
-    ray = vector_new_from_values(rayDirX, rayDirY, true);
+    ray = vector_new_from_values(rayDirX, rayDirY, false);
     return (ray);
 }
 
