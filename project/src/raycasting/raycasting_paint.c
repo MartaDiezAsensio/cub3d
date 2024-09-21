@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:15:21 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/20 19:39:00 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/21 19:45:53 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,20 @@ bool    raycasting_paint(t_engine *engine)
 
 
 
-	printf("%f ", engine->camera.camera_panel.x);
+	printf("\t\tCamera dir x %f  y%f \n", engine->camera.direction.x, engine->camera.direction.y) ;
 
 	
 
 	while(x < engine->screen.x)
 	{
 		ray_direction = raycasting_new_ray(x, engine->screen.x, engine->camera); 
-		//printf("%.2f", ray_direction.x);
-		/*if (!dda_calculate_hit(engine->camera.position, ray_direction, engine->map, &point_colition))
+		printf("\t\t%f %f\n", ray_direction.x, ray_direction.y);
+        printf("\t\t Camera: %d %d\n", engine->camera.position.x, engine->camera.position.y);
+        if (!dda_calculate_hit(engine->camera.position, ray_direction, engine->cfg->map, &point_colition))
 		{
 			printf("%s", "dda not working");
 			return (false);
-		}*/
+		}
         //distance = point_calculate_distance(engine->camera.position,  point_colition);
         distance = 0.3f;
         num_pixels_wall = raycasting_calculate_wall(distance, engine->screen.y);

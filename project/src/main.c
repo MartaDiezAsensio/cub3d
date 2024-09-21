@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 19:53:01 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/12 18:59:27 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/21 19:31:17 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	main(int argc, char **argv)
 	t_engine	engine;
 	t_config	cfg;
 
+	//(void)engine;
+
 	if (argc != 2)
 		return (error_print_critical("Incorrect number of params"), \
 			EXIT_FAILURE);
@@ -33,6 +35,7 @@ int	main(int argc, char **argv)
 	config_debug(cfg);
 	if (!engine_init(&engine, &cfg))
 		return (engine_destroy(&engine), EXIT_FAILURE);
+	//printf("Engine: %d  \n", engine.camera.position.y);
 	if (!engine_start(&engine))
 		return (engine_destroy(&engine), EXIT_FAILURE);
 	engine_loop(&engine);

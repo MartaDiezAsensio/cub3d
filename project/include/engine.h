@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:43:45 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/20 18:14:01 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/21 19:29:31 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ enum	e_engine_textures
 typedef	struct s_engine
 {
 	mlx_t		*mlx;
-//	void		*mlx_win;
+	//void		*mlx_win;
 	t_camera	camera;
-	t_map		map;
+	//t_map		map; // Quitado duplicado de map
 	t_config	*cfg;
 	t_screen	screen;
 	t_texture	textures[4];

@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 19:35:14 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/20 19:33:57 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/21 19:32:05 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ t_vector    raycasting_new_ray(int x, int w, t_camera camera)
     double  rayDirY;
 
     cameraX = 2 * x / (double)w -1;
-    rayDirX = camera.direction.x + camera.camera_panel.x * cameraX; // 
-	printf("%.f", camera.direction.x);
+    rayDirX = camera.direction.x + camera.camera_panel.x * cameraX;
     rayDirY = camera.direction.y + camera.camera_panel.y * cameraX;
+    //printf(" Gabriel %.f    %.f\n", camera.direction.x, camera.direction.y);
     ray = vector_new_from_values(rayDirX, rayDirY, false);
     return (ray);
 }

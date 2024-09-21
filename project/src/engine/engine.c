@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:33:19 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/15 13:58:52 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/21 19:39:30 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ bool	engine_init(t_engine *engine, t_config *cfg)
 	texture_init(&engine->textures[TEXTURE_SOUTH]);
 	texture_init(&engine->textures[TEXTURE_WEST]);
 	texture_init(&engine->textures[TEXTURE_EAST]);
-	engine->map.map = NULL;
+	// engine->map.map = NULL; // Eliminado duplicado de map
 	engine->screen.title = NULL;
 	engine->img = NULL;
-	//camera_init();
+	engine->camera = camera_new(cfg->player_position, cfg->player_orientation); // Inicializado camera
 	return (true);
 }
 
@@ -58,7 +58,7 @@ bool	engine_start(t_engine *engine)
 
 void	engine_destroy(t_engine *engine)
 {
-	map_destroy(&engine->map);
+	//map_destroy(&engine->map); // Eliminado duplicado de map
 	if (engine->mlx != NULL)
 	{
 		engine_textures_destroy(engine);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 22:06:56 by gabriel           #+#    #+#             */
-/*   Updated: 2024/08/24 21:01:33 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/21 19:37:00 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,19 @@ t_vector	vector_new_from_points(t_point a, t_point b, bool normalize)
 	return (vector);
 }
 
+#include <stdio.h>
 t_vector	vector_new_from_values(double _x, double _y, bool normalize)
 {
 	t_vector	vector;
 
 	vector.x = _x;
 	vector.y = _y;
+//	printf("\tINIT %f %f\n", vector.x, vector.y);
 	if (normalize)
 		vector_normalize(&vector);
 	else
 		vector_calculate_modulus(&vector);
+//	printf("\tPOST INIT %f %f\n", vector.x, vector.y);
 	return (vector);
 }
 
