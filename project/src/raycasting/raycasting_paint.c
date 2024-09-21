@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:15:21 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/21 20:13:44 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/21 20:36:01 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,20 @@ bool    raycasting_paint(t_engine *engine)
 
 
 
-	printf("\t\tCamera dir x %f  y%f \n", engine->camera.direction.x, engine->camera.direction.y) ;
+	//printf("\t\tCamera dir x %f  y%f \n", engine->camera.direction.x, engine->camera.direction.y) ;
 
 	
 
 	while(x < engine->screen.x)
 	{
 		ray_direction = raycasting_new_ray(x, engine->screen.x, engine->camera); 
-	//	printf("\t\t%f %f\n", ray_direction.x, ray_direction.y);
-    //    printf("\t\t Camera: %d %d\n", engine->camera.position.x, engine->camera.position.y);
         if (!dda_calculate_hit(engine->camera.position, ray_direction, engine->cfg->map, &point_colition))
 		{
 			printf("%s", "dda not working");
 			return (false);
 		}
-        //distance = point_calculate_distance(engine->camera.position,  point_colition);
-        distance = 0.3f;
+        distance = point_calculate_distance(engine->camera.position,  point_colition);
+        //distance = 0.3f;
         num_pixels_wall = raycasting_calculate_wall(distance, engine->screen.y);
         engine_render_column(*engine, x, num_pixels_wall);
         //revisasr si hace falta liberar recursos.
