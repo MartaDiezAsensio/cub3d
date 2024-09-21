@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 19:35:14 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/17 19:54:04 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/20 07:56:04 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdlib.h>
 
 #include "raycasting.h"
 #include "error.h"
@@ -21,7 +23,7 @@ t_vector    raycasting_new_ray(int x, int w, t_camera camera)
     double  rayDirX;
     double  rayDirY;
 
-    cameraX = 2 * x / double(w) -1;
+    cameraX = 2.0f * (double)x / ((double)w) - 1.0f;
     rayDirX = camera.direction.x + camera.camera_panel.x * cameraX;
     rayDirY = camera.direction.y + camera.camera_panel.y * cameraX;
     ray = vector_new_from_values(rayDirX, rayDirY, true);

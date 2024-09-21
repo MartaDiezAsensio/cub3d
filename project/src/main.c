@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 19:53:01 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/12 18:59:27 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/16 21:22:32 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,38 @@
 #include "engine.h"
 #include "map.h"
 #include "config.h"
+#include "libft.h"
+
+static bool main_validate_args(int argc, char **argv)
+{
+	size_t	str_len;
+	char	*file_ext;
+
+	if (argc != 2)
+		return (error_print_critical("Incorrect number of params"), false);
+	str_len = ft_strlen(argv[1]);
+	file_ext = ft_substr(argv[1], str_len - 4, 4);
+	if (file_ext == NULL)
+		return (error_perror_critical(), false);
+	if (ft_strcmp(file_ext, ".cub") != 0)
+	{
+		free (file_ext);
+		return (error_print_critical("The cfg file is not a .cub file") \
+					, false);
+	}
+	free (file_ext);
+	return (true);
+}
 
 int	main(int argc, char **argv)
 {
 	t_engine	engine;
 	t_config	cfg;
 
-	if (argc != 2)
-		return (error_print_critical("Incorrect number of params"), \
-			EXIT_FAILURE);
-	if(!config_init(&cfg, argv[1]))
+	if (!main_validate_args(argc, argv))
 		return (EXIT_FAILURE);
+	if(!config_init(&cfg, argv[1]))
+		return (config_destroy(&cfg), EXIT_FAILURE);
 	if (!config_validator(&cfg))
 		return (config_destroy(&cfg), EXIT_FAILURE);
 	config_debug(cfg);

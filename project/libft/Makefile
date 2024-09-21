@@ -6,7 +6,7 @@
 #    By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/04 01:34:53 by greus-ro          #+#    #+#              #
-#    Updated: 2024/09/12 20:48:01 by gabriel          ###   ########.fr        #
+#    Updated: 2024/09/15 16:01:57 by gabriel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,7 @@ SRC			=	ft_atoi				\
 				ft_strlcpy			\
 				ft_strlen			\
 				ft_strmapi			\
+				ft_strcmp			\
 				ft_strncmp			\
 				ft_strnstr			\
 				ft_strrchr			\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:29:22 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/03 22:00:10 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/19 18:44:28 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ typedef struct s_dda
 	t_point	final;
 }	t_dda;
 
-t_tile *dda_calculate_hit(t_point	origin, t_vector direction, t_map map);
+bool	dda_calculate_hit(t_point	origin, t_vector direction, t_map map, t_point *hit);
 
 #endif

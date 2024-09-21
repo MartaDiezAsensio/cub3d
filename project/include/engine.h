@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:43:45 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/17 19:22:13 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:58:54 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	engine_loop(t_engine *engine);
 void	engine_destroy(t_engine *engine);
 //bool	engine_clear_window(t_engine *engine);
 //bool	engine_get_screen_size(t_engine *engine);
-void	engine_render(void *param);
 
 //engine/engine_texture.c
 bool	engine_texture_load(const char *filename, t_texture *texture);
@@ -71,5 +70,8 @@ void	engine_textures_destroy(t_engine *engine);
 void	engine_mlx_settings(void);
 void	engine_mlx_hooks(t_engine *engine);
 
+//engine/render
+bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall);
+void	engine_render(void *param);
 
 #endif
