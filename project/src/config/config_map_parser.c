@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_map_parser.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 23:00:00 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/12 19:35:45 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/21 20:25:53 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,14 @@ bool	config_parse_map(t_config *cfg, int fd)
 	while (line != NULL)
 	{
 		free (line);
-		line = ft_get_next_line_many_fds(fd);
+		//bool	config_get_trimmed_line(char **trim_line, int fd)
+		if (!config_get_trimmed_line(&line, fd))
+		{
+			error_print_critical("Error in map line when parsing");
+			return(false);
+		}
+		//line = ft_get_next_line_many_fds(fd);
+		//printf("line is _%s_\n",line);
 		if (line != NULL && ft_strlen(line) > 0)
 		{
 			content = ft_strdup(line);
@@ -79,6 +86,8 @@ bool	config_map_list_2_ptr(t_config *cfg)
 	t_list	*node;
 	
 	number_lines = ft_lstsize(cfg->map_lines);
+	printf("\t\t\t\tNUMBER_LINES %zu\n", number_lines);
+	//cfg->map.map = (char **)malloc((number_lines + 1) * sizeof(char *));
 	cfg->map.map = (char **)malloc((number_lines + 1) * sizeof(char *));
 	if (cfg->map.map == NULL)
 		return (error_perror_critical(), false);
@@ -96,6 +105,7 @@ bool	config_map_list_2_ptr(t_config *cfg)
 		node = node->next;
 		i++;
 	}
+	cfg->map.map[i] = NULL;
 	cfg->map.height = number_lines;
 	return (true);
 }

@@ -6,11 +6,12 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 18:44:13 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/12 18:58:26 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/18 23:34:28 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <math.h>
 
 #include "flooding.h"
 #include "error.h"

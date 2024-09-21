@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine_render.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 22:20:03 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/19 20:41:15 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/20 07:52:30 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 /*
 static void	engine_render_background(t_engine *engine)
 {
-	size_t	i;
-	size_t	j;
-	t_color	color;
+	size_t		i;
+	size_t		j;
+	t_color		color;
 	uint32_t	rgbacolor;
 
 	i = 0;

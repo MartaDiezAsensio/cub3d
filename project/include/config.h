@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 20:53:17 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/21 19:11:07 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/21 19:49:44 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,16 @@ bool	config_validator(t_config *cfg);
 void	config_debug(t_config cfg);
 
 //config_validator_map.c
-bool config_validate_map(t_config *cfg);
-
+bool	config_validate_map(t_config *cfg);
 bool	config_get_trimmed_line(char **line, int fd);
+
+//config_texture.c
+bool	config_is_texture_line(const char *line);
+bool	config_set_texture(t_config *cfg, const char *line);
+
+//config_color.c
+bool	config_parse_colors(t_color *color, const char *colors_line);
+bool	config_is_color_line(const char * line);
+
 
 #endif
