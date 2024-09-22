@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/22 13:24:43 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/22 14:08:27 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall)
     i = 0;
     
     sky_limit = engine.screen.middle_y - (num_pixels_wall / 2);
+    if (sky_limit < 0)
+        sky_limit = 0;
     floor_limit = engine.screen.middle_y + (num_pixels_wall / 2);
+    if ((size_t)floor_limit >= engine.screen.y)
+        floor_limit =engine.screen.y;
     sky_color = color_2_mlx(engine.cfg->ceiling_color);
     floor_color = color_2_mlx(engine.cfg->floor_color);
     wall_color = color_new_mlx(60, 60, 60);

@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:15:21 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/22 13:53:29 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/22 14:06:46 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,12 @@
 
 static int  raycasting_calculate_wall(double distance, int screen_height)
 {
-    return (screen_height / distance);   
+    int line_height;
+
+    line_height = screen_height / distance;
+    return (line_height);
+    //return (screen_height / distance); 
+
 }
 
 bool    raycasting_paint(t_engine *engine)
@@ -71,7 +76,7 @@ bool    raycasting_paint(t_engine *engine)
         if (orientation == WEST || orientation == EAST)
             distance = dpoint_calculate_xdist(engine->camera.position, point_colition);
         
-        //distance = dpoint_calculate_distance(engine->camera.position,  point_colition);
+        distance = dpoint_calculate_distance(engine->camera.position,  point_colition);
         //distance = 0.3f;
         num_pixels_wall = raycasting_calculate_wall(distance, engine->screen.y);
         printf("\t\t  %f\n", distance);

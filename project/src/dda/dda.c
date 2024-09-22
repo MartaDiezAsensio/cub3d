@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:32:51 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/22 13:50:19 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/22 14:11:13 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ bool dda_calculate_hit(t_dpoint	origin, t_vector direction, t_map map, \
 	int		i;
 	t_dpoint	point;
 
-	dda_data.final = dpoint_new(origin.x + direction.x * 10000, origin.y + direction.y * 10000);
+	dda_data.final = dpoint_new(origin.x + direction.x * 10000.0f, origin.y + direction.y * 10000.0f);
 	dda_data = dda_init(origin, direction);
 	i = 0;
 	while( i <= dda_data.step)
