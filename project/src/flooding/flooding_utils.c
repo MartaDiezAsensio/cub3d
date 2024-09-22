@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flooding_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 18:44:13 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/18 23:34:28 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/22 13:46:03 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "flooding.h"
 #include "error.h"
 
+/*
 void	flood_destroy(t_flooding *flood)
 {
 	ft_lstclear(&flood->to_visit, free);
@@ -34,7 +35,7 @@ bool	flood_init(t_config cfg, t_flooding *flood)
 	if (tile == NULL)
 		return(error_perror_critical(), false);
 	*tile = tile_new(cfg.player_position.x, cfg.player_position.y, \
-				cfg.map.map[cfg.player_position.x][cfg.player_position.y]);
+				cfg.map.map[(int)cfg.player_position.x][(int)cfg.player_position.y]);
 	node = ft_lstnew(tile);
 	if (node == NULL)
 	{
@@ -60,3 +61,4 @@ bool	flood_is_tile_in_list(t_list	*list, t_tile _tile)
 	}
 	return (false);
 }
+*/

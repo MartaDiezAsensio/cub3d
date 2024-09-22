@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 20:43:00 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/22 11:56:39 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/09/22 13:44:05 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_vector	camera_init_screen_plan(t_orientations orientation)
 
 }
 
-t_camera	camera_new(t_point origin, t_orientations orientation)
+t_camera	camera_new(t_dpoint origin, t_orientations orientation)
 {
 	t_camera	camera;
 

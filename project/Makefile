@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+         #
+#    By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-#    Updated: 2024/09/22 11:41:59 by greus-ro         ###   ########.fr        #
+#    Updated: 2024/09/22 13:50:45 by mdiez-as         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,6 +115,7 @@ SRC		+=	flooding/flooding.c					\
 			flooding/flooding_utils.c
 
 SRC		+=	geometry/point.c					\
+			geometry/dpoint.c					\
 			geometry/radiants.c					\
 			geometry/vector_arithmetic.c		\
 			geometry/vector_orientation.c		\

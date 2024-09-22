@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 20:53:17 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/21 19:49:44 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/22 13:44:37 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_config
 	char			*east_texture;
 	t_color			floor_color;
 	t_color			ceiling_color;
-	t_point			player_position;
+	t_dpoint			player_position;
 	t_orientations	player_orientation;
 	bool			valid_cfg;
 	

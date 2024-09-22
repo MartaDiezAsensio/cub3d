@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:15:21 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/22 13:26:52 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/22 13:53:29 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ bool    raycasting_paint(t_engine *engine)
 
     size_t		x;
     t_vector	ray_direction;
-    t_point		point_colition;
+    t_dpoint		point_colition;
 	double		    distance;
 	int			    num_pixels_wall;
     t_orientations  orientation;
@@ -65,13 +65,13 @@ bool    raycasting_paint(t_engine *engine)
             printf("%s", "Orientation not working\n");
             return(false);
         }
-        /*
+        
         if (orientation == NORTH || orientation == SOUTH)
-            distance = point_calculate_ydist(engine->camera.position, point_colition);
+            distance = dpoint_calculate_ydist(engine->camera.position, point_colition);
         if (orientation == WEST || orientation == EAST)
-            distance = point_calculate_xdist(engine->camera.position, point_colition);
-        */
-        distance = point_calculate_distance(engine->camera.position,  point_colition);
+            distance = dpoint_calculate_xdist(engine->camera.position, point_colition);
+        
+        //distance = dpoint_calculate_distance(engine->camera.position,  point_colition);
         //distance = 0.3f;
         num_pixels_wall = raycasting_calculate_wall(distance, engine->screen.y);
         printf("\t\t  %f\n", distance);

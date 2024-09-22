@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flooding_neighbours.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 21:32:13 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/16 21:25:02 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/22 13:46:49 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "flooding.h"
 #include "error.h"
 
+/*
 static bool	flood_get_neighbour(t_config cfg, t_list **node, int x, int y)
 {
 	t_tile	*tile;
@@ -69,3 +70,4 @@ bool	flood_add_neighbours(t_config cfg, t_flooding *flood, t_tile tile)
 		return (false);
 	return (true);	
 }
+*/
