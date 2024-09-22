@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+         #
+#    By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-#    Updated: 2024/09/20 08:10:13 by greus-ro         ###   ########.fr        #
+#    Updated: 2024/09/22 11:41:59 by greus-ro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,6 +117,7 @@ SRC		+=	flooding/flooding.c					\
 SRC		+=	geometry/point.c					\
 			geometry/radiants.c					\
 			geometry/vector_arithmetic.c		\
+			geometry/vector_orientation.c		\
 			geometry/vector.c
 
 SRC		+=	raycasting/raycasting.c				\
