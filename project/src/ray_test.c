@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_test.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 22:08:37 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/21 18:41:05 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/22 12:16:52 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 //#define WIDTH 640
 //#define HEIGHT 480
 #define WIDTH 800
-#define HEIGHT 600
+#define HEIGHT 800
 
 #define WIDTH_MAP 7
 
@@ -75,7 +75,7 @@ static t_dda	dda_init(t_point origin, t_vector direction)
 	dda_data.y = origin.y;
 //	dda_data.final = point_new(origin.x + direction.x * INT_MAX, origin.y + direction.y * INT_MAX);
 	dda_data.final = point_new(origin.x + direction.x * 10000, origin.y + direction.y * 10000);
-	printf("punto final: x %d,  y %d direction.y %f origin y %d\n", dda_data.final.x, dda_data.final.y, direction.y, origin.y );
+	//printf("punto final: x %d,  y %d direction.y %f origin y %d\n", dda_data.final.x, dda_data.final.y, direction.y, origin.y );
 	dda_data.dx = dda_data.final.x - dda_data.x;
 	dda_data.dy = dda_data.final.y - dda_data.y;
 	if (fabs(dda_data.dx) >= fabs(dda_data.dy))
@@ -207,14 +207,14 @@ void	loop(void *param)
 	clear_img(data);
 	i = 0;
 	//while(i < (size_t)data->width)
-	printf("i = %ld Direction .x %f Direction y %f  Plane x %f Plane y %f\n", i, data->camera.direction.x, data->camera.direction.y, data->camera.camera_panel.x, data->camera.camera_panel.y);
+	//printf("i = %ld Direction .x %f Direction y %f  Plane x %f Plane y %f\n", i, data->camera.direction.x, data->camera.direction.y, data->camera.camera_panel.x, data->camera.camera_panel.y);
 	while(i <= (size_t)WIDTH_MAP)
 	{
 		//ray_direction = raycasting_new_ray(i, data->width, data->camera);
 		ray_direction = raycasting_new_ray(i, WIDTH_MAP, data->camera);	
 	//if ( i == WIDTH_MAP / 2)
 //		{
-			printf("RAYO = %ld Direction .x %f Direction y %f  Plane x %f Plane y %f\n", i, ray_direction.x, ray_direction.y, data->camera.camera_panel.x, data->camera.camera_panel.y);
+	//		printf("RAYO = %ld Direction .x %f Direction y %f  Plane x %f Plane y %f\n", i, ray_direction.x, ray_direction.y, data->camera.camera_panel.x, data->camera.camera_panel.y);
 //		}
 		dda_calculate_hit2(data->camera.position, ray_direction, data, i);
 		i++;
@@ -246,8 +246,9 @@ static	t_data	data_init(void)
 
 void	on_keypress(mlx_key_data_t keydata, void * param)
 {
-	t_data	*data;
-	float angle;
+	t_data			*data;
+	float 			angle;
+	t_orientations	v_orientation;
 
 	data = (t_data *)param;
 	angle = angle_to_radiants(1);
@@ -280,6 +281,30 @@ void	on_keypress(mlx_key_data_t keydata, void * param)
 	{
 		data->camera.direction = vector_rotate(data->camera.direction, -angle, false);
 		data->camera.camera_panel =  vector_rotate(data->camera.camera_panel, -angle, false);
+	}
+	if(!vector_get_orientation(data->camera.direction, &v_orientation))
+	{
+		printf("\t\t\t\t\t ERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOORRRRRRRRRRRRRRRRRRRRRRRRRRRR");
+	//	return ;
+	}
+	switch (v_orientation)
+	{
+		case NORTH:
+			printf("\tNORTH\n");
+		break;
+		case SOUTH:
+			printf("\tSOUTH\n");
+		break;
+		case WEST:
+			printf("\tWEST\n");
+		break;
+		case EAST:
+			printf("\tEAST\n");
+		break;
+	
+	default:
+		printf("\tKeine Anung\n");
+		break;
 	}
 
 

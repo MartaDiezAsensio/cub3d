@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   point.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 21:41:24 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/18 23:41:39 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/22 10:24:17 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,22 @@ double	point_calculate_distance(t_point point1, t_point point2)
 	x = point2.x - point1.x;
 	y = point2.y - point1.y;
 	distance = sqrt(x*x + y*y);
+	return (distance);
+}
+
+double	point_calculate_xdist(t_point point1, t_point point2)
+{
+	double	distance;
+
+	distance = point2.x - point1.x;
+	return (distance);
+}
+
+double	point_calculate_ydist(t_point point1, t_point point2)
+{
+	double distance;
+
+	distance = point2.y - point1.y;
 	return (distance);
 }
 
