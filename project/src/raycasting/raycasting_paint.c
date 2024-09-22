@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:15:21 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/21 20:36:01 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/22 13:26:52 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@
 
 static int  raycasting_calculate_wall(double distance, int screen_height)
 {
-    (void)distance;
-    (void)screen_height;
-    return (500);   
+    return (screen_height / distance);   
 }
 
 bool    raycasting_paint(t_engine *engine)
@@ -43,22 +41,16 @@ bool    raycasting_paint(t_engine *engine)
         // pintamos la columna de pixeles x con el techo, pared y suelo.
         // liberar recursos ( si fuera necesario)
 
-	size_t		x;
-	t_vector	ray_direction;
-	t_point		point_colition;
-	double		distance;
-	int			num_pixels_wall;
-
+    size_t		x;
+    t_vector	ray_direction;
+    t_point		point_colition;
+	double		    distance;
+	int			    num_pixels_wall;
+    t_orientations  orientation;
 
 	x = 0;
-	(void)ray_direction;
-	(void)point_colition;
 
-
-
-	//printf("\t\tCamera dir x %f  y%f \n", engine->camera.direction.x, engine->camera.direction.y) ;
-
-	
+//double	point_calculate_xdist(t_point point1, t_point point2)
 
 	while(x < engine->screen.x)
 	{
@@ -68,12 +60,25 @@ bool    raycasting_paint(t_engine *engine)
 			printf("%s", "dda not working");
 			return (false);
 		}
+        if (!vector_get_orientation(ray_direction, &orientation))
+        {
+            printf("%s", "Orientation not working\n");
+            return(false);
+        }
+        /*
+        if (orientation == NORTH || orientation == SOUTH)
+            distance = point_calculate_ydist(engine->camera.position, point_colition);
+        if (orientation == WEST || orientation == EAST)
+            distance = point_calculate_xdist(engine->camera.position, point_colition);
+        */
         distance = point_calculate_distance(engine->camera.position,  point_colition);
         //distance = 0.3f;
         num_pixels_wall = raycasting_calculate_wall(distance, engine->screen.y);
+        printf("\t\t  %f\n", distance);
         engine_render_column(*engine, x, num_pixels_wall);
         //revisasr si hace falta liberar recursos.
         x++;
     }
+    printf("\n\n\n\n");
     return (true);
 }

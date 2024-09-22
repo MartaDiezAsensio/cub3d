@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   point.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 21:41:24 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/22 10:24:17 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/09/22 13:08:55 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ double	point_calculate_xdist(t_point point1, t_point point2)
 	double	distance;
 
 	distance = point2.x - point1.x;
-	return (distance);
+	return (fabs(distance));
 }
 
 double	point_calculate_ydist(t_point point1, t_point point2)
@@ -48,7 +48,7 @@ double	point_calculate_ydist(t_point point1, t_point point2)
 	double distance;
 
 	distance = point2.y - point1.y;
-	return (distance);
+	return (fabs(distance));
 }
 
 float	point_calculate_slope(t_point p1, t_point  p2)
