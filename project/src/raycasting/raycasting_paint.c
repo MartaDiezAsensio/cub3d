@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_paint.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:15:21 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/22 14:06:46 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/23 01:25:05 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ bool    raycasting_paint(t_engine *engine)
 	x = 0;
 
 //double	point_calculate_xdist(t_point point1, t_point point2)
-
+    //printf("MAP HEIGHT %dWIDTH %d\n",engine->cfg->map);
 	while(x < engine->screen.x)
 	{
 		ray_direction = raycasting_new_ray(x, engine->screen.x, engine->camera); 
@@ -70,20 +70,19 @@ bool    raycasting_paint(t_engine *engine)
             printf("%s", "Orientation not working\n");
             return(false);
         }
-        
         if (orientation == NORTH || orientation == SOUTH)
             distance = dpoint_calculate_ydist(engine->camera.position, point_colition);
         if (orientation == WEST || orientation == EAST)
             distance = dpoint_calculate_xdist(engine->camera.position, point_colition);
         
-        distance = dpoint_calculate_distance(engine->camera.position,  point_colition);
+        //distance = dpoint_calculate_distance(engine->camera.position,  point_colition);
         //distance = 0.3f;
         num_pixels_wall = raycasting_calculate_wall(distance, engine->screen.y);
-        printf("\t\t  %f\n", distance);
+//        printf("\t\t  %f\n", distance);
         engine_render_column(*engine, x, num_pixels_wall);
         //revisasr si hace falta liberar recursos.
         x++;
     }
-    printf("\n\n\n\n");
+//    printf("\n\n\n\nGabriel");
     return (true);
 }

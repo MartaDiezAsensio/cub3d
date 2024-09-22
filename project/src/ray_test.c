@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_test.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 22:08:37 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/22 12:16:52 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/09/23 01:23:43 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,14 @@ uint32_t	create_color(unsigned char r, unsigned char g, unsigned char b)
 	Y viceversa
 */
 #include <stdio.h>
-static t_dda	dda_init(t_point origin, t_vector direction)
+static t_dda	dda_init(t_dpoint origin, t_vector direction)
 {
 	t_dda	dda_data;
 
 	dda_data.x = origin.x;
 	dda_data.y = origin.y;
 //	dda_data.final = point_new(origin.x + direction.x * INT_MAX, origin.y + direction.y * INT_MAX);
-	dda_data.final = point_new(origin.x + direction.x * 10000, origin.y + direction.y * 10000);
+	dda_data.final = dpoint_new(origin.x + direction.x * 10000.0f, origin.y + direction.y * 10000.0f);
 	//printf("punto final: x %d,  y %d direction.y %f origin y %d\n", dda_data.final.x, dda_data.final.y, direction.y, origin.y );
 	dda_data.dx = dda_data.final.x - dda_data.x;
 	dda_data.dy = dda_data.final.y - dda_data.y;
@@ -93,11 +93,11 @@ static	void	dda_next_step(t_dda *dda)
 	dda->y = dda->y + dda->dy;
 }
 
-static	bool	dda_is_inside_map(t_point point, t_map map)
+static	bool	dda_is_inside_map(t_dpoint point, t_map map)
 {
-	if(point.x < 0 || point.y < 0)
+	if(point.x < 0.0f || point.y < 0.0f)
 		return (false);
-	if(point.x >= (int)map.width || point.y >= (int)map.height)
+	if((int)point.x >= (int)map.width || (int)point.y >= (int)map.height)
 		return(false);
 	return (true);
 }
@@ -113,11 +113,11 @@ static t_tile *dda_check_hit(t_point point, t_map map)
 //https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)
 
 #include <stdio.h>
-t_tile *dda_calculate_hit2(t_point	origin, t_vector direction,t_data *data, int n)
+t_tile *dda_calculate_hit2(t_dpoint	origin, t_vector direction,t_data *data, int n)
 {
 	t_dda		dda_data;
 	int			i;
-	t_point		point;
+	t_dpoint		point;
 	uint32_t	color;
 
 	(void) color;
@@ -129,7 +129,8 @@ t_tile *dda_calculate_hit2(t_point	origin, t_vector direction,t_data *data, int 
 	//printf("STEP es: %f \n", dda_data.step);
 	while( i <= dda_data.step)
 	{
-		point = point_new(round(dda_data.x), round(dda_data.y));
+		//point = point_new(round(dda_data.x), round(dda_data.y));
+		point = dpoint_new(dda_data.x, dda_data.y);
 		if (!dda_is_inside_map(point, data->map))
 			return (NULL);
 		(void)data;
@@ -137,7 +138,7 @@ t_tile *dda_calculate_hit2(t_point	origin, t_vector direction,t_data *data, int 
 		//printf("Color %u \n", 255 / n);
 		//color = create_color(0xAA / (n + 1), 0x00 / (n + 1), 0x00 / (n + 1));
 		color = create_color(0xAA, 0x00, 0x00);
-		mlx_put_pixel(data->img, point.x, point.y, color);
+		mlx_put_pixel(data->img, (int)point.x, (int)point.y, color);
 		//tile = dda_check_hit(point, map);
 		//if (tile != NULL)
 		//	return (tile);
@@ -153,10 +154,10 @@ t_tile *dda_calculate_hit2(t_point	origin, t_vector direction,t_data *data, int 
 
 void	paint_player(t_data *data)
 {
-	mlx_put_pixel(data->img, data->camera.position.x, data->camera.position.y, create_color(0xFF, 0xFF, 0xFF));
-	mlx_put_pixel(data->img, data->camera.position.x + 1, data->camera.position.y, create_color(0xFF, 0xFF, 0xFF));
-	mlx_put_pixel(data->img, data->camera.position.x, data->camera.position.y + 1, create_color(0xFF, 0xFF, 0xFF));
-	mlx_put_pixel(data->img, data->camera.position.x + 1, data->camera.position.y + 1, create_color(0xFF, 0xFF, 0xFF));
+	mlx_put_pixel(data->img, (int)(data->camera.position.x), (int)(data->camera.position.y), create_color(0xFF, 0xFF, 0xFF));
+	mlx_put_pixel(data->img, (int)(data->camera.position.x + 1), (int)(data->camera.position.y), create_color(0xFF, 0xFF, 0xFF));
+	mlx_put_pixel(data->img, (int)(data->camera.position.x), (int)(data->camera.position.y + 1), create_color(0xFF, 0xFF, 0xFF));
+	mlx_put_pixel(data->img, (int)(data->camera.position.x + 1), (int)(data->camera.position.y + 1), create_color(0xFF, 0xFF, 0xFF));
 
 
 //	mlx_put_pixel(data->img, data->width / 2, data->height / 2, create_color(0xFF, 0xFF, 0xFF));
@@ -228,7 +229,7 @@ void	loop(void *param)
 static	t_data	data_init(void)
 {
 	t_data	data;
-	t_point	origin;
+	t_dpoint	origin;
 	
 	data.width = WIDTH;
 	data.height = HEIGHT;

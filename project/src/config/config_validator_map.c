@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_validator_map.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:49:35 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/22 13:47:49 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/23 00:37:45 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ bool	config_map_find_player(t_config *cfg)
 			if (cfg->map.map[i][j] == 'N' || cfg->map.map[i][j] == 'S' || \
 					cfg->map.map[i][j] == 'W' || cfg->map.map[i][j] == 'E' )
 			{
-				cfg->player_position = dpoint_new(i,j);
+				//cfg->player_position = dpoint_new(i,j);
+				cfg->player_position = dpoint_new(j,i);
 				cfg->player_orientation = \
 							config_map_resolve_orientation(cfg->map.map[i][j]);
 				return (true);
