@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 20:43:00 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/21 20:36:25 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/22 11:51:22 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ t_camera	camera_new(t_point origin, t_orientations orientation)
 
 	camera.position = origin;
 	if (orientation == NORTH)
-	{
 		camera.direction = vector_new_from_values(0.0f,-1.0f, true);
 	if (orientation == SOUTH)
 		camera.direction = vector_new_from_values(0.0f, 1.0f, true);
@@ -47,8 +46,6 @@ t_camera	camera_new(t_point origin, t_orientations orientation)
 		camera.direction = vector_new_from_values(-1.0f, 0.0f, true);
 	if (orientation == EAST)
 		camera.direction = vector_new_from_values(1.0f,0.0f, true);
-		/* TODO: agregar las direcciones del vector direction.*/
-	}
 	camera.camera_panel = camera_init_screen_plan(orientation);
 	return (camera);
 
