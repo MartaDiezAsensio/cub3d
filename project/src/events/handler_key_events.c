@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:05:06 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/23 01:19:58 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/23 17:42:34 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void	on_keydown(mlx_key_data_t keydata, void *param)
 	printf("Key pressed %d\n", keydata.key);
 	if (keydata.key == MLX_KEY_RIGHT)
 	{
-		engine->camera.direction = vector_rotate(engine->camera.direction, ROTATION_ANGLE, false);
-		engine->camera.camera_panel =  vector_rotate(engine->camera.camera_panel, ROTATION_ANGLE, false);
+		engine->camera.direction = vector_rotate(engine->camera.direction, -ROTATION_ANGLE, false);
+		engine->camera.camera_panel =  vector_rotate(engine->camera.camera_panel, -ROTATION_ANGLE, false);
 	}
 	if (keydata.key == MLX_KEY_LEFT)
 	{
-		engine->camera.direction = vector_rotate(engine->camera.direction, -ROTATION_ANGLE, false);
-		engine->camera.camera_panel =  vector_rotate(engine->camera.camera_panel, -ROTATION_ANGLE, false);
+		engine->camera.direction = vector_rotate(engine->camera.direction, ROTATION_ANGLE, false);
+		engine->camera.camera_panel =  vector_rotate(engine->camera.camera_panel, ROTATION_ANGLE, false);
 	}
 	if (keydata.key == MLX_KEY_ESCAPE)
 		engine_stop(engine);

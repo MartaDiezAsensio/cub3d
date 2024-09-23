@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:32:51 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/23 00:54:44 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/23 19:27:45 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,30 @@ static t_dda	dda_init(t_dpoint origin, t_vector direction)
 	return (dda_data);
 }
 
-static	void	dda_next_step(t_dda *dda)
+static	void	dda_next_step(t_dda *dda, int *side)
 {
+	int x;
+	int y;
+
+	x = dda->x;
+	y = dda->y;
 	dda->x = dda->x + dda->dx;
 	dda->y = dda->y + dda->dy;
+	printf("\t\t\tdda dx = %f dy = %f\n", dda->dx, dda->dy);
+	if (fabs(dda->dy) == 1.0f)
+	{
+		if (x != (int)dda->x)
+			*side = HIT_X_SIDE;
+		else
+			*side = HIT_Y_SIDE;
+	}
+	if (fabs(dda->dx) == 1.0f)
+	{
+		if (y != (int)dda->y)
+			*side = HIT_Y_SIDE;
+		else
+			*side = HIT_X_SIDE;
+	}
 }
 
 static	bool	dda_is_inside_map(t_dpoint point, t_map map)
@@ -72,6 +92,7 @@ static bool	dda_check_hit(t_dpoint point, t_map map)
 //	printf("CHECK  HIT x f %f _ %d  CHECK HIT y f %f _ %d \n", point.x, (int)point.x, point.y, (int)point.y);
 //	if ((map.map[(int)point.x][(int)point.y]) == MAP_TILE_WALL)
 	if ((map.map[(int)point.y][(int)point.x]) == MAP_TILE_WALL)
+//	if ((map.map[(int)(round(point.y))][(int)(round(point.x))]) == MAP_TILE_WALL)
 		return (true);
 	return (false);
 }
@@ -80,7 +101,7 @@ static bool	dda_check_hit(t_dpoint point, t_map map)
 
 //t_tile *dda_calculate_hit(t_point	origin, t_vector direction, t_map map)
 bool dda_calculate_hit(t_dpoint	origin, t_vector direction, t_map map, \
-		t_dpoint *hit)
+		t_dpoint *hit, int *side)
 {
 	t_dda	dda_data;
 	int		i;
@@ -102,11 +123,15 @@ bool dda_calculate_hit(t_dpoint	origin, t_vector direction, t_map map, \
 		}
 		if(dda_check_hit(point, map))
 		{
-//			printf("El hit esta en: x%f y %f\n", point.x, point.y);
+			//if (point.x >= 28.0f)
+			//	printf("El hit esta en: x%f y %f\n", point.x, point.y);
 			*hit = point;
+			hit->x =  (int) point.x;
+			hit->y = (int) point.y;
+			//*hit = dpoint_new(origin.x + direction.x * (float)i, origin.y + direction.y * (float)i);
 			return (true);
 		}
-		dda_next_step(&dda_data);
+		dda_next_step(&dda_data, side);
 		i++;
 	}
 //	printf("SALE!!\n");

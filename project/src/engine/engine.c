@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:33:19 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/21 19:53:12 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/23 13:24:56 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ bool	engine_start(t_engine *engine)
 	engine->mlx = mlx_init(engine->screen.x, engine->screen.y, engine->screen.title, engine->screen.resize);
 	if (engine->mlx == NULL)
 		return (error_print_mlx_perror(), false);
-	mlx_get_monitor_size(0, (int32_t *)&engine->screen.x, (int32_t *)&engine->screen.y);
-	engine->screen.middle_y = engine->screen.y / 2;
-	mlx_set_window_size(engine->mlx, engine->screen.x, engine->screen.y);
+//	mlx_get_monitor_size(0, (int32_t *)&engine->screen.x, (int32_t *)&engine->screen.y);
+//	engine->screen.middle_y = engine->screen.y / 2;
+//	mlx_set_window_size(engine->mlx, engine->screen.x, engine->screen.y);
 	engine->img = mlx_new_image(engine->mlx, engine->screen.x, engine->screen.y);
 	if (engine->img == NULL)
 		return(error_print_mlx_perror(), false);

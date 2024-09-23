@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:29:22 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/22 13:49:43 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/23 19:13:33 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include "point.h"
 # include "vector.h"
 # include "map.h"
+
+# define HIT_X_SIDE 0
+# define HIT_Y_SIDE	1
 
 typedef struct s_dda
 {
@@ -28,6 +31,6 @@ typedef struct s_dda
 }	t_dda;
 
 //bool	dda_calculate_hit(t_point	origin, t_vector direction, t_map map, t_dpoint *hit);
-bool	dda_calculate_hit(t_dpoint	origin, t_vector direction, t_map map, t_dpoint *hit);
+bool	dda_calculate_hit(t_dpoint	origin, t_vector direction, t_map map, t_dpoint *hit, int *side);
 
 #endif

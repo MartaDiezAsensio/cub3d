@@ -1,0 +1,57 @@
+con ok2.cub
+
+11111111111111111111111111111111111111111111    
+10000000000000000000000000000000000000000001    
+10000000000000000000000000000000000000000001    
+10000000000000000000000000000000000000000001    
+10000000000000000000000000000000000000000001    
+100000S0000000000000000000000000000000000001    
+10000000000000000000000000000000000000000001    
+10000000000000000000000000000000000000000001    
+11111111111111111111111111111111111111111111    
+
+Column 58
+	Orientation : 2
+ 		Colition point x 12.000000 , y 8.093349  camera point x 6.000000 y 5.000000
+		distance 3.093349 pixels 12 tamano pantalla 40 
+sky_limit, 14 floor_limit 26
+Column 59
+	Orientation : 2
+ 		Colition point x 12.000000 , y 8.201327  camera point x 6.000000 y 5.000000
+		distance 3.201327 pixels 12 tamano pantalla 40 
+sky_limit, 14 floor_limit 26
+Column 60
+	Orientation : 2
+ 		Colition point x 12.000000 , y 8.310309  camera point x 6.000000 y 5.000000
+		distance 3.310309 pixels 12 tamano pantalla 40 
+sky_limit, 14 floor_limit 26
+Column 61
+	Orientation : 2
+ 		Colition point x 12.000000 , y 8.420307  camera point x 6.000000 y 5.000000
+		distance 3.420307 pixels 11 tamano pantalla 40 
+sky_limit, 15 floor_limit 25
+Column 62
+	Orientation : 2
+ 		Colition point x 12.000000 , y 8.531335  camera point x 6.000000 y 5.000000
+		distance 3.531335 pixels 11 tamano pantalla 40 
+sky_limit, 15 floor_limit 25
+Column 63
+	Orientation : 2
+ 		Colition point x 11.000000 , y 8.036175  camera point x 6.000000 y 5.000000
+		distance 3.036175 pixels 13 tamano pantalla 40 
+sky_limit, 14 floor_limit 26
+Column 64
+	Orientation : 2
+ 		Colition point x 11.000000 , y 8.130450  camera point x 6.000000 y 5.000000
+		distance 3.130450 pixels 12 tamano pantalla 40 
+sky_limit, 14 floor_limit 26
+Column 65
+	Orientation : 2
+ 		Colition point x 11.000000 , y 8.225625  camera point x 6.000000 y 5.000000
+		distance 3.225625 pixels 12 tamano pantalla 40 
+sky_limit, 14 floor_limit 26
+Column 66
+	Orientation : 2
+ 		Colition point x 11.000000 , y 8.321707  camera point x 6.000000 y 5.000000
+		distance 3.321707 pixels 12 tamano pantalla 40 
+sky_limit, 14 floor_limit 26
