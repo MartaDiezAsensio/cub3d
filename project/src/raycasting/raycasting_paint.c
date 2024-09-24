@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_paint.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:15:21 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/24 01:09:16 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:02:46 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ static int  raycasting_calculate_wall(double distance, int screen_height)
 //    line_height = (int) (screen_height * 405.0f/ distance);
     line_height = (int) (screen_height / distance);
  //   line_height = (distance  / 41) *screen_height;
-    printf("\t\tdistance %f pixels %d tamano pantalla %d \n", distance, line_height, screen_height);
+   // printf("\t\tdistance %f pixels %d tamano pantalla %d \n", distance, line_height, screen_height);
     return (line_height);
     //return (screen_height / distance); 
 
 }
-
+/*
 #include <math.h>
 
 static double  get_cos_between_vectors(t_vector camera_dir, t_vector ray_dir)
@@ -49,7 +49,7 @@ static double  get_cos_between_vectors(t_vector camera_dir, t_vector ray_dir)
     cosinus = (camera_dir.x * ray_dir.x + camera_dir.y * ray_dir.y)  / (camera_dir.modulus * ray_dir.modulus);
     return (cosinus);
 }
-
+*/
 
 bool    raycasting_paint(t_engine *engine)
 {
@@ -82,7 +82,7 @@ bool    raycasting_paint(t_engine *engine)
     //printf("MAP HEIGHT %dWIDTH %d\n",engine->cfg->map);
 	while(x < engine->screen.x)
 	{
-        printf("Column %ld\n", x);
+        //printf("Column %ld\n", x);
         
     	ray_direction = raycasting_new_ray(x, engine->screen.x, engine->camera); 
         /*
@@ -138,13 +138,13 @@ bool    raycasting_paint(t_engine *engine)
 			return (false);
         }
 
-        distance = distance * get_cos_between_vectors(engine->camera.direction, ray_direction);
+        //distance = distance * get_cos_between_vectors(engine->camera.direction, ray_direction);
         num_pixels_wall = raycasting_calculate_wall(distance, engine->screen.y);
         //printf("\t\t  %f\n", distance);
         engine_render_column(*engine, x, num_pixels_wall);
         //revisasr si hace falta liberar recursos.
         x++;
     }
-    printf("\n\n\n\nGabriel\n");
+    //printf("\n\n\n\nGabriel\n");
     return (true);
 }
