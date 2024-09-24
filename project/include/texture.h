@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 21:48:04 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/15 13:54:50 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/24 20:47:40 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef	struct s_texture
 {
 	int				width;
 	int				height;
-//	char			*file_name;
+
 	mlx_texture_t	*mlx_texture;
 }	t_texture;
 
