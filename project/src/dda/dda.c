@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:32:51 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/24 21:53:11 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/24 23:19:22 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static	void	dda_next_step(t_dda *dda)
 	dda->x = dda->x + dda->dx;
 	dda->y = dda->y + dda->dy;
 }
-
+/*
 static	bool	dda_is_inside_map(t_dpoint point, t_map map)
 {
 
@@ -64,6 +64,7 @@ static bool	dda_check_hit(t_dpoint point, t_map map)
 		return (true);
 	return (false);
 }
+*/
 
 //https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)
 bool dda_calculate_hit(t_dpoint	origin, t_vector direction, t_map map, \
@@ -77,12 +78,12 @@ bool dda_calculate_hit(t_dpoint	origin, t_vector direction, t_map map, \
 	i = 0;
 	while(i <= (int)dda_data.step)
 	{
-
 		point = dpoint_new(dda_data.x, dda_data.y);
-
-		if (!dda_is_inside_map(point, map))
+//		if (!dda_is_inside_map(point, map))
+		if (!map_is_inside(map, point.x, point.y))
 			return (error_print_critical("Ray does not find hit."), false);
-		if(dda_check_hit(point, map))
+//		if(dda_check_hit(point, map))
+		if(map_is_wall(map, point.x, point.y))
 		{
 			*hit = point;
 			hit->x =  (int) point.x;
