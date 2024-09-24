@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler_key_events.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:05:06 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/23 17:42:34 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/24 02:12:20 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,24 @@ void	on_keydown(mlx_key_data_t keydata, void *param)
 		engine->camera.direction = vector_rotate(engine->camera.direction, ROTATION_ANGLE, false);
 		engine->camera.camera_panel =  vector_rotate(engine->camera.camera_panel, ROTATION_ANGLE, false);
 	}
+	/*
+	if(keydata.key == MLX_KEY_A)
+	{
+		engine->camera.position.x++;
+	}
+	if(keydata.key == MLX_KEY_D)
+	{
+		engine->camera.position.x--;
+	}
+	if(keydata.key == MLX_KEY_W)
+	{
+
+	}
+	if(keydata.key == MLX_KEY_S)
+	{
+		
+	}
+	*/
 	if (keydata.key == MLX_KEY_ESCAPE)
 		engine_stop(engine);
 }

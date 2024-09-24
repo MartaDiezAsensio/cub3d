@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+         #
+#    By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-#    Updated: 2024/09/22 13:50:45 by mdiez-as         ###   ########.fr        #
+#    Updated: 2024/09/24 02:10:31 by greus-ro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,6 +99,7 @@ SRC		+=	config/config_colors.c				\
 			config/config.c
 
 SRC		+=	dda/dda.c							\
+			dda/dda_v2.c
 
 SRC		+=	engine/engine.c						\
 			engine/engine_mlx_config.c			\

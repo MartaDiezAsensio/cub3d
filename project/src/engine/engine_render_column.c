@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine_render_column.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/23 01:08:11 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/24 02:11:59 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,14 @@ bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall)
     sky_color = color_2_mlx(engine.cfg->ceiling_color);
     floor_color = color_2_mlx(engine.cfg->floor_color);
     wall_color = color_new_mlx(60, 60, 60);
-    printf("sky_limit, %d floor_limit %d\n", sky_end, floor_start);
-    while (i < sky_end)
+    while (i <= sky_end)
     //while (i <= sky_limit)
     {
         mlx_put_pixel(engine.img, x, i, sky_color);
         i++;
     }
 //  while (i <= floor_limit)
-    while (i < floor_start)
+    while (i <= floor_start)
     {
         mlx_put_pixel(engine.img, x, i, wall_color);
         i++;
