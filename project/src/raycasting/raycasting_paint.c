@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_paint.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:15:21 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/24 02:12:43 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:32:01 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static int  raycasting_calculate_wall(double distance, int screen_height)
 
 #include <math.h>
 
+/*
 static double  get_cos_between_vectors(t_vector camera_dir, t_vector ray_dir)
 {
     //https://www.geeksforgeeks.org/angle-between-two-vectors-formula/
@@ -49,7 +50,7 @@ static double  get_cos_between_vectors(t_vector camera_dir, t_vector ray_dir)
     cosinus = (camera_dir.x * ray_dir.x + camera_dir.y * ray_dir.y)  / (camera_dir.modulus * ray_dir.modulus);
     return (cosinus);
 }
-
+*/
 
 bool    raycasting_paint(t_engine *engine)
 {
@@ -85,13 +86,13 @@ bool    raycasting_paint(t_engine *engine)
         printf("Column %ld\n", x);
         
     	ray_direction = raycasting_new_ray(x, engine->screen.x, engine->camera); 
-        /*
+/*        
         if (!dda_calculate_hit(engine->camera.position, ray_direction, engine->cfg->map, &point_colition, &side))
 		{
 			printf("%s", "dda not working");
 			return (false);
 		}
-        
+*/        /*
         if (side == HIT_X_SIDE)
             distance = dpoint_calculate_xdist(engine->camera.position, point_colition);
         else
@@ -129,7 +130,7 @@ bool    raycasting_paint(t_engine *engine)
 //            distance = distanceX;
 //        else
 //            distance = distanceY;
-        //distance = dpoint_calculate_distance(engine->camera.position,  point_colition);
+//        distance = dpoint_calculate_distance(engine->camera.position,  point_colition);
         //distance = 0.3f;
         
         if (!dda_calculate_hit_v2(engine->camera.position, ray_direction, engine->cfg->map, &side, &distance))
@@ -137,8 +138,7 @@ bool    raycasting_paint(t_engine *engine)
             printf("%s", "dda not working");
 			return (false);
         }
-
-        distance = distance * get_cos_between_vectors(engine->camera.direction, ray_direction);
+//        distance = distance * get_cos_between_vectors(engine->camera.direction, ray_direction);
         num_pixels_wall = raycasting_calculate_wall(distance, engine->screen.y);
         //printf("\t\t  %f\n", distance);
         engine_render_column(*engine, x, num_pixels_wall);

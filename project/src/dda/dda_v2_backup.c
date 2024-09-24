@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda_v2.c                                           :+:      :+:    :+:   */
+/*   dda_v2_backup.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:32:51 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/24 14:22:00 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/24 13:50:03 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 /*
 static	bool	dda_is_inside_map_v2(t_dpoint point, t_map map)
 {
+
 	if (point.x < 0.0f || point.y < 0.0f)
 		return (false);
 	if((int)point.x >= (int)map.width || (int)point.y >= (int)map.height)
@@ -58,8 +59,8 @@ bool dda_calculate_hit_v2(t_dpoint	origin, t_vector direction, t_map map, int *s
 				Si direction.x fuera 0,5 siginifica que cada vez que para ir de la horizontal 3 a la 4 , hay un segmento de recta de 
 				longitud 1 / 0.5 => 2. ( como es 0.5 , llegariamos en dos pasos  asi que se avanzaria en 2 pasos de y)
 	 */
-	float deltaDistX = (direction.x == 0.0f) ? 1e30 : fabs(1 / (float)(direction.x));
-	float deltaDistY = (direction.y == 0.0f) ? 1e30 : fabs(1 / (float)(direction.y));
+	double deltaDistX = (direction.x == 0.0f) ? 1e30 : fabs(1.0f / direction.x);
+	double deltaDistY = (direction.y == 0.0f) ? 1e30 : fabs(1.0f / direction.y);
 	//double perpWallDist;
 
 	//what direction to step in x or y-direction (either +1 or -1)
@@ -73,45 +74,35 @@ bool dda_calculate_hit_v2(t_dpoint	origin, t_vector direction, t_map map, int *s
 	sideDistX and sideDistY are initially the distance the ray has to travel from its start position to 
 		the first x-side and the first y-side. Later in the code they will be incremented while steps are taken.
 */
-	//calculate step and initial sideDist
-	/*
-		EN este paso, parece que calcula la distancia de inicio segun la direccion del rayo.
-	*/
-	if (direction.x < 0)
-	{
-
-		//Este caso nos vamos hacia la izquierda por lo que vamos a la linea "siguiente"
-		stepX = -1;
-		//Obtenemos la parte decimal y la multiplicamos por el coste de saltar al siguiente punto x
-		sideDistX = (origin.x - mapX) * deltaDistX;
-	}
-	else
-	{
-		//Aqui nos vamos en las x hacia la derecha por lo que 
-		//obtenemos la parte entera y sumamos 1 para que la linea sea acorde.
-		stepX = 1;
-		sideDistX = (mapX + 1.0f - origin.x) * deltaDistX;
-	}
+			//calculate step and initial sideDist
+			/*
+				EN este paso, parece que calcula la distancia de inicio segun la direccion del rayo.
+			*/
+			if (direction.x < 0.0f)
+			{
+				stepX = -1;
+				//Obtenemos la parte decimal y la multiplicamos por el coste de saltar al siguiente punto x
+				sideDistX = (origin.x - mapX) * deltaDistX;
+			}
+			else
+			{
+				stepX = 1;
+				sideDistX = (mapX + 1.0f - origin.x) * deltaDistX;
+			}
  
-	if (direction.y < 0)
-	{
-		stepY = -1;
-		sideDistY = (origin.y - mapY) * deltaDistY;
-	}
-	else
-	{
-		stepY = 1;
-		sideDistY = (mapY + 1.0f - origin.y) * deltaDistY;
-	}
-//	sideDistX = (origin.x - mapX) * deltaDistX;
-//	sideDistY = (origin.y - mapY) * deltaDistY;
+			if (direction.y < 0.0f)
+			{
+				stepY = -1;
+				sideDistY = (origin.y - mapY) * deltaDistY;
+			}
+			else
+			{
+				stepY = 1;
+				sideDistY = (mapY + 1.0f - origin.y) * deltaDistY;
+			}
 
 			//perform DDA
-			/* En el bucle, parece que siempre busca avanzando por la distancia más pequeña (vertical u horizontal) hasta encontrar el destino.
-				De esta forma solo avanza o en vertical o en horizontal pero NUNCA en diagonal como podría hacer el algoritmo DDA estandar.
-				Si avanzara en diagonal, habría un problemon al calcular la distancia horizontal ( en x ) y la vertical (en y ) ya que
-				se suma un poquito a cada una en función de la pendiente.
-			*/
+			/* En el bucle, parece que siempre busca avanzando por la distancia más pequeña (vertical u horizontal) hasta encontrar el destino.*/
 			while (hit == 0)
 			{
 				//jump to next map square, either in x-direction, or in y-direction
@@ -136,8 +127,17 @@ bool dda_calculate_hit_v2(t_dpoint	origin, t_vector direction, t_map map, int *s
 			}
 	//SI hemos golpeado con X , significa que la distancia horizontal es menor a la vertical. Nos la quedamos
 	//y viceversa. le resta las delta , creo, que por que inicializa ladistancia saltando a la siguiente horizontal.
-			if(*side == 0) 	*perpWallDist = (sideDistX - deltaDistX);
-				else        *perpWallDist = (sideDistY - deltaDistY);
+/*
+	if (r->side == 0)
+		return ((r->mapx - pl->locx + (1 - r->stepx) / 2) / r->raydirx);
+	else
+		return ((r->mapy - pl->locy + (1 - r->stepy) / 2) / r->raydiry);
+}
+*/
+	if(*side == 0) 	
+		*perpWallDist = (float)((mapX - origin.x + ( 1 - stepX) / 2) / direction.x);
+		else
+		*perpWallDist = (float)((mapY - origin.y + ( 1 - stepY) / 2) / direction.y);
 	
 /*
 	printf("\t\tdistancia: direction x %f y %f\n",direction.x, direction.y);
