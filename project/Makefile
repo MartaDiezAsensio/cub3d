@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+         #
+#    By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-#    Updated: 2024/09/24 02:10:31 by greus-ro         ###   ########.fr        #
+#    Updated: 2024/09/24 22:45:18 by gabriel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,7 @@ SRC		+=	config/config_colors.c				\
 			config/config.c
 
 SRC		+=	dda/dda.c							\
-			dda/dda_v2.c
+			dda/dda_raycasting.c
 
 SRC		+=	engine/engine.c						\
 			engine/engine_mlx_config.c			\

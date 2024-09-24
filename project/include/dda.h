@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:29:22 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/24 02:10:49 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/09/24 22:48:31 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,24 @@ typedef struct s_dda
 	t_dpoint	final;
 }	t_dda;
 
-//bool	dda_calculate_hit(t_point	origin, t_vector direction, t_map map, t_dpoint *hit);
-bool	dda_calculate_hit(t_dpoint	origin, t_vector direction, t_map map, t_dpoint *hit, int *side);
-bool	dda_calculate_hit_v2(t_dpoint	origin, t_vector direction, t_map map, int *side, double *perpWallDist);
+
+typedef struct s_dda_raycasting
+{
+	int			side;
+	float		perpWallDist;
+	t_point		map_point;
+	int			stepX;
+	int			stepY;
+	float		sideDistX;
+	float		sideDistY;
+	float		deltaDistX;
+	float		deltaDistY;
+	
+}	t_dda_raycasting;
+
+bool	dda_calculate_hit(t_dpoint	origin, t_vector direction, t_map map, \
+			t_dpoint *hit);
+bool	dda_raycasting_calculate_hit(t_dpoint	origin, t_vector direction, \
+			t_map map, t_dda_raycasting *dda_ray);
 
 #endif
