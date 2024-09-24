@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler_key_events.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:05:06 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/11 19:38:50 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/23 22:38:50 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 #include "events.h"
 #include "engine.h"
+#include "vector.h"
 
 void	on_keydown(mlx_key_data_t keydata, void *param)
 {
@@ -28,6 +29,34 @@ void	on_keydown(mlx_key_data_t keydata, void *param)
 	engine = (t_engine *)param;
 	(void)engine;
 	printf("Key pressed %d\n", keydata.key);
+	if (keydata.key == MLX_KEY_RIGHT)
+	{
+		engine->camera.direction = vector_rotate(engine->camera.direction, -ROTATION_ANGLE, false);
+		engine->camera.camera_panel =  vector_rotate(engine->camera.camera_panel, -ROTATION_ANGLE, false);
+	}
+	if (keydata.key == MLX_KEY_LEFT)
+	{
+		engine->camera.direction = vector_rotate(engine->camera.direction, ROTATION_ANGLE, false);
+		engine->camera.camera_panel =  vector_rotate(engine->camera.camera_panel, ROTATION_ANGLE, false);
+	}
+	/*
+	if(keydata.key == MLX_KEY_A)
+	{
+		engine->camera.position.x++;
+	}
+	if(keydata.key == MLX_KEY_D)
+	{
+		engine->camera.position.x--;
+	}
+	if(keydata.key == MLX_KEY_W)
+	{
+
+	}
+	if(keydata.key == MLX_KEY_S)
+	{
+		
+	}
+	*/
 	if (keydata.key == MLX_KEY_ESCAPE)
 		engine_stop(engine);
 }

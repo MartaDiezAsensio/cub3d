@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+         #
+#    By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-#    Updated: 2024/09/22 11:41:59 by greus-ro         ###   ########.fr        #
+#    Updated: 2024/09/23 21:19:27 by greus-ro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,6 +99,7 @@ SRC		+=	config/config_colors.c				\
 			config/config.c
 
 SRC		+=	dda/dda.c							\
+			dda/dda_v2.c
 
 SRC		+=	engine/engine.c						\
 			engine/engine_mlx_config.c			\
@@ -115,6 +116,7 @@ SRC		+=	flooding/flooding.c					\
 			flooding/flooding_utils.c
 
 SRC		+=	geometry/point.c					\
+			geometry/dpoint.c					\
 			geometry/radiants.c					\
 			geometry/vector_arithmetic.c		\
 			geometry/vector_orientation.c		\
