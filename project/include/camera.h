@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 20:35:03 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/23 11:29:21 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/24 20:47:48 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 typedef struct s_camera
 {
-	t_dpoint		position;
+	t_dpoint	position;
 	t_vector	direction;
 	t_vector	camera_panel;
 } t_camera;
