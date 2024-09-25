@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler_key_events.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:05:06 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/25 00:17:25 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/25 17:33:22 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,25 @@ static void	calculate_new_position(mlx_key_data_t keydata, \
 {
 	t_vector	strafe_dir;
 
-	if(keydata.key == MLX_KEY_W)
+	if (keydata.key == MLX_KEY_W)
 	{
 		new_point->x = camera.position.x + MOV_SPEED * camera.direction.x;
 		new_point->y = camera.position.y + MOV_SPEED * camera.direction.y;
 	}
-	if(keydata.key == MLX_KEY_S)
+	if (keydata.key == MLX_KEY_S)
 	{
 		new_point->x = camera.position.x - MOV_SPEED * camera.direction.x;
 		new_point->y = camera.position.y - MOV_SPEED * camera.direction.y;
 	}
-	if(keydata.key == MLX_KEY_A)
+	if (keydata.key == MLX_KEY_A)
 	{
-		strafe_dir =vector_rotate(camera.direction, -M_PI / 2, false);
+		strafe_dir = vector_rotate(camera.direction, -M_PI / 2, false);
 		new_point->x = camera.position.x + MOV_SPEED * strafe_dir.x;
 		new_point->y = camera.position.y + MOV_SPEED * strafe_dir.y;
 	}
-	if(keydata.key == MLX_KEY_D)
+	if (keydata.key == MLX_KEY_D)
 	{
-		strafe_dir =vector_rotate(camera.direction, M_PI / 2, false);
+		strafe_dir = vector_rotate(camera.direction, M_PI / 2, false);
 		new_point->x = camera.position.x + MOV_SPEED * strafe_dir.x;
 		new_point->y = camera.position.y + MOV_SPEED * strafe_dir.y;
 	}
@@ -50,7 +50,7 @@ static void	calculate_new_position(mlx_key_data_t keydata, \
 
 static bool	check_new_position(t_map map, t_dpoint new_position)
 {
-	if (!map_is_inside(map,new_position.x, new_position.y))
+	if (!map_is_inside(map, new_position.x, new_position.y))
 		return (false);
 	if (map_is_wall(map, new_position.x, new_position.y))
 		return (false);
@@ -63,7 +63,8 @@ static void	move(t_camera *camera, t_dpoint new_position)
 	camera->position.y = new_position.y;
 }
 
-static void	rotate(mlx_key_data_t keydata, t_camera *camera, t_orientations player_orientation)
+static void	rotate(mlx_key_data_t keydata, t_camera *camera, \
+					t_orientations player_orientation)
 {
 	float	angle;
 
@@ -83,16 +84,17 @@ static void	rotate(mlx_key_data_t keydata, t_camera *camera, t_orientations play
 			angle = -ROTATION_ANGLE;
 	}
 	camera->direction = vector_rotate(camera->direction, angle, false);
-	camera->camera_panel = vector_rotate(camera->camera_panel, angle, false);	
+	camera->camera_panel = vector_rotate(camera->camera_panel, angle, false);
 }
 
 void	on_keydown(mlx_key_data_t keydata, void *param)
 {
 	t_engine	*engine;
-	t_dpoint		new_position;
-	
+	t_dpoint	new_position;
+
 	engine = (t_engine *)param;
-	if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_D)
+	if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_S || \
+			keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_D)
 	{
 		calculate_new_position(keydata, engine->camera, &new_position);
 		if (check_new_position(engine->cfg->map, new_position))
