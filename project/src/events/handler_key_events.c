@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler_key_events.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:05:06 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/24 19:39:53 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:33:22 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,168 +17,91 @@
 #include "events.h"
 #include "engine.h"
 #include "vector.h"
+#include "map.h"
 
-
-static bool	check_safe_move(mlx_key_data_t keydata, t_map map, t_camera camera)
+static void	calculate_new_position(mlx_key_data_t keydata, \
+				t_camera camera, t_dpoint *new_point)
 {
-	int	x;
-	int	y;
 	t_vector	strafe_dir;
 
-	printf("x original %f y original %f\n",camera.position.x,camera.position.y);
-	if(keydata.key == MLX_KEY_W)
+	if (keydata.key == MLX_KEY_W)
 	{
-		x = camera.position.x + MOV_SPEED * camera.direction.x;
-		y = camera.position.y + MOV_SPEED * camera.direction.y;
+		new_point->x = camera.position.x + MOV_SPEED * camera.direction.x;
+		new_point->y = camera.position.y + MOV_SPEED * camera.direction.y;
 	}
-	if(keydata.key == MLX_KEY_S)
+	if (keydata.key == MLX_KEY_S)
 	{
-		x = camera.position.x - MOV_SPEED * camera.direction.x;
-		y = camera.position.y - MOV_SPEED * camera.direction.y;
+		new_point->x = camera.position.x - MOV_SPEED * camera.direction.x;
+		new_point->y = camera.position.y - MOV_SPEED * camera.direction.y;
 	}
-	if(keydata.key == MLX_KEY_A)
+	if (keydata.key == MLX_KEY_A)
 	{
-		strafe_dir =vector_rotate(camera.direction, -M_PI / 2, false);
-		x = camera.position.x + MOV_SPEED * strafe_dir.x;
-		y = camera.position.y + MOV_SPEED * strafe_dir.y;
+		strafe_dir = vector_rotate(camera.direction, -M_PI / 2, false);
+		new_point->x = camera.position.x + MOV_SPEED * strafe_dir.x;
+		new_point->y = camera.position.y + MOV_SPEED * strafe_dir.y;
 	}
-	if(keydata.key == MLX_KEY_D)
+	if (keydata.key == MLX_KEY_D)
 	{
-		strafe_dir =vector_rotate(camera.direction, M_PI / 2, false);
-		x = camera.position.x + MOV_SPEED * strafe_dir.x;
-		y = camera.position.y + MOV_SPEED * strafe_dir.y;
+		strafe_dir = vector_rotate(camera.direction, M_PI / 2, false);
+		new_point->x = camera.position.x + MOV_SPEED * strafe_dir.x;
+		new_point->y = camera.position.y + MOV_SPEED * strafe_dir.y;
 	}
+}
 
-	if (y < 0 || y > (int)map.height)
-	{
-		printf("\t\t Y negativa ny %d\n",y);
+static bool	check_new_position(t_map map, t_dpoint new_position)
+{
+	if (!map_is_inside(map, new_position.x, new_position.y))
 		return (false);
-	}
-	if (x < 0 || x > (int)map.width)
-	{
-		printf("\t\t X negativa nx %d\n",x);
+	if (map_is_wall(map, new_position.x, new_position.y))
 		return (false);
-	}
-	if (map.map[y][x] ==  MAP_TILE_WALL)
-	{
-		printf("\t\t WALL x %d y%d\n",x,y);
-		return (false);
-	}
 	return (true);
 }
 
-
-static void	move(mlx_key_data_t keydata, t_engine *engine)
+static void	move(t_camera *camera, t_dpoint new_position)
 {
-	float		x;
-	float		y;
-	t_vector	strafe_dir;
+	camera->position.x = new_position.x;
+	camera->position.y = new_position.y;
+}
 
-	printf("move de kkey %d\n", keydata.key);
-	if(keydata.key == MLX_KEY_W)
+static void	rotate(mlx_key_data_t keydata, t_camera *camera, \
+					t_orientations player_orientation)
+{
+	float	angle;
+
+	angle = 0.0f;
+	if (keydata.key == MLX_KEY_RIGHT)
 	{
-		x = engine->camera.position.x + MOV_SPEED * engine->camera.direction.x;
-		y = engine->camera.position.y + MOV_SPEED * engine->camera.direction.y;
+		if (player_orientation == EAST || player_orientation == WEST)
+			angle = -ROTATION_ANGLE;
+		if (player_orientation == NORTH || player_orientation == SOUTH)
+			angle = ROTATION_ANGLE;
 	}
-	if(keydata.key == MLX_KEY_S)
+	if (keydata.key == MLX_KEY_LEFT)
 	{
-		x = engine->camera.position.x - MOV_SPEED * engine->camera.direction.x;
-		y = engine->camera.position.y - MOV_SPEED * engine->camera.direction.y;
+		if (player_orientation == EAST || player_orientation == WEST)
+			angle = ROTATION_ANGLE;
+		if (player_orientation == NORTH || player_orientation == SOUTH)
+			angle = -ROTATION_ANGLE;
 	}
-	if(keydata.key == MLX_KEY_A)
-	{
-		strafe_dir =vector_rotate(engine->camera.direction, -M_PI / 2, false);
-		x = engine->camera.position.x + MOV_SPEED * strafe_dir.x;
-		y = engine->camera.position.y + MOV_SPEED * strafe_dir.y;
-	}
-	if(keydata.key == MLX_KEY_D)
-	{
-		strafe_dir =vector_rotate(engine->camera.direction, M_PI / 2, false);
-		x = engine->camera.position.x + MOV_SPEED * strafe_dir.x;
-		y = engine->camera.position.y + MOV_SPEED * strafe_dir.y;
-	}
-	engine->camera.position.x = x;
-	engine->camera.position.y = y;
+	camera->direction = vector_rotate(camera->direction, angle, false);
+	camera->camera_panel = vector_rotate(camera->camera_panel, angle, false);
 }
 
 void	on_keydown(mlx_key_data_t keydata, void *param)
 {
 	t_engine	*engine;
+	t_dpoint	new_position;
 
 	engine = (t_engine *)param;
-	(void)engine;
-	printf("Key pressed %d\n", keydata.key);
-
-	if (engine->cfg->player_orientation == EAST || engine->cfg->player_orientation == WEST)
+	if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_S || \
+			keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_D)
 	{
-		if (keydata.key == MLX_KEY_RIGHT)
-		{
-			engine->camera.direction = vector_rotate(engine->camera.direction, -ROTATION_ANGLE, false);
-			engine->camera.camera_panel =  vector_rotate(engine->camera.camera_panel, -ROTATION_ANGLE, false);
-		}
-		if (keydata.key == MLX_KEY_LEFT)
-		{
-			engine->camera.direction = vector_rotate(engine->camera.direction, ROTATION_ANGLE, false);
-			engine->camera.camera_panel =  vector_rotate(engine->camera.camera_panel, ROTATION_ANGLE, false);
-		}
+		calculate_new_position(keydata, engine->camera, &new_position);
+		if (check_new_position(engine->cfg->map, new_position))
+			move(&engine->camera, new_position);
 	}
-	if (engine->cfg->player_orientation == NORTH || engine->cfg->player_orientation == SOUTH)
-	{
-		if (keydata.key == MLX_KEY_RIGHT)
-		{
-			engine->camera.direction = vector_rotate(engine->camera.direction, ROTATION_ANGLE, false);
-			engine->camera.camera_panel =  vector_rotate(engine->camera.camera_panel, ROTATION_ANGLE, false);
-		}
-		if (keydata.key == MLX_KEY_LEFT)
-		{
-			engine->camera.direction = vector_rotate(engine->camera.direction, -ROTATION_ANGLE, false);
-			engine->camera.camera_panel =  vector_rotate(engine->camera.camera_panel, -ROTATION_ANGLE, false);
-		}
-	}
-	/*
-	if(keydata.key == MLX_KEY_A)
-	{
-		engine->camera.position.x++;
-	}
-	if(keydata.key == MLX_KEY_D)
-	{
-		engine->camera.position.x--;
-	}
-	*/
-	
-	if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_D)
-	{
-		if (check_safe_move(keydata, engine->cfg->map, engine->camera))
-			move(keydata, engine);
-	}
-	/*
-	if(keydata.key == MLX_KEY_W)
-	{
-		engine->camera.position.x = engine->camera.position.x + MOV_SPEED * engine->camera.direction.x;
-		engine->camera.position.y = engine->camera.position.y + MOV_SPEED * engine->camera.direction.y;
-	}
-	if(keydata.key == MLX_KEY_S)
-	{
-		engine->camera.position.x = engine->camera.position.x - MOV_SPEED * engine->camera.direction.x;
-		engine->camera.position.y = engine->camera.position.y - MOV_SPEED * engine->camera.direction.y;
-	}
-	*/
+	if (keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_LEFT)
+		rotate(keydata, &engine->camera, engine->cfg->player_orientation);
 	if (keydata.key == MLX_KEY_ESCAPE)
 		engine_stop(engine);
 }
-/*
-int	on_keydown(int key_code, void *param)
-{
-	t_engine	*engine;
-
-	engine = (t_engine *)param;
-	(void)engine;
-	printf("Key pressed %d\n", key_code);
-	if (key_code == XK_Escape)
-	{
-		engine_destroy(engine);
-		exit(EXIT_SUCCESS);
-	}
-	return (0);
-}
-*/

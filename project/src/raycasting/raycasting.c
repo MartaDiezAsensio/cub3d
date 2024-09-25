@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 19:35:14 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/24 18:16:12 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/24 21:40:19 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 t_vector    raycasting_new_ray(int x, int w, t_camera camera)
 {
     t_vector    ray;
-    double  cameraX;
-    double  rayDirX;
-    double  rayDirY;
+    float  cameraX;
+    float  rayDirX;
+    float  rayDirY;
 
-    cameraX = 2.0f * (double)x / ((double)w) - 1.0f;
+    cameraX = 2.0f * (double)x / ((float)w) - 1;
     rayDirX = camera.direction.x + camera.camera_panel.x * cameraX;
     rayDirY = camera.direction.y + camera.camera_panel.y * cameraX;
     //printf(" Gabriel %.f    %.f\n", camera.direction.x, camera.direction.y);
