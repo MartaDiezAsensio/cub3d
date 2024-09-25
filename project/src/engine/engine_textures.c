@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 22:12:40 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/15 14:27:24 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/24 20:18:31 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 #include "texture.h"
 #include "engine.h"
-//#include "mlx.h"
 #include "MLX42/MLX42.h"
 #include "libft.h"
 #include "error.h"
 #include "texture.h"
 
-//void	*mlx_png_file_to_image(void *mlx_ptr, char *filename, int *width, int *height);
 bool	engine_texture_load(const char *filename, t_texture *texture)
 {
 	//mlx_texture_t* mlx_load_png(const char* path);
@@ -31,14 +29,6 @@ bool	engine_texture_load(const char *filename, t_texture *texture)
 	texture->height = texture->mlx_texture->height;
 	return (true);
 }
-
-
-/*ability to convert error numerical codes to English text string*/
-//#ifndef LODEPNG_NO_COMPILE_ERROR_TEXT
-/*pass -DLODEPNG_NO_COMPILE_ERROR_TEXT to the compiler to disable this,
-or comment out LODEPNG_COMPILE_ERROR_TEXT below*/
-//#define LODEPNG_COMPILE_ERROR_TEXT
-//#endif
 
 bool	engine_textures_load(t_engine *engine)
 {

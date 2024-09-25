@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 21:08:30 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/17 19:49:18 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/23 00:49:09 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	config_debug(t_config cfg)
 	node = cfg.map_lines;
 	while (node!= NULL)
 	{
-		printf("\t\t%s", (char *)node->content);
+		printf("\t\t__%s__\n", (char *)node->content);
 		node = node->next;
 	}
 	printf("\n");
@@ -136,7 +136,7 @@ void	config_debug(t_config cfg)
 
 	while (cfg.map.map[i] != NULL)
 	{
-		printf("\t\t%s", cfg.map.map[i]);
+		printf("\t\t__%s__\n", cfg.map.map[i]);
 		i++;
 	}
 	printf("\n");

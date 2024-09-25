@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:43:45 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/21 19:29:31 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/24 18:43:52 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ typedef	struct s_engine
 	mlx_image_t	*img;
 	
 }	t_engine;
+
+# define ROTATION_ANGLE 0.05f
+# define MOV_SPEED 0.3f
 
 bool	engine_init(t_engine *engine, t_config *cfg);
 bool	engine_start(t_engine *engine);

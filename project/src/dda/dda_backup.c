@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:32:51 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/25 20:18:14 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/23 23:20:11 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static t_dda	dda_init(t_dpoint origin, t_vector direction)
 	dda_data.x = origin.x;
 	dda_data.y = origin.y;
 	dda_data.final = dpoint_new(origin.x + direction.x * 1000.0f, origin.y + direction.y * 1000.0f);
-	/*
 	dda_data.dx = dda_data.final.x - dda_data.x;
 	dda_data.dy = dda_data.final.y - dda_data.y;
 	if (fabs(dda_data.dx) >= fabs(dda_data.dy))
@@ -41,9 +40,6 @@ static t_dda	dda_init(t_dpoint origin, t_vector direction)
 		dda_data.step = fabs(dda_data.dy);
 	dda_data.dx = dda_data.dx / dda_data.step;
 	dda_data.dy = dda_data.dy / dda_data.step;
-	*/
-	dda_data.dx = direction.x;
-	dda_data.dy = direction.y;
 //	printf("origin.x %f origin.y %f dda->dx %f dda->dy %f step = %f \n",origin.x,origin.y,dda_data.dx, dda_data.dy, dda_data.step);
 	return (dda_data);
 }
@@ -60,10 +56,9 @@ static	void	dda_next_step(t_dda *dda, int *side)
 	dda->x = dda->x + dda->dx;
 	dda->y = dda->y + dda->dy;
 	/*
-	printf("\t\t\tdda dx = %f dy = %f x %d y %d nx %f ny %f round x %d round y %d\n", dda->dx, dda->dy,x,y, dda->x, dda->y,(int)dda->x,(int)dda->y);
+	printf("\t\t\tdda dx = %f dy = %f x %d y %d nx %f ny %f\n", dda->dx, dda->dy,x,y, dda->x, dda->y);
 	if (fabs(dda->dy) == 1.0f)
 	{
-		//if (x != dda->x)
 		if (x != (int)dda->x)
 			*side = HIT_X_SIDE;
 		else
@@ -71,7 +66,6 @@ static	void	dda_next_step(t_dda *dda, int *side)
 	}
 	if (fabs(dda->dx) == 1.0f)
 	{
-		//if (y != (int)dda->y)
 		if (y != (int)dda->y)
 			*side = HIT_Y_SIDE;
 		else
@@ -118,47 +112,28 @@ bool dda_calculate_hit(t_dpoint	origin, t_vector direction, t_map map, \
 	int		i;
 	t_dpoint	point;
 
-	//dda_data.final = dpoint_new(origin.x + direction.x * 100.0f, origin.y + direction.y * 100.0f);
+	dda_data.final = dpoint_new(origin.x + direction.x * 100.0f, origin.y + direction.y * 100.0f);
 	dda_data = dda_init(origin, direction);
 //	printf("dda.x %f dda.y %f step  %f \n",dda_data.dx, dda_data.dy, dda_data.step);
 	i = 0;
-	//while(i <= (int)dda_data.step)
-	while(true)
+	while(i <= (int)dda_data.step)
 	{
-
+//		printf("Punto actual 1 x %f y %f \n", dda_data.x, dda_data.y);
 		point = dpoint_new(dda_data.x, dda_data.y);
-
+//		printf("Punto actual 2 x %f y %f \n", point.x, point.y);
 		if (!dda_is_inside_map(point, map))
 		{
-			printf("FUERA DEL MAPA x %f y %f \n", point.x, point.y);
+//			printf("FUERA DEL MAPA x %f y %f \n", point.x, point.y);
 			return (false);
 		}
 		if(dda_check_hit(point, map))
 		{
+			//if (point.x >= 28.0f)
+			//	printf("El hit esta en: x%f y %f\n", point.x, point.y);
 			*hit = point;
-			//hit->x =  (int) point.x;
-			//hit->y = (int) point.y;
+			hit->x =  (int) point.x;
+			hit->y = (int) point.y;
 			//*hit = dpoint_new(origin.x + direction.x * (float)i, origin.y + direction.y * (float)i);
-			/*
-			if (*side == HIT_X_SIDE)
-			{
-				hit->x = point.x;
-				hit->y = (int)point.y;
-			}
-			else
-			{
-				hit->x = (int)point.x;
-				hit->y = point.y;
-			}*/
-			double t1;
-			double t2;
-			t1 = (point.x - origin.x) / direction.x;
-			t2 = (point.y - origin.y) / direction.y;
-			if (t1 < t2)
-				*side = HIT_X_SIDE;
-			else
-				*side = HIT_Y_SIDE;
-			printf("\tHIT! X %f Y %f SIDE: %d Origi x %f y %f\n",hit->x, hit->y,*side, origin.x, origin.y);
 			return (true);
 		}
 		dda_next_step(&dda_data, side);

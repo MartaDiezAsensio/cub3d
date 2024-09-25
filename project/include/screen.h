@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 21:28:17 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/07 21:30:37 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/23 13:25:07 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "types.h"
 
-# define SCREEN_DEFAULT_WIDTH	1024
-# define SCREEN_DEFAULT_HEIGH	768
+# define SCREEN_DEFAULT_WIDTH	90
+# define SCREEN_DEFAULT_HEIGH	40
 # define SCREEN_DEFAULT_TITLE	"Cube3d 2. Now, it is Personal..."
 
 typedef struct s_screen

@@ -6,13 +6,15 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 21:41:24 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/22 13:35:38 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/25 20:17:48 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
 #include "point.h"
+
+#include <stdio.h>
 
 t_dpoint	dpoint_new(double x, double y)
 {
@@ -32,6 +34,7 @@ double	dpoint_calculate_distance(t_dpoint point1, t_dpoint point2)
 	x = point2.x - point1.x;
 	y = point2.y - point1.y;
 	distance = sqrt(x*x + y*y);
+	printf("x %f, y %f, d %f\n",x*x, y*y, distance);
 	return (distance);
 }
 

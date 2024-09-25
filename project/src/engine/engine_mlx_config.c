@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine_mlx_config.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:16:53 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/15 16:42:02 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/23 19:40:35 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 */
 void	engine_mlx_settings(void)
 {
-	mlx_set_setting(MLX_MAXIMIZED, true);
+	//mlx_set_setting(MLX_MAXIMIZED, true);
 	//mlx_set_setting(MLX_STRETCH_IMAGE, true);
 }
 
