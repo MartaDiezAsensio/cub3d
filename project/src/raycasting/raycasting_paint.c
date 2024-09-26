@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_paint.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:15:21 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/24 23:00:36 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/26 16:17:32 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool    raycasting_paint(t_engine *engine)
 	{
 		ray_direction = raycasting_new_ray(x, engine->screen.x, engine->camera); 		
 		if (!dda_raycasting_calculate_hit(engine->camera.position, ray_direction, engine->cfg->map, &dda))
-			return (error_print_critical("DDA did not worked"), false);
+			return (error_print_critical("DDA did not work"), false);
 		num_pixels_wall = raycasting_calculate_wall(dda.perpWallDist, engine->screen.y);
 		engine_render_column(*engine, x, num_pixels_wall);
 		x++;
