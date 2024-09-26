@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 21:08:30 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/23 00:49:09 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/26 16:36:55 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ bool	config_init(t_config *cfg, const char *filename)
 void	config_destroy(t_config *cfg)
 {
 	ft_ptr_free_double_ptr(cfg->map.map);
-//	config_file_destroy_map(cfg);
 	if (cfg->map_lines != NULL)
 		ft_lstclear(&cfg->map_lines, free);
 	if (cfg->north_texture != NULL)
@@ -85,7 +84,6 @@ void	config_destroy(t_config *cfg)
 	if (cfg->east_texture != NULL)
 		cfg->east_texture = ft_ptr_free(cfg->east_texture);
 }
-
 
 bool	config_get_trimmed_line(char **trim_line, int fd)
 {
@@ -143,4 +141,3 @@ void	config_debug(t_config cfg)
 	printf("\t MAP PTR ***\n");
 	printf("DEBUG CONFIG********************************\n");	
 }
-

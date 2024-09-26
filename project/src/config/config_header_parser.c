@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   config_header_parser.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 21:41:43 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/16 21:37:49 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/26 16:33:08 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
 #include "config.h"
 #include "libft.h"
 #include "ft_get_next_line.h"

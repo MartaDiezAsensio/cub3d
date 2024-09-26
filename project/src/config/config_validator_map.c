@@ -3,20 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   config_validator_map.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:49:35 by gabriel           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/09/23 00:37:45 by gabriel          ###   ########.fr       */
-=======
-/*   Updated: 2024/09/25 20:18:22 by mdiez-as         ###   ########.fr       */
->>>>>>> 7291751d225f7456b05386a565c5c659ee9f72e2
+/*   Updated: 2024/09/26 16:36:05 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "config.h"
 #include "error.h"
 #include "flooding.h"
+#include <stdio.h>
 
 static	t_orientations	config_map_resolve_orientation(char orientation)
 {
@@ -45,7 +42,6 @@ bool	config_map_find_player(t_config *cfg)
 			if (cfg->map.map[i][j] == 'N' || cfg->map.map[i][j] == 'S' || \
 					cfg->map.map[i][j] == 'W' || cfg->map.map[i][j] == 'E' )
 			{
-				//cfg->player_position = dpoint_new(i,j);
 				cfg->player_position = dpoint_new(j,i);
 				cfg->player_orientation = \
 							config_map_resolve_orientation(cfg->map.map[i][j]);
@@ -61,15 +57,10 @@ bool	config_map_find_player(t_config *cfg)
 static bool	config_map_is_closed(t_config *cfg, bool *is_closed)
 {
 	*is_closed = false;
-
-//	if (!flood_map(*cfg, is_closed))
-//		return (false);
 	*is_closed = true;
 	(void)cfg;
 	return (true);
 }
-
-#include <stdio.h>
 
 bool config_validate_map(t_config *cfg)
 {
