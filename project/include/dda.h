@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:29:22 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/24 22:48:31 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/26 16:22:51 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_dda
 	t_dpoint	final;
 }	t_dda;
 
-
 typedef struct s_dda_raycasting
 {
 	int			side;
@@ -49,5 +48,4 @@ bool	dda_calculate_hit(t_dpoint	origin, t_vector direction, t_map map, \
 			t_dpoint *hit);
 bool	dda_raycasting_calculate_hit(t_dpoint	origin, t_vector direction, \
 			t_map map, t_dda_raycasting *dda_ray);
-
 #endif

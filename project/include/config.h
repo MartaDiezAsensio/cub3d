@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 20:53:17 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/22 13:44:37 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:22:46 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ bool	config_map_list_2_ptr(t_config *cfg);
 
 //config_validator.c
 bool	config_validator(t_config *cfg);
-
 void	config_debug(t_config cfg);
 
 //config_validator_map.c

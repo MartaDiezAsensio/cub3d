@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 21:58:10 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/22 11:42:30 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:23:32 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,5 @@ t_point		vector_calculate_new_point(t_point origin, t_vector direction, double n
 
 //geometry/vector_orientation.c
 bool    vector_get_orientation(t_vector vector, t_orientations *orientation);
-
 
 #endif
