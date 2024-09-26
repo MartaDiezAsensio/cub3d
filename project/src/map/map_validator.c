@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 20:43:22 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/25 23:42:13 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/26 22:12:04 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,42 @@ static bool	check_line_is_wall_or_empty(char *line_map)
 	return (true);
 }
 
+static bool	get_trimmed_size(const char *line, size_t *len)
+{
+	char	*line;
+
+	line  = ft_strtrim(line, " ");
+	if (line == NULL)	
+		return (false);
+	*len = ft_strlen(line);
+	free(line);
+}
+
+//static bool	check_line(char *line, size_t len_line, size_t len_top, size_t len_bottom)
+static bool	check_line(const char *line, size_t len_line, const char *line_top, const char *line_bottom)
+{
+	size_t	x;
+	size_t	len_top;
+	size_t	len_bottom;
+	char	*line_aux;
+	
+	x = 0;
+	if (!get_trimmed_size(line_top, &len_top))
+		return (false);
+	if (!get_trimmed_size(line_bottom, &len_bottom))
+		return (false);
+	while(x < len_line)
+	{
+		if (x < line - 1 && line[x] == ' ' && (line[x + 1] != ' ' && line[x + 1] != '1'))
+			return (false);
+		if (len_line > len_top && x > len_top && line[x] != '1')
+			return (false);
+		if (len_line > len_bottom && x > len_bottom && line[x] != '1')
+			return (false);
+		x++;
+	}
+	return (true);
+}
 
 /*
 As such, I came up with a few map validation rules. Assume that we are scanning the map from top to bottom, left to right :
@@ -44,7 +80,6 @@ Those rules should pass all the map requirements given.
 */
 bool	map_validator(t_map *map)
 {
-	size_t	x;
 	size_t	y;
 	char	*line;
 	size_t	len;
@@ -56,15 +91,13 @@ bool	map_validator(t_map *map)
 	while (y < map->height - 1)
 	{
 		line = ft_strtrim(map->map[y]," ");
+		if (line == NULL)
+			return (false);
 		len = ft_strlen(map->map[y]);
 		if (line[0] != MAP_TILE_WALL || line[len - 1] != MAP_TILE_WALL)
 			return(free(line), false);
-		x = 1;
-		while(line[x] != '\0')
-		{
-			
-			x++;
-		}
+		if (!check_line (line, len, map->map[y - 1], map->map[y + 1]))
+			return (free (line), false);
 		free (line);
 		y++;
 	}
