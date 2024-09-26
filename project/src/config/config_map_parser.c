@@ -6,11 +6,12 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 23:00:00 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/21 20:25:53 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/25 20:15:57 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "config.h"
 #include "libft.h"

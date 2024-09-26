@@ -6,7 +6,11 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:29:22 by gabriel           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/09/26 16:22:51 by mdiez-as         ###   ########.fr       */
+=======
+/*   Updated: 2024/09/25 20:18:34 by mdiez-as         ###   ########.fr       */
+>>>>>>> 7291751d225f7456b05386a565c5c659ee9f72e2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +34,7 @@ typedef struct s_dda
 	t_dpoint	final;
 }	t_dda;
 
+<<<<<<< HEAD
 typedef struct s_dda_raycasting
 {
 	int			side;
@@ -43,6 +48,11 @@ typedef struct s_dda_raycasting
 	float		deltaDistY;
 	
 }	t_dda_raycasting;
+=======
+//bool	dda_calculate_hit(t_point	origin, t_vector direction, t_map map, t_dpoint *hit);
+bool	dda_calculate_hit(t_dpoint	origin, t_vector direction, t_map map, t_dpoint *hit, int *side);
+bool	dda_calculate_hit_v2(t_dpoint	origin, t_vector direction, t_map map, int *side, double *perpWallDist);
+>>>>>>> 7291751d225f7456b05386a565c5c659ee9f72e2
 
 bool	dda_calculate_hit(t_dpoint	origin, t_vector direction, t_map map, \
 			t_dpoint *hit);

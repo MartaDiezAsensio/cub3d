@@ -3,11 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   engine_render_column.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/24 02:11:59 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:28:59 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
+/* ************************************************************************** */
+
 /* ************************************************************************** */
 
 #include "engine.h"
@@ -29,6 +31,12 @@ bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall)
     screen_height = engine.screen.y;
     i = 0;
     
+    sky_limit = engine.screen.middle_y - (num_pixels_wall / 2);
+    if (sky_limit < 0)
+        sky_limit = 0;
+    floor_limit = engine.screen.middle_y + (num_pixels_wall / 2);
+    if ((size_t)floor_limit >= engine.screen.y)
+        floor_limit =engine.screen.y;
     sky_end = engine.screen.middle_y - (num_pixels_wall / 2);
     if (sky_end < 0)
         sky_end = 0;
