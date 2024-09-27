@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 22:14:40 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/28 00:28:31 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/28 01:32:06 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,11 @@ bool	map_cell_is_wall(t_map map, int col, int row)
 	}
 	else
 		return (false);
+}
+
+bool	map_cell_is_valid(char cell)
+{
+	if (map_cell_is_player(cell) || cell == MAP_TILE_EMPTY || cell == MAP_TILE_VOID || cell == MAP_TILE_WALL)
+		return (true);
+	return (false);
 }
