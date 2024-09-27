@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flooding.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 22:03:20 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/12 22:02:23 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:03:42 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ bool	flood_is_tile_in_list(t_list *list, t_tile tile);
 
 // flooding_neighbours.c
 bool	flood_add_neighbours(t_config cfg, t_flooding *flood, t_tile tile);
-
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:29:22 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/24 22:48:31 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:02:06 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_dda
 	float	y;
 	t_dpoint	final;
 }	t_dda;
-
 
 typedef struct s_dda_raycasting
 {
