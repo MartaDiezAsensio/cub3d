@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 13:53:10 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/15 14:15:01 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:26:16 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,4 @@ void	texture_destroy(t_texture *texture)
 	}
 	texture->height = TEXTURE_NO_INIT_SIZE;
 	texture->width = TEXTURE_NO_INIT_SIZE;
-	
 }

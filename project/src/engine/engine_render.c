@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine_render.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 22:20:03 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/20 07:52:30 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:16:48 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,3 @@ void	engine_render(void *param)
 		//exit(EXIT_FAILURE);
 	}
 }	
-

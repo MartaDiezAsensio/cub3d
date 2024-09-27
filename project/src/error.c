@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 22:43:14 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/15 14:19:59 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:25:08 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,4 @@ void	error_print_mlx_perror(void)
 		return ;
 	}
 	error_print_critical(str_mlx_error);
-	//free(str_mlx_error);
 }

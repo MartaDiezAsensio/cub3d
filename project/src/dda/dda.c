@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:32:51 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/24 23:19:22 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:15:12 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@
 #include "dda.h"
 #include "error.h"
 
-/*
-	EN step ponemos el menor entre dx y dy para que en cada iteracion avancemos un paso en el x o y que tenga mayor diferencia.
-	Es decir si x es la mayor, en cada iteracion avanzamos 1 en x  (dx/dx) y dy /dx en y. 
-	Y viceversa.
-
-
-	Ponemos 10000 para evitar un overfload en las coordenadas.
-*/
 static t_dda	dda_init(t_dpoint origin, t_vector direction)
 {
 	t_dda	dda_data;
@@ -79,10 +71,8 @@ bool dda_calculate_hit(t_dpoint	origin, t_vector direction, t_map map, \
 	while(i <= (int)dda_data.step)
 	{
 		point = dpoint_new(dda_data.x, dda_data.y);
-//		if (!dda_is_inside_map(point, map))
 		if (!map_is_inside(map, point.x, point.y))
 			return (error_print_critical("Ray does not find hit."), false);
-//		if(dda_check_hit(point, map))
 		if(map_is_wall(map, point.x, point.y))
 		{
 			*hit = point;

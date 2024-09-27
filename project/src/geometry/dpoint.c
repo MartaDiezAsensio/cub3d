@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   dpoint.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 21:41:24 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/23 13:17:47 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:18:23 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include <stdio.h>
 
 #include "point.h"
-
-#include <stdio.h>
 
 t_dpoint	dpoint_new(double x, double y)
 {

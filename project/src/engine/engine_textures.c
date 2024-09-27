@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 22:12:40 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/24 20:18:31 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:16:58 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 
 bool	engine_texture_load(const char *filename, t_texture *texture)
 {
-	//mlx_texture_t* mlx_load_png(const char* path);
 	texture->mlx_texture = mlx_load_png(filename);
 	if (texture->mlx_texture == NULL)
 		return (error_print_mlx_perror(), false);

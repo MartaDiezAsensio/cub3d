@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler_resize_event.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 00:19:52 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/11 20:13:18 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:17:41 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "screen.h"
 #include "error.h"
 
-//void mlx_resize_hook(mlx_t* mlx, mlx_resizefunc func, void* param);
 void	on_resize(int width, int height, void *param)
 {
 	t_engine	*engine;

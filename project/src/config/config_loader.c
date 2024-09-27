@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_loader.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 21:21:15 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/07 20:36:30 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:09:55 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ bool	config_load(t_config *cfg, int fd)
 		return (false);
 	if (!config_parse_map(cfg, fd))
 		return (false);
-//	if (!config_map_list_2_ptr(cfg))
-//		return (false);
 	return (true);
 }
 

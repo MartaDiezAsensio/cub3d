@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   config_validator.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:24:52 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/12 19:16:52 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:13:31 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <unistd.h>
-//#include <stdlib.h>
 
 #include "config.h"
 #include "error.h"
@@ -72,7 +71,6 @@ static void	config_validate_textures(t_config *cfg)
 
 static void	config_validate_colors(t_config *cfg)
 {
-
 	if (cfg->ceiling_color.r < 0 || cfg->ceiling_color.r > 256)
 		return (config_report_error(cfg, "Ceiling colour invalid"));
 	if (cfg->ceiling_color.g < 0 || cfg->ceiling_color.g > 256)

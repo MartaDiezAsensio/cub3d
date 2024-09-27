@@ -3,22 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 19:35:14 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/24 21:40:19 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:20:18 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "raycasting.h"
 #include "error.h"
 
-
-#include <stdio.h>
-
-// Funcion para un solo rayo. Input: rayo x, width de pantalla, camara (para direccion)
 t_vector    raycasting_new_ray(int x, int w, t_camera camera)
 {
     t_vector    ray;
@@ -29,17 +26,13 @@ t_vector    raycasting_new_ray(int x, int w, t_camera camera)
     cameraX = 2.0f * (double)x / ((float)w) - 1;
     rayDirX = camera.direction.x + camera.camera_panel.x * cameraX;
     rayDirY = camera.direction.y + camera.camera_panel.y * cameraX;
-    //printf(" Gabriel %.f    %.f\n", camera.direction.x, camera.direction.y);
-    //ray = vector_new_from_values(rayDirX, rayDirY, false);
     ray = vector_new_from_values(rayDirX, rayDirY, false);
     return (ray);
 }
 
 bool    raycasting_n_ray(int w, t_camera camera, t_vector **rays)
-//t_vector    *raycasting_n_ray(int w, t_camera camera)
 {
     int x;
-    //t_vector    *ray_array;
 
     *rays = (t_vector *)malloc(w * sizeof(t_vector));
     if (*rays == NULL)

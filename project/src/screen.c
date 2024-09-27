@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:43:09 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/11 00:01:48 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:26:08 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 #include "libft.h"
 #include "screen.h"
-//#include "MLX42/MLX42.h"
 
 bool	screen_init(t_screen *screen)
 {
