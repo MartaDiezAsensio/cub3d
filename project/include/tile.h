@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tile.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 21:32:39 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/12 20:55:19 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:05:15 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define TILE_H
 
 # include "types.h"
+
 typedef enum e_tile_type
 {
 	TILE_EMPTY,
