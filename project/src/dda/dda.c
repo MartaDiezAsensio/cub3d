@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:32:51 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/24 23:19:22 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/28 00:32:53 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ bool dda_calculate_hit(t_dpoint	origin, t_vector direction, t_map map, \
 		if (!map_is_inside(map, point.x, point.y))
 			return (error_print_critical("Ray does not find hit."), false);
 //		if(dda_check_hit(point, map))
-		if(map_is_wall(map, point.x, point.y))
+		if(map_cell_is_wall(map, point.x, point.y))
 		{
 			*hit = point;
 			hit->x =  (int) point.x;

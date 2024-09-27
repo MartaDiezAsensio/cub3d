@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler_key_events.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:05:06 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/25 17:33:22 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/09/28 00:33:19 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static bool	check_new_position(t_map map, t_dpoint new_position)
 {
 	if (!map_is_inside(map, new_position.x, new_position.y))
 		return (false);
-	if (map_is_wall(map, new_position.x, new_position.y))
+	if (map_cell_is_wall(map, new_position.x, new_position.y))
 		return (false);
 	return (true);
 }

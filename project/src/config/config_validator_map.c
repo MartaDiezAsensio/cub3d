@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:49:35 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/28 00:04:44 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/28 00:40:21 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ static	t_orientations	config_map_resolve_orientation(char orientation)
 	return (NONE);
 }
 
+static bool config_is_player_position_uninit(t_dpoint player_position)
+{
+	return (player_position.x < 0.0f && player_position.y < 0.0f);
+}
+
 bool	config_map_find_player(t_config *cfg)
 {
 	size_t	i;
@@ -38,22 +43,21 @@ bool	config_map_find_player(t_config *cfg)
 		j = 0;
 		while (cfg->map.map[i][j] != '\0')
 		{
-			if (cfg->map.map[i][j] == 'N' || cfg->map.map[i][j] == 'S' || \
-					cfg->map.map[i][j] == 'W' || cfg->map.map[i][j] == 'E' )
+			if (map_cell_is_player(cfg->map.map[i][j]))
 			{
-				if (cfg->player_position.x < 0.0f && \
-						cfg->player_position.y < 0.0f)
+				if (!config_is_player_position_uninit(cfg->player_position))
 					return(error_print_critical("Found more than one player")\
 								, false);
 				cfg->player_position = dpoint_new(j,i);
 				cfg->player_orientation = \
 							config_map_resolve_orientation(cfg->map.map[i][j]);
-				return (true);
 			}
 			j++;
 		}
 		i++;
 	}
+	if (!config_is_player_position_uninit(cfg->player_position))
+		return (true);
 	return (error_print_critical("Cannot find player at map."), false);
 }
 
@@ -68,8 +72,6 @@ static bool	config_map_is_closed(t_config *cfg, bool *is_closed)
 	return (true);
 }
 
-#include <stdio.h>
-
 bool config_validate_map(t_config *cfg)
 {
 	bool	is_closed;
@@ -78,6 +80,5 @@ bool config_validate_map(t_config *cfg)
 		return(false);
 	if (!config_map_is_closed(cfg, &is_closed))
 		return(error_print_critical("The map is NOT closed."), false);
-	printf("Valid map: %d\n", is_closed);
 	return (true);
 }

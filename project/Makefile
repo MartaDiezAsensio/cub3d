@@ -6,7 +6,7 @@
 #    By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-#    Updated: 2024/09/24 22:45:18 by gabriel          ###   ########.fr        #
+#    Updated: 2024/09/28 00:26:00 by gabriel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,6 +126,7 @@ SRC		+=	raycasting/raycasting.c				\
 			raycasting/raycasting_paint.c
 
 SRC		+=	map/map.c							\
+			map/map_cell.c						\
 			map/map_loader.c					\
 			map/map_parser.c					\
 			map/tile.c
