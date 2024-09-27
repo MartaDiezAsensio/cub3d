@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 21:08:30 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/23 00:49:09 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/28 00:06:05 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ bool	config_init(t_config *cfg, const char *filename)
 void	config_destroy(t_config *cfg)
 {
 	ft_ptr_free_double_ptr(cfg->map.map);
-//	config_file_destroy_map(cfg);
 	if (cfg->map_lines != NULL)
 		ft_lstclear(&cfg->map_lines, free);
 	if (cfg->north_texture != NULL)

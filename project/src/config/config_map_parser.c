@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_map_parser.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 23:00:00 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/21 20:25:53 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/27 23:57:30 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,9 @@ bool	config_parse_map(t_config *cfg, int fd)
 	while (line != NULL)
 	{
 		free (line);
-		//bool	config_get_trimmed_line(char **trim_line, int fd)
 		if (!config_get_trimmed_line(&line, fd))
-		{
-			error_print_critical("Error in map line when parsing");
-			return(false);
-		}
-		//line = ft_get_next_line_many_fds(fd);
-		//printf("line is _%s_\n",line);
+			return(error_print_critical("Error in map line when parsing"), \
+						false);
 		if (line != NULL && ft_strlen(line) > 0)
 		{
 			content = ft_strdup(line);
@@ -52,32 +47,6 @@ bool	config_parse_map(t_config *cfg, int fd)
 	}
 	return (true);	
 }
-/*
-bool	config_map_list_2_tiles(t_config *cfg)
-{
-	size_t	number_lines;
-	size_t	i;
-	t_list	*node;
-	
-	number_lines = ft_lstsize(cfg->map_lines);
-	cfg->map = (char **)malloc((number_lines + 1) * sizeof(char *));
-	if (cfg->map == NULL)
-		return (error_perror_critical(), false);
-	i = 0;
-	while (i < number_lines + 1)
-		cfg->map[i++] = NULL;
-	i = 0;
-	node = cfg->map_lines;
-	while (i < number_lines)
-	{
-		cfg->map[i] = ft_strdup((char *)node->content);
-		if (cfg->map[i] == NULL)
-			return (error_perror_critical(), false);
-		node = node->next;
-		i++;
-	}
-	return (true);
-}*/
 
 bool	config_map_list_2_ptr(t_config *cfg)
 {

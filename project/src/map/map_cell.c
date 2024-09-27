@@ -1,43 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   map_cell.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 22:14:40 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/28 00:25:23 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/28 00:28:31 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "map.h"
 
-void	map_destroy(t_map *map)
+bool	map_cell_is_player(char cell)
 {
-	size_t	i;
-
-	i = 0;
-	if (map->map != NULL)
-	{
-		while (i < map->height)
-		{
-			if (map->map[i] != NULL)
-				free (map->map[i]);
-			i++;
-		}
-		free (map->map);
-		map->map = NULL;
-		map->height = 0;
-		map->width = 0;
-	}
+	if (cell == MAP_TILE_PLAYER_EAST || \
+			cell == MAP_TILE_PLAYER_WEST || \
+			cell == MAP_TILE_PLAYER_NORTH || \
+			cell == MAP_TILE_PLAYER_SOUTH
+	)
+		return (true);
+	return (false);
 }
 
-bool	map_is_inside(t_map map, int col, int row)
+bool	map_cell_is_wall(t_map map, int col, int row)
 {
-	if (col < 0 || col > (int)map.width)
+	if (map_is_inside(map, col, row))
+	{
+		if (map.map[row][col] == MAP_TILE_WALL)
+			return (true);
+		else
+			return(false);
+	}
+	else
 		return (false);
-	if (row < 0 || row > (int)map.height)
-		return (false);
-	return (true);
 }
