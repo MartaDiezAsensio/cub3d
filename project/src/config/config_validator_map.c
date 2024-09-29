@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:49:35 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/28 01:43:15 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/29 13:36:52 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ static bool	config_map_is_closed(t_config *cfg, bool *is_closed)
 {
 	*is_closed = false;
 
-//	if (!flood_map(*cfg, is_closed))
+	if (!flood_map(*cfg, is_closed))
+		return (false);
+//	if (!map_validator(cfg->map))
 //		return (false);
-	*is_closed = true;
-	(void)cfg;
 	return (true);
 }
 
@@ -78,7 +78,9 @@ bool config_validate_map(t_config *cfg)
 
 	if (!config_map_find_player(cfg))
 		return(false);
-	if (!config_map_is_closed(cfg, &is_closed))
-		return(error_print_critical("The map is NOT closed."), false);
+	if (!config_map_is_closed(cfg, &is_closed) || !is_closed)
+		return (false);
+//	if (is_closed)
+//		return(error_print_critical("The map is NOT closed."), false);
 	return (true);
 }

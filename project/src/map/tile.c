@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 19:48:58 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/12 23:02:53 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/29 15:08:35 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "map.h"
 #include "error.h"
 #include "screen.h"
+
+#include <stdio.h>
 
 t_tile	tile_new(size_t _x, size_t _y, char _type)
 {
