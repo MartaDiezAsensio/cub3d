@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 21:32:13 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/29 15:17:18 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/29 22:55:14 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,15 @@ bool	flood_add_neighbours(t_config cfg, t_flooding *flood, t_tile tile)
 	if (!flood_add_neighbour(cfg, flood, tile.x, tile.y + 1))
 		return (false);
 	if (!flood_add_neighbour(cfg, flood, tile.x, tile.y - 1))
+		return (false);
+
+	if (!flood_add_neighbour(cfg, flood, tile.x + 1, tile.y - 1))
+		return (false);
+	if (!flood_add_neighbour(cfg, flood, tile.x + 1, tile.y + 1))
+		return (false);
+	if (!flood_add_neighbour(cfg, flood, tile.x - 1, tile.y - 1))
+		return (false);
+	if (!flood_add_neighbour(cfg, flood, tile.x - 1, tile.y - 1))
 		return (false);
 	return (true);	
 }
