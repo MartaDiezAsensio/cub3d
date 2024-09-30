@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:59:42 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:03:26 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/30 21:16:33 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 void	on_keydown(mlx_key_data_t keydata, void *param);
 void	on_destroy(void *param);
 void	on_resize(int width, int height, void *param);
+void	on_mouse_move_event(double xpos, double ypos, void* param);
 
 #endif

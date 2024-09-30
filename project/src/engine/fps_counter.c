@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 19:58:34 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/30 20:16:38 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/30 22:09:27 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	fps_counter(double *old_time)
 	fps = 0;
 	time = mlx_get_time();
 	if (time - *old_time  != 0.0f)
-		fps = 1 / (time - *old_time);
+		fps = 1.0f / (time - *old_time);
 	*old_time = time;
 	return (fps);
 }

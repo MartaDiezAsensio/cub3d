@@ -6,7 +6,7 @@
 #    By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-#    Updated: 2024/09/30 20:12:16 by gabriel          ###   ########.fr        #
+#    Updated: 2024/09/30 21:48:30 by gabriel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,11 +83,13 @@ NAME	=	cube3d
 # Files
 ################################################################################
 
-SRC		=	camera.c						\
-			color.c							\
+SRC		=	color.c							\
 			error.c							\
 			screen.c						\
 			texture.c
+
+SRC		+=	camera/camera.c					\
+			camera/camera_mov.c
 
 SRC		+=	config/config_colors.c				\
 			config/config_header_parser.c		\
@@ -111,6 +113,7 @@ SRC		+=	engine/engine.c						\
 
 SRC		+=	events/handler_key_events.c			\
 			events/handler_destroy_event.c		\
+			events/handler_mouse_event.c		\
 			events/handler_resize_event.c
 
 SRC		+=	flooding/flooding.c					\
@@ -206,6 +209,7 @@ compile:
 
 ${BUILD_DIR}:
 	mkdir -p ${BUILD_DIR}
+	mkdir -p ${BUILD_DIR}/camera
 	mkdir -p ${BUILD_DIR}/config
 	mkdir -p ${BUILD_DIR}/dda
 	mkdir -p ${BUILD_DIR}/engine

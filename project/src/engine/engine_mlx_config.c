@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine_mlx_config.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:16:53 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/23 19:40:35 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/09/30 21:17:29 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,9 @@ void	engine_mlx_hooks(t_engine *engine)
 	mlx_loop_hook(engine->mlx, engine_render, engine);
 	mlx_close_hook(engine->mlx, on_destroy, engine);
 	mlx_resize_hook(engine->mlx, on_resize, engine);
+	mlx_cursor_hook(engine->mlx, on_mouse_move_event, engine);
+//	void mlx_cursor_hook(mlx_t* mlx, mlx_cursorfunc func, void* param);
+
+//	mlx_mouse_hook(engine->mlx, on_mouse_event, engine);
 
 }

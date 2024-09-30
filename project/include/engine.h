@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:43:45 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/30 20:32:48 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/30 21:33:03 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
 # include "texture.h"
 # include "config.h"
 # include "MLX42/MLX42.h"
-
-# define ROTATION_ANGLE 0.05f
-# define MOV_SPEED 0.3f
 
 enum e_engine_events
 {
