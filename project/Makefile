@@ -6,7 +6,7 @@
 #    By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-#    Updated: 2024/09/29 12:01:35 by gabriel          ###   ########.fr        #
+#    Updated: 2024/09/30 20:12:16 by gabriel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,7 +105,9 @@ SRC		+=	engine/engine.c						\
 			engine/engine_mlx_config.c			\
 			engine/engine_render.c				\
 			engine/engine_textures.c			\
-			engine/engine_render_column.c
+			engine/engine_render_column.c		\
+			engine/fps_counter.c
+
 
 SRC		+=	events/handler_key_events.c			\
 			events/handler_destroy_event.c		\
