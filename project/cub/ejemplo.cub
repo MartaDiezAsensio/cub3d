@@ -1,6 +1,6 @@
-NO ./textures/bricks.png
+WE ./textures/brick_rectangular2.png
 SO ./textures/bigote.png
-WE ./textures/protoblue.png
+NO ./textures/protoblue.png
 EA ./textures/switches.png
 
 F 100,100,100

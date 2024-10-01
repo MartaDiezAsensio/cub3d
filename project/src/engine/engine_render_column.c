@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/01 23:32:39 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/01 23:41:44 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,8 @@ bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall, 
 	{
 		texY = (int)texPos & (texture.height - 1);
 		texPos += step;
-		row_texture = texture.height * texY + texX;
-		//row_texture = texture.width * texY + texX;
+		//row_texture = texture.height * texY + texX;
+		row_texture = texture.width * texY + texX;
 		wall_color = color_new_mlx(texture.mlx_texture->pixels[row_texture*4],texture.mlx_texture->pixels[row_texture*4 + 1],texture.mlx_texture->pixels[row_texture*4 + 2]);
 		//Añadido para el oscurecido del color....
 		//if(dda.side == 1) wall_color = (wall_color >> 1) & 8355711;
