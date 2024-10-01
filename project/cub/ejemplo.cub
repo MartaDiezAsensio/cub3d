@@ -1,7 +1,7 @@
-NO ./textures/north.png
-SO ./textures/south.png
-WE ./textures/west.png
-EA ./textures/east.png
+NO ./textures/bricks.png
+SO ./textures/bigote.png
+WE ./textures/protoblue.png
+EA ./textures/switches.png
 
 F 100,100,100
 C 225,200,200
@@ -9,7 +9,7 @@ C 225,200,200
 11111111
 10100001
 10000101
-100E0101    
+100S0101    
 10000001
 10001111
 11000001

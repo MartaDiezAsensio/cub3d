@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine_render_column.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/01 20:45:07 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/01 23:17:43 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall, 
 	uint32_t    floor_color;
 	uint32_t    wall_color;
 
-	screen_height = engine.screen.y;
-	
-	
+	screen_height = engine.screen.y;	
 	sky_end = engine.screen.middle_y - (num_pixels_wall / 2);
 	if (sky_end < 0)
 		sky_end = 0;
@@ -84,14 +82,13 @@ bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall, 
 				//Pintamos el pixel.
 				//buffer[y][x] = color;
 			//}
-	int j;
 	while (i <= sky_end)
 	{
 		mlx_put_pixel(engine.img, x, i, sky_color);
 		i++;
 	}
-		
-	t_texture   *texture;
+
+	t_texture   texture;
 	double		interseccionX;
 	int 		texX;
 	int			texY;
@@ -99,46 +96,42 @@ bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall, 
 	double		texPos;
 	int			row_texture;
 	
-	printf("\t\tINICIO\n");
-	texture = NULL;
-	if (!choose_texture(&engine, &dda , texture))
+	if (!choose_texture(&engine, &dda , &texture))
 		return (false);
-	printf("Texture is... %p\n", texture);
 	if (dda.side == 0)
 		interseccionX = dda.origin.y + dda.perpWallDist * dda.ray.y;
 	else
 		interseccionX = dda.origin.x + dda.perpWallDist * dda.ray.x;
 	interseccionX -= floor(interseccionX);
-	texX = interseccionX * ((double)texture->width);
-	if (dda.side == 0 && dda.ray.x > 0)
-		texX = texture->width - texX - 1;
-	if (dda.side == 0 && dda.ray.y < 0)
-		texX = texture->width - texX - 1;
-	step = 1.0 * texture->height / num_pixels_wall;
+	texX = interseccionX * ((double)texture.width);
+	if (dda.side == 0 && dda.ray.x > 0.0f)
+		texX = texture.width - texX - 1;
+	if (dda.side == 0 && dda.ray.y < 0.0f)
+		texX = texture.width - texX - 1;
+	step = 1.0 * texture.height / num_pixels_wall;
 	texPos = (sky_end - screen_height / 2 + num_pixels_wall / 2) * step;
-	j = 0;
-	printf("\t\tPRE-While\n");
-	while ((size_t)j < num_pixels_wall)
+	while (i <= floor_start)
 	{
-		texY = (int)texPos & (texture->height - 1);
+
+		texY = (int)texPos & (texture.height - 1);
 		texPos += step;
-		//row_texture = texHeight * texY + texX;
-		row_texture = texture->height * texY + texX;
-		wall_color = color_new_mlx(texture->mlx_texture->pixels[row_texture*4],texture->mlx_texture->pixels[row_texture*4 + 1],texture->mlx_texture->pixels[row_texture*4 + 2]);
+		row_texture = texture.height * texY + texX;
+		wall_color = color_new_mlx(texture.mlx_texture->pixels[row_texture*4],texture.mlx_texture->pixels[row_texture*4 + 1],texture.mlx_texture->pixels[row_texture*4 + 2]);
+		//Añadido para el oscurecido del color....
+		//if(dda.side == 1) wall_color = (wall_color >> 1) & 8355711;
+//		if(dda.side == 1) wall_color = (wall_color >> 1) & 0xFFFFFFFF;
+		//FIn añadido
 		mlx_put_pixel(engine.img, x, i, wall_color);
-		j++;
+		i++;
 	}
-	i = i + j;
-	printf("\t\tSUELO\n");
 	while (i < screen_height)
 	{
 		mlx_put_pixel(engine.img, x, i, floor_color);
 		i++;
 	}
-	printf("\t\tFINAL\n");
-	
 	//Modo plano...
-	/*
+/*	
+	(void)dda;
 	wall_color = color_new_mlx(60, 60, 60);
 	while (i <= sky_end)
 	{
@@ -155,7 +148,7 @@ bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall, 
 		mlx_put_pixel(engine.img, x, i, floor_color);
 		i++;
 	}
-	*/
+*/	
 
 	return (true);
 }

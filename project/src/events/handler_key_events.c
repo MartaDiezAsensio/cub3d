@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:05:06 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/30 21:51:40 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/01 23:05:26 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ static void	rotate(mlx_key_data_t keydata, t_camera *camera, \
 */
 
 static void	calculate_new_position(mlx_key_data_t keydata, \
-				t_camera camera, t_dpoint *new_point)
+				t_camera camera, t_dpoint *new_point, \
+				t_orientations orientation)
 {
 	t_vector	strafe_dir;
 
@@ -106,13 +107,21 @@ static void	calculate_new_position(mlx_key_data_t keydata, \
 	}
 	if (keydata.key == MLX_KEY_A)
 	{
-		strafe_dir = vector_rotate(camera.direction, -M_PI / 2, false);
+		if (orientation == NORTH || orientation == SOUTH)
+			strafe_dir = vector_rotate(camera.direction, -M_PI / 2, false);
+		else
+			strafe_dir = vector_rotate(camera.direction, M_PI / 2, false);
+//		strafe_dir = vector_rotate(camera.direction, -M_PI / 2, false);
 		new_point->x = camera.position.x + MOV_SPEED * strafe_dir.x;
 		new_point->y = camera.position.y + MOV_SPEED * strafe_dir.y;
 	}
 	if (keydata.key == MLX_KEY_D)
 	{
-		strafe_dir = vector_rotate(camera.direction, M_PI / 2, false);
+		if (orientation == NORTH || orientation == SOUTH)
+			strafe_dir = vector_rotate(camera.direction, M_PI / 2, false);
+		else
+			strafe_dir = vector_rotate(camera.direction, -M_PI / 2, false);
+//		strafe_dir = vector_rotate(camera.direction, M_PI / 2, false);
 		new_point->x = camera.position.x + MOV_SPEED * strafe_dir.x;
 		new_point->y = camera.position.y + MOV_SPEED * strafe_dir.y;
 	}
@@ -151,7 +160,8 @@ void	on_keydown(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_S || \
 			keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_D)
 	{
-		calculate_new_position(keydata, engine->camera, &new_position);
+		calculate_new_position(keydata, engine->camera, &new_position, \
+				engine->cfg->player_orientation);
 		camera_move(&engine->camera, engine->cfg->map, new_position);
 	}
 	if (keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_LEFT)
