@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/01 23:17:43 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/01 23:32:39 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,18 +104,19 @@ bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall, 
 		interseccionX = dda.origin.x + dda.perpWallDist * dda.ray.x;
 	interseccionX -= floor(interseccionX);
 	texX = interseccionX * ((double)texture.width);
-	if (dda.side == 0 && dda.ray.x > 0.0f)
-		texX = texture.width - texX - 1;
-	if (dda.side == 0 && dda.ray.y < 0.0f)
-		texX = texture.width - texX - 1;
+	//ES curioso pero si le quitamos el if y le dejamos el texX por defecto, parece que funciona igual.
+//	if (dda.side == 0 && dda.ray.x > 0.0f)
+//		texX = texture.width - texX - 1;
+//	if (dda.side == 1 && dda.ray.y < 0.0f)
+//		texX = texture.width - texX - 1;
 	step = 1.0 * texture.height / num_pixels_wall;
 	texPos = (sky_end - screen_height / 2 + num_pixels_wall / 2) * step;
 	while (i <= floor_start)
 	{
-
 		texY = (int)texPos & (texture.height - 1);
 		texPos += step;
 		row_texture = texture.height * texY + texX;
+		//row_texture = texture.width * texY + texX;
 		wall_color = color_new_mlx(texture.mlx_texture->pixels[row_texture*4],texture.mlx_texture->pixels[row_texture*4 + 1],texture.mlx_texture->pixels[row_texture*4 + 2]);
 		//Añadido para el oscurecido del color....
 		//if(dda.side == 1) wall_color = (wall_color >> 1) & 8355711;
