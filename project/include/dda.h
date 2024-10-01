@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:29:22 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:02:06 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:34:59 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_dda_raycasting
 	float		sideDistY;
 	float		deltaDistX;
 	float		deltaDistY;
+	t_vector	ray;
+	t_dpoint	origin;
 	
 }	t_dda_raycasting;
 

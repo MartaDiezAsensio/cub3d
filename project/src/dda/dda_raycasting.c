@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:32:51 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/01 18:25:08 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:46:45 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ static void	dda_raycasting_init(t_dpoint origin, t_vector direction, t_dda_rayca
 {
 	dda_ray->map_point.x = origin.x;
 	dda_ray->map_point.y = origin.y;
+	dda_ray->origin = origin;
+	dda_ray->ray = direction;
 	dda_raycasting_init_x(origin, direction, dda_ray);
 	dda_raycasting_init_y(origin, direction, dda_ray);
 }

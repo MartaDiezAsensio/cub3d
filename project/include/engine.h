@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:43:45 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/30 21:33:03 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/01 19:49:11 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "map.h"
 # include "texture.h"
 # include "config.h"
+# include "dda.h"
 # include "MLX42/MLX42.h"
 
 enum e_engine_events
@@ -71,7 +72,7 @@ void	engine_mlx_settings(void);
 void	engine_mlx_hooks(t_engine *engine);
 
 //engine/engine_render.c
-bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall);
+bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall, t_dda_raycasting	dda);
 void	engine_render(void *param);
 
 //engine/fps_counter.c

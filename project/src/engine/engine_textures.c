@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 22:12:40 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:16:58 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/01 20:38:21 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include "libft.h"
 #include "error.h"
 #include "texture.h"
+
+#include <stdio.h>
 
 bool	engine_texture_load(const char *filename, t_texture *texture)
 {
@@ -31,6 +33,7 @@ bool	engine_texture_load(const char *filename, t_texture *texture)
 
 bool	engine_textures_load(t_engine *engine)
 {
+	printf("\t\t\t\t\tTEXTURAS LOAD\n");
 	t_config	*cfg;
 
 	cfg = engine->cfg;

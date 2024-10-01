@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+         #
+#    By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-#    Updated: 2024/09/30 21:48:30 by gabriel          ###   ########.fr        #
+#    Updated: 2024/10/01 19:24:05 by mdiez-as         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -130,6 +130,8 @@ SRC		+=	geometry/point.c					\
 SRC		+=	raycasting/raycasting.c				\
 			raycasting/raycasting_paint.c
 
+SRC		+=	textures_config/texture_config.c
+
 SRC		+=	map/map.c							\
 			map/map_cell.c						\
 			map/map_validator.c					\
@@ -218,6 +220,7 @@ ${BUILD_DIR}:
 	mkdir -p ${BUILD_DIR}/geometry
 	mkdir -p ${BUILD_DIR}/map
 	mkdir -p ${BUILD_DIR}/raycasting
+	mkdir -p ${BUILD_DIR}/textures_config
 
 ${BUILD_DIR}/%.o	:	${SRC_DIR}/%.c Makefile
 	@echo "\t${YELLOW}Compiling ${NAME} ->${RST} $<"

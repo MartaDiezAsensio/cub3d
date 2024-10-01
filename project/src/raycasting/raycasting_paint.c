@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:15:21 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/09/27 16:19:46 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:50:19 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ bool    raycasting_paint(t_engine *engine)
 		if (!dda_raycasting_calculate_hit(engine->camera.position, ray_direction, engine->cfg->map, &dda))
 			return (error_print_critical("DDA did not worked"), false);
 		num_pixels_wall = raycasting_calculate_wall(dda.perpWallDist, engine->screen.y);
-		engine_render_column(*engine, x, num_pixels_wall);
+		engine_render_column(*engine, x, num_pixels_wall, dda);
 		x++;
 	}
 	return (true);
