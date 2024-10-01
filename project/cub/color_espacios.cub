@@ -4,7 +4,7 @@ SO ./textures/south.png
 WE ./textures/west.png
 EA ./textures/east.png
 
-F 100,100,100
+F 100,   100,        100
 
 C 30,144,255
 

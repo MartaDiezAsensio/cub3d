@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:27:45 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/16 21:57:41 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/30 22:32:31 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,13 @@ bool	config_parse_colors(t_color *color, const char *colors_line)
 	{
 		color_component = ft_atoi(token_list[i]);
 		if (color_component < 0 || color_component > 255)
+		{
+			ft_ptr_free_double_ptr(token_list);
 			return (error_print_critical("One color has invalid value."), false);
+		}
 		color_save(color_component, i, color);
 		i++;
 	}
 	ft_ptr_free_double_ptr(token_list);
 	return (true);
-	
 }

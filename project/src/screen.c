@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:43:09 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:26:08 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/01 18:23:44 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ bool	screen_init(t_screen *screen)
 	if (screen->title == NULL)
 		return (false);
 	screen->resize = true;
+	screen->mouse_position.x = screen->x / 2.0f;
+	screen->mouse_position.y = screen->y / 2.0f;
 	return (true);
 }
 
@@ -41,4 +43,6 @@ void	screen_update_size(t_screen *screen, int x, int y)
 	screen->x = x;
 	screen->y = y;
 	screen->middle_y = screen->y / 2;
+	screen->mouse_position.x = screen->x / 2.0f;
+	screen->mouse_position.y = screen->y / 2.0f;
 }

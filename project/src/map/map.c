@@ -6,12 +6,16 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 22:14:40 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:19:29 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/01 18:25:58 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "map.h"
+#include "libft.h"
+#include "error.h"
+
+#include <stdio.h>
 
 void	map_destroy(t_map *map)
 {
@@ -33,35 +37,53 @@ void	map_destroy(t_map *map)
 	}
 }
 
-bool	map_cell_is_player(char tile)
-{
-	if (tile == MAP_TILE_PLAYER_EAST || \
-			tile == MAP_TILE_PLAYER_WEST || \
-			tile == MAP_TILE_PLAYER_NORTH || \
-			tile == MAP_TILE_PLAYER_SOUTH
-	)
-		return (true);
-	return (false);
-}
-
 bool	map_is_inside(t_map map, int col, int row)
 {
-	if (col < 0 || col > (int)map.width)
+	if (col < 0 || col >= (int)map.width)
 		return (false);
-	if (row < 0 || row > (int)map.height)
+	if (row < 0 || row >= (int)map.height)
 		return (false);
 	return (true);
 }
 
-bool	map_is_wall(t_map map, int col, int row)
+static bool	map_generate_padding(int len, char **padding)
 {
-	if (map_is_inside(map, col, row))
+	if (len <= 0)
 	{
-		if (map.map[row][col] == MAP_TILE_WALL)
-			return (true);
-		else
-			return(false);
+		*padding = NULL;
+		return (true);
 	}
-	else
-		return (false);
+	*padding = (char *)malloc(len);
+	if  (*padding == NULL)
+		return (error_perror_critical(), false);
+	*padding = ft_memset(*padding, ' ', len - 1);
+	(*padding)[len - 1] = '\0';
+	return (true);
+}
+
+bool	map_normalize(t_map *map)
+{
+	size_t	i;
+	size_t	len;
+	char	*padding;
+	char	*aux;
+	i = 0;
+	while (map->map[i] != NULL)
+	{
+		padding = NULL;
+		len = ft_strlen(map->map[i]);
+		if (!map_generate_padding(map->width - len, &padding))
+			return (false);
+		if (padding != NULL)
+		{
+			aux = map->map[i];
+			map->map[i] = ft_strjoin(map->map[i], padding);
+			free (aux);
+			free (padding);
+			if (map->map[i] == NULL)
+				return (error_print_critical("Fail normalizing map."), false);
+		}
+		i++;
+	}
+	return (true);
 }

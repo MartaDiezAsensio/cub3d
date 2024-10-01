@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:16:53 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:15:35 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/01 18:25:20 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,9 @@ void	engine_mlx_hooks(t_engine *engine)
 	mlx_loop_hook(engine->mlx, engine_render, engine);
 	mlx_close_hook(engine->mlx, on_destroy, engine);
 	mlx_resize_hook(engine->mlx, on_resize, engine);
+	mlx_cursor_hook(engine->mlx, on_mouse_move_event, engine);
+//	void mlx_cursor_hook(mlx_t* mlx, mlx_cursorfunc func, void* param);
+
+//	mlx_mouse_hook(engine->mlx, on_mouse_event, engine);
+
 }

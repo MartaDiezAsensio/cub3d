@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler_key_events.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:05:06 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/25 17:33:22 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/09/30 21:51:40 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "vector.h"
 #include "map.h"
 
+/*
 static void	calculate_new_position(mlx_key_data_t keydata, \
 				t_camera camera, t_dpoint *new_point)
 {
@@ -52,7 +53,7 @@ static bool	check_new_position(t_map map, t_dpoint new_position)
 {
 	if (!map_is_inside(map, new_position.x, new_position.y))
 		return (false);
-	if (map_is_wall(map, new_position.x, new_position.y))
+	if (map_cell_is_wall(map, new_position.x, new_position.y))
 		return (false);
 	return (true);
 }
@@ -86,7 +87,83 @@ static void	rotate(mlx_key_data_t keydata, t_camera *camera, \
 	camera->direction = vector_rotate(camera->direction, angle, false);
 	camera->camera_panel = vector_rotate(camera->camera_panel, angle, false);
 }
+*/
 
+static void	calculate_new_position(mlx_key_data_t keydata, \
+				t_camera camera, t_dpoint *new_point)
+{
+	t_vector	strafe_dir;
+
+	if (keydata.key == MLX_KEY_W)
+	{
+		new_point->x = camera.position.x + MOV_SPEED * camera.direction.x;
+		new_point->y = camera.position.y + MOV_SPEED * camera.direction.y;
+	}
+	if (keydata.key == MLX_KEY_S)
+	{
+		new_point->x = camera.position.x - MOV_SPEED * camera.direction.x;
+		new_point->y = camera.position.y - MOV_SPEED * camera.direction.y;
+	}
+	if (keydata.key == MLX_KEY_A)
+	{
+		strafe_dir = vector_rotate(camera.direction, -M_PI / 2, false);
+		new_point->x = camera.position.x + MOV_SPEED * strafe_dir.x;
+		new_point->y = camera.position.y + MOV_SPEED * strafe_dir.y;
+	}
+	if (keydata.key == MLX_KEY_D)
+	{
+		strafe_dir = vector_rotate(camera.direction, M_PI / 2, false);
+		new_point->x = camera.position.x + MOV_SPEED * strafe_dir.x;
+		new_point->y = camera.position.y + MOV_SPEED * strafe_dir.y;
+	}
+}
+
+static float	calculate_angle(mlx_key_data_t keydata, \
+					t_orientations player_orientation)
+{
+	float	angle;
+
+	angle = 0.0f;
+	if (keydata.key == MLX_KEY_RIGHT)
+	{
+		if (player_orientation == EAST || player_orientation == WEST)
+			angle = -ROTATION_SPEED;
+		if (player_orientation == NORTH || player_orientation == SOUTH)
+			angle = ROTATION_SPEED;
+	}
+	if (keydata.key == MLX_KEY_LEFT)
+	{
+		if (player_orientation == EAST || player_orientation == WEST)
+			angle = ROTATION_SPEED;
+		if (player_orientation == NORTH || player_orientation == SOUTH)
+			angle = -ROTATION_SPEED;
+	}
+	return (angle);
+}
+
+void	on_keydown(mlx_key_data_t keydata, void *param)
+{
+	t_engine	*engine;
+	t_dpoint	new_position;
+	float		angle;
+
+	engine = (t_engine *)param;
+	if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_S || \
+			keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_D)
+	{
+		calculate_new_position(keydata, engine->camera, &new_position);
+		camera_move(&engine->camera, engine->cfg->map, new_position);
+	}
+	if (keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_LEFT)
+	{
+		angle = calculate_angle(keydata, engine->cfg->player_orientation);
+		camera_rotate(&engine->camera, angle);
+	}
+	if (keydata.key == MLX_KEY_ESCAPE)
+		engine_stop(engine);
+}
+
+/*
 void	on_keydown(mlx_key_data_t keydata, void *param)
 {
 	t_engine	*engine;
@@ -105,3 +182,4 @@ void	on_keydown(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_ESCAPE)
 		engine_stop(engine);
 }
+*/

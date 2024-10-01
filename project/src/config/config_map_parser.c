@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 23:00:00 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:10:56 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/01 18:24:05 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ bool	config_parse_map(t_config *cfg, int fd)
 	{
 		free (line);
 		if (!config_get_trimmed_line(&line, fd))
-		{
-			error_print_critical("Error in map line when parsing");
-			return(false);
-		}
+			return(error_print_critical("Error in map line when parsing"), \
+						false);
 		if (line != NULL && ft_strlen(line) > 0)
 		{
 			content = ft_strdup(line);
@@ -49,32 +47,12 @@ bool	config_parse_map(t_config *cfg, int fd)
 	}
 	return (true);	
 }
-/*
-bool	config_map_list_2_tiles(t_config *cfg)
+
+static void	config_update_map_width(t_map *map, int new_len)
 {
-	size_t	number_lines;
-	size_t	i;
-	t_list	*node;
-	
-	number_lines = ft_lstsize(cfg->map_lines);
-	cfg->map = (char **)malloc((number_lines + 1) * sizeof(char *));
-	if (cfg->map == NULL)
-		return (error_perror_critical(), false);
-	i = 0;
-	while (i < number_lines + 1)
-		cfg->map[i++] = NULL;
-	i = 0;
-	node = cfg->map_lines;
-	while (i < number_lines)
-	{
-		cfg->map[i] = ft_strdup((char *)node->content);
-		if (cfg->map[i] == NULL)
-			return (error_perror_critical(), false);
-		node = node->next;
-		i++;
-	}
-	return (true);
-}*/
+	if (new_len > (int)map->width)
+		map->width = new_len;
+}
 
 bool	config_map_list_2_ptr(t_config *cfg)
 {
@@ -96,7 +74,8 @@ bool	config_map_list_2_ptr(t_config *cfg)
 		cfg->map.map[i] = ft_strdup((char *)node->content);
 		if (cfg->map.map[i] == NULL)
 			return (error_perror_critical(), false);
-		cfg->map.width = ft_strlen(cfg->map.map[i]);
+		//cfg->map.width = ft_strlen(cfg->map.map[i]);
+		config_update_map_width(&cfg->map, ft_strlen(cfg->map.map[i]));
 		node = node->next;
 		i++;
 	}

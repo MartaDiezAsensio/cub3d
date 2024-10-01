@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:33:19 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:17:21 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/01 18:25:43 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ bool	engine_init(t_engine *engine, t_config *cfg)
 	texture_init(&engine->textures[TEXTURE_EAST]);
 	engine->screen.title = NULL;
 	engine->img = NULL;
-	engine->camera = camera_new(cfg->player_position, cfg->player_orientation);
+	engine->camera = camera_new(cfg->player_position, cfg->player_orientation); // Inicializado camera
+	engine->time = 0.0f;
+	engine->fps_img = NULL;
 	return (true);
 }
 
@@ -61,7 +63,10 @@ void	engine_destroy(t_engine *engine)
 	if (engine->mlx != NULL)
 	{
 		engine_textures_destroy(engine);
-		mlx_delete_image(engine->mlx, engine->img);
+		if (engine->img != NULL)
+			mlx_delete_image(engine->mlx, engine->img);
+		if (engine->fps_img != NULL)
+			mlx_delete_image(engine->mlx, engine->fps_img);
 		mlx_terminate(engine->mlx);
 	}
 	screen_destroy(&engine->screen);

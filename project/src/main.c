@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 19:53:01 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:25:29 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/01 18:23:30 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if(!config_init(&cfg, argv[1]))
 		return (config_destroy(&cfg), EXIT_FAILURE);
+	config_debug(cfg);
 	if (!config_validator(&cfg))
 		return (config_destroy(&cfg), EXIT_FAILURE);
-	config_debug(cfg);
+	//config_debug(cfg);
 	if (!engine_init(&engine, &cfg))
 		return (engine_destroy(&engine), EXIT_FAILURE);
 	//printf("Engine: %d  \n", engine.camera.position.y);

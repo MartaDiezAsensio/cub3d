@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 19:48:58 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:19:34 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/01 18:26:02 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "map.h"
 #include "error.h"
 #include "screen.h"
+
+#include <stdio.h>
 
 t_tile	tile_new(size_t _x, size_t _y, char _type)
 {
