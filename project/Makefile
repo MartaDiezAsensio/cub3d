@@ -6,7 +6,7 @@
 #    By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-#    Updated: 2024/09/28 00:26:00 by gabriel          ###   ########.fr        #
+#    Updated: 2024/09/30 21:48:30 by gabriel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,11 +83,13 @@ NAME	=	cube3d
 # Files
 ################################################################################
 
-SRC		=	camera.c						\
-			color.c							\
+SRC		=	color.c							\
 			error.c							\
 			screen.c						\
 			texture.c
+
+SRC		+=	camera/camera.c					\
+			camera/camera_mov.c
 
 SRC		+=	config/config_colors.c				\
 			config/config_header_parser.c		\
@@ -105,10 +107,13 @@ SRC		+=	engine/engine.c						\
 			engine/engine_mlx_config.c			\
 			engine/engine_render.c				\
 			engine/engine_textures.c			\
-			engine/engine_render_column.c
+			engine/engine_render_column.c		\
+			engine/fps_counter.c
+
 
 SRC		+=	events/handler_key_events.c			\
 			events/handler_destroy_event.c		\
+			events/handler_mouse_event.c		\
 			events/handler_resize_event.c
 
 SRC		+=	flooding/flooding.c					\
@@ -127,8 +132,7 @@ SRC		+=	raycasting/raycasting.c				\
 
 SRC		+=	map/map.c							\
 			map/map_cell.c						\
-			map/map_loader.c					\
-			map/map_parser.c					\
+			map/map_validator.c					\
 			map/tile.c
 
 #SRC_TEST = 		${SRC} \
@@ -205,6 +209,7 @@ compile:
 
 ${BUILD_DIR}:
 	mkdir -p ${BUILD_DIR}
+	mkdir -p ${BUILD_DIR}/camera
 	mkdir -p ${BUILD_DIR}/config
 	mkdir -p ${BUILD_DIR}/dda
 	mkdir -p ${BUILD_DIR}/engine

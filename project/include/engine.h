@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:43:45 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:03:16 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/30 21:33:03 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
 # include "texture.h"
 # include "config.h"
 # include "MLX42/MLX42.h"
-
-# define ROTATION_ANGLE 0.05f
-# define MOV_SPEED 0.3f
 
 enum e_engine_events
 {
@@ -51,6 +48,9 @@ typedef	struct s_engine
 	t_texture	textures[4];
 
 	mlx_image_t	*img;
+
+	double		time;
+	mlx_image_t	*fps_img;
 	
 }	t_engine;
 
@@ -70,8 +70,11 @@ void	engine_textures_destroy(t_engine *engine);
 void	engine_mlx_settings(void);
 void	engine_mlx_hooks(t_engine *engine);
 
-//engine/render
+//engine/engine_render.c
 bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall);
 void	engine_render(void *param);
+
+//engine/fps_counter.c
+size_t	fps_counter(double *old_time);
 
 #endif

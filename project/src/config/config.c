@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 21:08:30 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/28 00:06:05 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/30 19:48:59 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 static	void	config_init_vars(t_config *config)
 {
 	config->map.map = NULL;
+	config->map.width = -1;
+	config->map.height = -1;
 	config->map_lines = NULL;
 	config->north_texture = NULL;
 	config->south_texture = NULL;
@@ -67,6 +69,8 @@ bool	config_init(t_config *cfg, const char *filename)
 	if (!config_map_list_2_ptr(cfg))
 		return (false);
 	ft_lstclear(&cfg->map_lines, free);
+	if(!map_normalize(&cfg->map))
+		return (false);
 	return (true);
 }
 

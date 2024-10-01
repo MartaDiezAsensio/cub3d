@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   flooding_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 18:44:13 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/22 13:46:03 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/29 14:35:39 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <math.h>
 
+#include <stdio.h>
+
 #include "flooding.h"
 #include "error.h"
 
-/*
 void	flood_destroy(t_flooding *flood)
 {
 	ft_lstclear(&flood->to_visit, free);
@@ -34,8 +35,9 @@ bool	flood_init(t_config cfg, t_flooding *flood)
 	tile = (t_tile *)malloc(sizeof(t_tile));
 	if (tile == NULL)
 		return(error_perror_critical(), false);
+	printf("PRE-tile-new p.position x %f p.position y %f \n",cfg.player_position.x, cfg.player_position.y);
 	*tile = tile_new(cfg.player_position.x, cfg.player_position.y, \
-				cfg.map.map[(int)cfg.player_position.x][(int)cfg.player_position.y]);
+				cfg.map.map[(int)cfg.player_position.y][(int)cfg.player_position.x]);
 	node = ft_lstnew(tile);
 	if (node == NULL)
 	{
@@ -46,6 +48,7 @@ bool	flood_init(t_config cfg, t_flooding *flood)
 	return (true);
 }
 
+/*
 bool	flood_is_tile_in_list(t_list	*list, t_tile _tile)
 {
 	t_list	*node;

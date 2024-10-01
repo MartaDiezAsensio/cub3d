@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:49:35 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/28 00:40:21 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/29 13:36:52 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 #include "error.h"
 #include "flooding.h"
 
-static	t_orientations	config_map_resolve_orientation(char orientation)
+static	void	config_map_save_player_data(t_config *cfg, size_t i, size_t j)
 {
-	if (orientation == 'N')
-		return (NORTH);
-	if (orientation == 'S')
-		return (SOUTH);
-	if (orientation == 'E')
-		return (EAST);
-	if (orientation == 'W')
-		return (WEST);
-	return (NONE);
+	cfg->player_position = dpoint_new(j,i);
+	if (cfg->map.map[i][j] == MAP_TILE_PLAYER_NORTH)
+		cfg->player_orientation = NORTH;
+	if (cfg->map.map[i][j] == MAP_TILE_PLAYER_SOUTH)
+		cfg->player_orientation = SOUTH;
+	if (cfg->map.map[i][j] == MAP_TILE_PLAYER_EAST)
+		cfg->player_orientation = EAST;
+	if (cfg->map.map[i][j] == MAP_TILE_PLAYER_WEST)
+		cfg->player_orientation =WEST;	
 }
 
 static bool config_is_player_position_uninit(t_dpoint player_position)
@@ -43,14 +43,14 @@ bool	config_map_find_player(t_config *cfg)
 		j = 0;
 		while (cfg->map.map[i][j] != '\0')
 		{
+			if(!map_cell_is_valid(cfg->map.map[i][j]))
+				return (error_print_critical("Found not valid char."), false);
 			if (map_cell_is_player(cfg->map.map[i][j]))
 			{
 				if (!config_is_player_position_uninit(cfg->player_position))
 					return(error_print_critical("Found more than one player")\
 								, false);
-				cfg->player_position = dpoint_new(j,i);
-				cfg->player_orientation = \
-							config_map_resolve_orientation(cfg->map.map[i][j]);
+				config_map_save_player_data(cfg, i, j);
 			}
 			j++;
 		}
@@ -65,10 +65,10 @@ static bool	config_map_is_closed(t_config *cfg, bool *is_closed)
 {
 	*is_closed = false;
 
-//	if (!flood_map(*cfg, is_closed))
+	if (!flood_map(*cfg, is_closed))
+		return (false);
+//	if (!map_validator(cfg->map))
 //		return (false);
-	*is_closed = true;
-	(void)cfg;
 	return (true);
 }
 
@@ -78,7 +78,9 @@ bool config_validate_map(t_config *cfg)
 
 	if (!config_map_find_player(cfg))
 		return(false);
-	if (!config_map_is_closed(cfg, &is_closed))
-		return(error_print_critical("The map is NOT closed."), false);
+	if (!config_map_is_closed(cfg, &is_closed) || !is_closed)
+		return (false);
+//	if (is_closed)
+//		return(error_print_critical("The map is NOT closed."), false);
 	return (true);
 }

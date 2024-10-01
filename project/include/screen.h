@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 21:28:17 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:04:59 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/09/30 21:20:29 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SCREEN_H
 
 # include "types.h"
+# include "point.h"
 
 # define SCREEN_DEFAULT_WIDTH	90
 # define SCREEN_DEFAULT_HEIGH	40
@@ -21,11 +22,12 @@
 
 typedef struct s_screen
 {
-	size_t	x;
-	size_t	y;
-	size_t	middle_y;
-	char	*title;
-	bool	resize;
+	size_t		x;
+	size_t		y;
+	size_t		middle_y;
+	char		*title;
+	bool		resize;
+	t_dpoint	mouse_position;
 
 }	t_screen;
 

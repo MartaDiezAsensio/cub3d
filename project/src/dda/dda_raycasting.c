@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:32:51 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/24 22:48:07 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/29 23:19:27 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,6 @@
 #include "dda.h"
 
 #include <stdio.h>
-
-/*
-static	bool	dda_is_inside_map_v2(t_dpoint point, t_map map)
-{
-	if (point.x < 0.0f || point.y < 0.0f)
-		return (false);
-	if((int)point.x >= (int)map.width || (int)point.y >= (int)map.height)
-		return(false);
-	return (true);
-}
-*/
 
 static bool	dda_raycasting_check_hit(t_point point, t_map map)
 {

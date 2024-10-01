@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 23:00:00 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 23:57:30 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/09/29 23:17:08 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ bool	config_parse_map(t_config *cfg, int fd)
 	return (true);	
 }
 
+static void	config_update_map_width(t_map *map, int new_len)
+{
+	if (new_len > (int)map->width)
+		map->width = new_len;
+}
+
 bool	config_map_list_2_ptr(t_config *cfg)
 {
 	size_t	number_lines;
@@ -55,8 +61,6 @@ bool	config_map_list_2_ptr(t_config *cfg)
 	t_list	*node;
 	
 	number_lines = ft_lstsize(cfg->map_lines);
-	printf("\t\t\t\tNUMBER_LINES %zu\n", number_lines);
-	//cfg->map.map = (char **)malloc((number_lines + 1) * sizeof(char *));
 	cfg->map.map = (char **)malloc((number_lines + 1) * sizeof(char *));
 	if (cfg->map.map == NULL)
 		return (error_perror_critical(), false);
@@ -70,7 +74,8 @@ bool	config_map_list_2_ptr(t_config *cfg)
 		cfg->map.map[i] = ft_strdup((char *)node->content);
 		if (cfg->map.map[i] == NULL)
 			return (error_perror_critical(), false);
-		cfg->map.width = ft_strlen(cfg->map.map[i]);
+		//cfg->map.width = ft_strlen(cfg->map.map[i]);
+		config_update_map_width(&cfg->map, ft_strlen(cfg->map.map[i]));
 		node = node->next;
 		i++;
 	}

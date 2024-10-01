@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.h                                           :+:      :+:    :+:   */
+/*   fps_counter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 21:59:42 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/30 21:16:33 by gabriel          ###   ########.fr       */
+/*   Created: 2024/09/30 19:58:34 by gabriel           #+#    #+#             */
+/*   Updated: 2024/09/30 22:09:27 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EVENTS_H
-# define EVENTS_H
+#include <stddef.h>
+#include <stdio.h>
+#include "MLX42/MLX42.h"
 
-# include "MLX42/MLX42.h"
+size_t	fps_counter(double *old_time)
+{
+	//double mlx_get_time(void);
+	double time;
+	size_t	fps;
 
-void	on_keydown(mlx_key_data_t keydata, void *param);
-void	on_destroy(void *param);
-void	on_resize(int width, int height, void *param);
-void	on_mouse_move_event(double xpos, double ypos, void* param);
-
-#endif
+	fps = 0;
+	time = mlx_get_time();
+	if (time - *old_time  != 0.0f)
+		fps = 1.0f / (time - *old_time);
+	*old_time = time;
+	return (fps);
+}
