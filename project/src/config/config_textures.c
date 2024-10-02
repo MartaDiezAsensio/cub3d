@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:24:04 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/16 21:22:58 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/02 20:11:49 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static bool	config_save_texture(char **cfg_path, char **path, \
 	}
 }
 
-bool config_is_texture_line(const char *line)
+bool	config_is_texture_line(const char *line)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0)
 		return (true);

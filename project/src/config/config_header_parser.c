@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_header_parser.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 21:41:43 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/16 21:37:49 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/02 20:03:11 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 #include "error.h"
 #include "color.h"
 
-static	bool	config_set_colors(t_config *cfg, const char *line)
+static bool	config_set_colors(t_config *cfg, const char *line)
 {
 	size_t	length;
 	char	*str_colors;
 	t_color	rgb;
-	
+
 	length = ft_strlen(line);
 	str_colors = ft_substr(line, 2, length -2);
 	if (str_colors == NULL)
@@ -38,16 +38,17 @@ static	bool	config_set_colors(t_config *cfg, const char *line)
 	return (true);
 }
 
+//Too many lines, revisar
 bool	config_parse_header(t_config *cfg, int fd)
 {
 	char	*line;
 
 	line = ft_strdup("");
 	while (line != NULL)
-	{	
+	{
 		free (line);
 		if (config_is_header_initialized(*cfg))
-			break;
+			break ;
 		if (!config_get_trimmed_line(&line, fd))
 			return (false);
 		if (line != NULL && ft_strlen(line) > 0)
@@ -62,7 +63,7 @@ bool	config_parse_header(t_config *cfg, int fd)
 				if (!config_set_texture(cfg, line))
 					return (free(line), false);
 			}
-			continue;
+			continue ;
 		}
 	}
 	return (true);

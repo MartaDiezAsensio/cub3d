@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:24:52 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:13:31 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/02 20:17:01 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "config.h"
 #include "error.h"
 
-static void	config_report_error(t_config *config, const char * error_msg)
+static void	config_report_error(t_config *config, const char *error_msg)
 {
 	config->valid_cfg = false;
 	error_print_critical(error_msg);
@@ -50,7 +50,7 @@ static bool	config_validate_textures(t_config *cfg)
 static void	config_validate_textures(t_config *cfg)
 {
 	int	fd;
-	
+
 	fd = open(cfg->north_texture, O_RDONLY);
 	if (fd < 0)
 		return (config_report_error(cfg, "North texture cannot be opened"));

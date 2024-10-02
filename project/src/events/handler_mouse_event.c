@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler_mouse_event.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:04:45 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/30 22:09:59 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/02 20:39:19 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ static float	calculate_angle(mlx_key_data_t keydata, \
 	}
 	return (angle);
 }
-
-
 */
 
 static float	calculate_angle(double deltaX, t_orientations orientation)
@@ -66,13 +64,12 @@ static float	calculate_angle(double deltaX, t_orientations orientation)
 }
 
 //void (*mlx_cursorfunc)(double xpos, double ypos, void* param)
-void	on_mouse_move_event(double xpos, double ypos, void* param)
+void	on_mouse_move_event(double xpos, double ypos, void *param)
 {
 	t_engine	*engine;
 	float		angle;
 
 	engine = (t_engine *)param;
-//	printf("mouse: x %f  y %f\n", xpos, ypos);
 	angle = calculate_angle(engine->screen.mouse_position.x - xpos, \
 				engine->cfg->player_orientation);
 	camera_rotate(&engine->camera, angle);

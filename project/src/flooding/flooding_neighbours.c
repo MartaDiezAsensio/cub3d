@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   flooding_neighbours.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 21:32:13 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/02 16:26:34 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/02 20:32:23 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
 #include "flooding.h"
 #include "error.h"
-
-
 #include <stdio.h>
 
 static bool	flood_get_neighbour(t_config cfg, t_list **node, int x, int y)
@@ -52,7 +49,9 @@ static bool	flood_add_neighbour(t_config cfg, t_flooding *flood, int x, int y)
 		return (false);
 	if (node != NULL)
 	{
-		if (ft_lstcontains(flood->visited, node->content, tile_node_compare) == 0 && ft_lstcontains(flood->to_visit, node->content, tile_node_compare) == 0)
+		if (ft_lstcontains(flood->visited, node->content, tile_node_compare) == \
+				0 && ft_lstcontains(flood->to_visit, node->content, \
+				tile_node_compare) == 0)
 			ft_lstadd_back(&flood->to_visit, node);
 		else
 			ft_lstdelone(node, free);
@@ -62,15 +61,14 @@ static bool	flood_add_neighbour(t_config cfg, t_flooding *flood, int x, int y)
 
 bool	flood_add_neighbours(t_config cfg, t_flooding *flood, t_tile tile)
 {
-	if (!flood_add_neighbour(cfg, flood, tile.x + 1 , tile.y))
+	if (!flood_add_neighbour(cfg, flood, tile.x + 1, tile.y))
 		return (false);
-	if (!flood_add_neighbour(cfg, flood, tile.x - 1 , tile.y))
+	if (!flood_add_neighbour(cfg, flood, tile.x - 1, tile.y))
 		return (false);
 	if (!flood_add_neighbour(cfg, flood, tile.x, tile.y + 1))
 		return (false);
 	if (!flood_add_neighbour(cfg, flood, tile.x, tile.y - 1))
 		return (false);
-
 	if (!flood_add_neighbour(cfg, flood, tile.x + 1, tile.y - 1))
 		return (false);
 	if (!flood_add_neighbour(cfg, flood, tile.x + 1, tile.y + 1))
@@ -79,5 +77,5 @@ bool	flood_add_neighbours(t_config cfg, t_flooding *flood, t_tile tile)
 		return (false);
 	if (!flood_add_neighbour(cfg, flood, tile.x - 1, tile.y - 1))
 		return (false);
-	return (true);	
+	return (true);
 }

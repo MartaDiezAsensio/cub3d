@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler_key_events.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:05:06 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/01 23:05:26 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/02 20:38:35 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ static void	rotate(mlx_key_data_t keydata, t_camera *camera, \
 }
 */
 
+// Function has more than 25 lines
 static void	calculate_new_position(mlx_key_data_t keydata, \
 				t_camera camera, t_dpoint *new_point, \
 				t_orientations orientation)
@@ -111,7 +112,6 @@ static void	calculate_new_position(mlx_key_data_t keydata, \
 			strafe_dir = vector_rotate(camera.direction, -M_PI / 2, false);
 		else
 			strafe_dir = vector_rotate(camera.direction, M_PI / 2, false);
-//		strafe_dir = vector_rotate(camera.direction, -M_PI / 2, false);
 		new_point->x = camera.position.x + MOV_SPEED * strafe_dir.x;
 		new_point->y = camera.position.y + MOV_SPEED * strafe_dir.y;
 	}
@@ -121,7 +121,6 @@ static void	calculate_new_position(mlx_key_data_t keydata, \
 			strafe_dir = vector_rotate(camera.direction, M_PI / 2, false);
 		else
 			strafe_dir = vector_rotate(camera.direction, -M_PI / 2, false);
-//		strafe_dir = vector_rotate(camera.direction, M_PI / 2, false);
 		new_point->x = camera.position.x + MOV_SPEED * strafe_dir.x;
 		new_point->y = camera.position.y + MOV_SPEED * strafe_dir.y;
 	}

@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   flooding_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 18:44:13 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/02 16:26:59 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/02 20:35:02 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <math.h>
-
 #include <stdio.h>
-
 #include "flooding.h"
 #include "error.h"
 
@@ -34,14 +32,14 @@ bool	flood_init(t_config cfg, t_flooding *flood)
 	flood->to_visit = NULL;
 	tile = (t_tile *)malloc(sizeof(t_tile));
 	if (tile == NULL)
-		return(error_perror_critical(), false);
+		return (error_perror_critical(), false);
 	*tile = tile_new(cfg.player_position.x, cfg.player_position.y, \
-				cfg.map.map[(int)cfg.player_position.y][(int)cfg.player_position.x]);
+		cfg.map.map[(int)cfg.player_position.y][(int)cfg.player_position.x]);
 	node = ft_lstnew(tile);
 	if (node == NULL)
 	{
 		free (tile);
-		return(error_perror_critical(), false);
+		return (error_perror_critical(), false);
 	}
 	ft_lstadd_back(&flood->to_visit, node);
 	return (true);

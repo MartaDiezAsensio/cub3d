@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 21:08:30 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/01 18:25:05 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/02 20:19:14 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
-
 #include "libft.h"
 #include "config.h"
 #include "error.h"
 #include "ft_get_next_line.h"
 
-static	void	config_init_vars(t_config *config)
+static void	config_init_vars(t_config *config)
 {
 	config->map.map = NULL;
 	config->map.width = -1;
@@ -58,7 +57,7 @@ bool	config_is_header_initialized(t_config config)
 
 bool	config_init(t_config *cfg, const char *filename)
 {
-	int fd;
+	int	fd;
 
 	config_init_vars(cfg);
 	fd = open (filename, O_RDONLY);
@@ -70,7 +69,7 @@ bool	config_init(t_config *cfg, const char *filename)
 	if (!config_map_list_2_ptr(cfg))
 		return (false);
 	ft_lstclear(&cfg->map_lines, free);
-	if(!map_normalize(&cfg->map))
+	if (!map_normalize(&cfg->map))
 		return (false);
 	return (true);
 }
@@ -90,11 +89,10 @@ void	config_destroy(t_config *cfg)
 		cfg->east_texture = ft_ptr_free(cfg->east_texture);
 }
 
-
 bool	config_get_trimmed_line(char **trim_line, int fd)
 {
 	char	*line;
-	
+
 	line = ft_get_next_line_many_fds(fd);
 	if (line != NULL)
 	{
@@ -105,8 +103,10 @@ bool	config_get_trimmed_line(char **trim_line, int fd)
 	}
 	else
 		*trim_line = NULL;
-	return (true);		
+	return (true);
 }
+
+// Too many functions in file - Se quitara
 
 void	config_debug(t_config cfg)
 {

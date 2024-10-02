@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler_destroy_event.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 22:04:58 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/11 19:10:46 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/02 20:37:51 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 #include "engine.h"
 
-void on_destroy(void *param)
+void	on_destroy(void *param)
 {
-	t_engine *engine;
+	t_engine	*engine;
 
 	(void)engine;
 	engine = (t_engine *)param;

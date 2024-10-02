@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 21:21:15 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:09:55 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/02 20:03:56 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ bool	config_file_load(t_config_file *cfg, int fd)
 		if (line != NULL && ft_strelen(line) > 0)
 		{
 			if (!config_file_parse_line(cfg, line))
-				return (error_print_critical("Config option not supported") , false);
+				return (error_print_critical("No config") , false);
 		}
 	}
 	return (true);

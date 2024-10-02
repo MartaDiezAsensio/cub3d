@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_colors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:27:45 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/30 22:32:31 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/02 20:00:46 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	color_save(int color_component, size_t order, t_color *color)
 		color->b = color_component;
 }
 
-bool config_is_color_line(const char * line)
+bool	config_is_color_line(const char *line)
 {
 	if (ft_strncmp(line, "F ", 2) == 0 || ft_strncmp(line, "C ", 2) == 0)
 		return (true);
@@ -34,7 +34,7 @@ bool	config_parse_colors(t_color *color, const char *colors_line)
 {
 	char	**token_list;
 	size_t	i;
-	int	color_component;
+	int		color_component;
 
 	token_list = ft_split(colors_line, ',');
 	if (token_list == NULL)
@@ -47,7 +47,7 @@ bool	config_parse_colors(t_color *color, const char *colors_line)
 		if (color_component < 0 || color_component > 255)
 		{
 			ft_ptr_free_double_ptr(token_list);
-			return (error_print_critical("One color has invalid value."), false);
+			return (error_print_critical("Color invalid value."), false);
 		}
 		color_save(color_component, i, color);
 		i++;
