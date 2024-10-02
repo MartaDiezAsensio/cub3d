@@ -6,7 +6,7 @@
 /*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/02 17:52:33 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/02 19:53:13 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@
 */
 
 
-static uint32_t	get_pixel_of_wall(double texPos, t_texture texture, double step, double texX)
+static uint32_t	get_pixel_of_wall(double *texPos, t_texture texture, double step, int texX)
 {
 	uint32_t	wall_color;
-	double		texY;
+	int			texY;
 	int			row_texture;
 
-	texY = (int)texPos & (texture.height - 1);
-	texPos += step;
+	texY = (int)*texPos & (texture.height - 1);
+	*texPos += step;
 	row_texture = texture.width * texY + texX;
 	wall_color = color_new_mlx(texture.mlx_texture->pixels[row_texture*4],texture.mlx_texture->pixels[row_texture*4 + 1],texture.mlx_texture->pixels[row_texture*4 + 2]);	
 	return (wall_color);
@@ -104,9 +104,9 @@ bool engine_render_paint_wall(t_engine engine, t_render_column render_col, \
 	texX = get_point_of_wall(texture, dda);
 	texPos = (render_col.ceiling_end - engine.screen.middle_y + render_col.wall_size / 2) * step;
 	j = 0;
-	while(j < render_col.wall_size)
+	while(j <= render_col.wall_size)
 	{
-		wall_color = get_pixel_of_wall(texPos, texture, step, texX);
+		wall_color = get_pixel_of_wall(&texPos, texture, step, texX);
 		mlx_put_pixel(engine.img, render_col.column, render_col.ceiling_end + j, wall_color);
 		j++;
 	}
