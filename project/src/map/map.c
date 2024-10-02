@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 22:14:40 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/01 18:25:58 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/02 20:55:15 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "map.h"
 #include "libft.h"
 #include "error.h"
-
 #include <stdio.h>
 
 void	map_destroy(t_map *map)
@@ -54,7 +53,7 @@ static bool	map_generate_padding(int len, char **padding)
 		return (true);
 	}
 	*padding = (char *)malloc(len);
-	if  (*padding == NULL)
+	if (*padding == NULL)
 		return (error_perror_critical(), false);
 	*padding = ft_memset(*padding, ' ', len - 1);
 	(*padding)[len - 1] = '\0';
@@ -67,6 +66,7 @@ bool	map_normalize(t_map *map)
 	size_t	len;
 	char	*padding;
 	char	*aux;
+
 	i = 0;
 	while (map->map[i] != NULL)
 	{

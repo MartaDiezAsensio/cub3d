@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 10:27:15 by greus-ro          #+#    #+#             */
-/*   Updated: 2024/09/27 16:18:48 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/02 20:47:48 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 tan(x).
 			SLOPE				|		ANGLE				|	ORIENTATION
 	from	0		to	1		=>	from	0	to	45				E
-	from	1		to	inf		=>	from	45	to	90				N			OK
+	from	1		to	inf		=>	from	45	to	90				N	OK
 	from	-inf    to	-1		=>	from	90	to	135				N
 	from	-1      to	0		=>	from	135	to	180				W
 	from	0       to	1		=>	from	180	to	225				W
-	from	1		to	inf		=>	from	225	to	270				S			OK
+	from	1		to	inf		=>	from	225	to	270				S	OK
 	from	-inf	to	-1		=>	from	270	to	315				S
 	from	-1		to	0		=>	from	315	to	0				E
 
@@ -60,7 +60,7 @@ static bool	vector_slope_treat_negative(double slope, t_vector vector, \
 			*orientation = WEST;
 		else
 			*orientation = EAST;
-		return(true);
+		return (true);
 	}
 	else
 	{
@@ -68,7 +68,7 @@ static bool	vector_slope_treat_negative(double slope, t_vector vector, \
 			*orientation = NORTH;
 		else
 			*orientation = SOUTH;
-		return(true);
+		return (true);
 	}
 }
 
@@ -99,11 +99,10 @@ static bool	vector_slope_treat_positive(double slope, t_vector vector, \
 	}
 }
 
-
-bool    vector_get_orientation(t_vector vector, \
+bool	vector_get_orientation(t_vector vector, \
 			t_orientations *orientation)
 {
-	double slope;
+	double	slope;
 
 	if (vector.x == 0.0f && vector.y == 0.0f)
 		return (error_print_critical("Found a vector with x=0, y=0"), false);

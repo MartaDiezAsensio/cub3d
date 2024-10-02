@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_cell.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 22:14:40 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/28 01:32:06 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/02 20:50:42 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	map_cell_is_wall(t_map map, int col, int row)
 		if (map.map[row][col] == MAP_TILE_WALL)
 			return (true);
 		else
-			return(false);
+			return (false);
 	}
 	else
 		return (false);
@@ -39,7 +39,8 @@ bool	map_cell_is_wall(t_map map, int col, int row)
 
 bool	map_cell_is_valid(char cell)
 {
-	if (map_cell_is_player(cell) || cell == MAP_TILE_EMPTY || cell == MAP_TILE_VOID || cell == MAP_TILE_WALL)
+	if (map_cell_is_player(cell) || cell == MAP_TILE_EMPTY || \
+			cell == MAP_TILE_VOID || cell == MAP_TILE_WALL)
 		return (true);
 	return (false);
 }

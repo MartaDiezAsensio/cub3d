@@ -6,12 +6,11 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 21:35:14 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:18:39 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/02 20:46:21 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-
 #include "vector.h"
 
 t_vector	vector_rotate(t_vector vector, float rad_angle, bool normalize)
@@ -19,7 +18,7 @@ t_vector	vector_rotate(t_vector vector, float rad_angle, bool normalize)
 	t_vector	result;
 
 	result.x = vector.x * cos(rad_angle) - vector.y * sin(rad_angle);
-	result.y = vector.x * sin(rad_angle) + vector.y * cos(rad_angle);	
+	result.y = vector.x * sin(rad_angle) + vector.y * cos(rad_angle);
 	if (normalize)
 		vector_normalize(&result);
 	else
@@ -37,10 +36,11 @@ t_vector	vector_add(t_vector vector1, t_vector vector2, bool normalize)
 		vector_normalize(&result);
 	else
 		vector_calculate_modulus(&result);
-	return (result); 
+	return (result);
 }
 
-t_point		vector_calculate_new_point(t_point origin, t_vector direction, double n_times)
+t_point	vector_calculate_new_point(t_point origin, \
+		t_vector direction, double n_times)
 {
 	t_point	new_point;
 
