@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   engine_render_column.c                             :+:      :+:    :+:   */
+/*   engine_render_column_copy.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/02 16:36:12 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:14:36 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 
 #include <stdio.h>
 #include <math.h>
-#include "textures.h"
+#include "texture.h"
 #include "color.h"
 
 #include <stdio.h>
 
+/*
 static	void	engine_render_paint_sky(t_engine engine, int x, size_t *i, \
 					size_t sky_end)
 {
@@ -29,7 +30,7 @@ static	void	engine_render_paint_sky(t_engine engine, int x, size_t *i, \
 					engine.cfg->ceiling_color.g, engine.cfg->ceiling_color.b);
 	while (*i <= sky_end)
 	{
-		mlx_put_pixel(engine.img, x, i, sky_color);
+		mlx_put_pixel(engine.img, x, *i, sky_color);
 		(*i)++;
 	}
 }
@@ -42,11 +43,11 @@ static	void	engine_render_paint_floor(t_engine engine, int x, size_t *i)
 					engine.cfg->floor_color.g, engine.cfg->floor_color.b);
 	while (*i <= engine.screen.y)
 	{
-		mlx_put_pixel(engine.img, x, i, floor_color);
+		mlx_put_pixel(engine.img, x, *i, floor_color);
 		(*i)++;
 	}
 }
-
+*/
 
 
 
