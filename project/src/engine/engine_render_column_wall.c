@@ -6,7 +6,7 @@
 /*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/02 19:53:13 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/02 21:00:46 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,21 @@
 #include "render.h"
 
 /*	
-	//Primero calculamos que textura utilizar. (Funcion de Marta de  choose_texture).
+	//Primero calculamos que textura utilizar. (Funcion de Marta de 
+			choose_texture).
 		//t_texture choose_texture(t_dda_raycasting *dda_ray, t_vector *ray);
-	//Calculamos el punto exacto de interseccion  con el rayo (SOLO la coordenada X).
+	//Calculamos el punto exacto de interseccion  con el rayo 
+			(SOLO la coordenada X).
 		
 		double wallX; //where exactly the wall was hit
 		if (side == 0) wallX = posY + perpWallDist * rayDirY;
 		else           wallX = posX + perpWallDist * rayDirX;
 		wallX -= floor((wallX));
 		
-	//Con la parte decimal de la coordenada X del punto de interseccion X, calcula la coordenada X (columna de la textura ) que hay que pintar.
-		// Para obtener la coordenada X , multiplica el ancho de la textura (width) por el % (wallX) obtenido del punto anterior.
+	//Con la parte decimal de la coordenada X del punto de interseccion X, 
+	calcula la coordenada X (columna de la textura ) que hay que pintar.
+		// Para obtener la coordenada X , multiplica el ancho de la textura 
+			(width) por el % (wallX) obtenido del punto anterior.
 		
 		int texX = int(wallX * double(texWidth));
 		if(side == 0 && rayDirX > 0) texX = texWidth - texX - 1;
@@ -37,46 +41,54 @@
 		
 	//Aqui empezamos el escalado de la textura.
 		// How much to increase the texture coordinate per screen pixel
-		//Obtiene  cuantos pixles de textura tenemos que avanzar (step) cada vez que pintamos un pixel de pared en la pantalla
+		//Obtiene cuantos pixles de textura tenemos que avanzar (step) 
+			cada vez que pintamos un pixel de pared en la pantalla
 			//double step = 1.0 * texHeight / lineHeight;
 		//Obtenemos el punto de inicio (para pintar) dentro de la textura
 			//double texPos = (drawStart - h / 2 + lineHeight / 2) * step;
 		//Pintamos los pixeles de pared ( desde sky_end hasta  floor_start)
 			//for(int y = drawStart; y<drawEnd; y++)
 			//{
-				// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-				// Obtiene la posicion Y de la tetura PERO vigila que  el valor obtenido NO SEA MAYOR que la propia altura de la textura. (overflow)
+				// Cast the texture coordinate to integer, and mask with 
+					(texHeight - 1) in case of overflow
+				// Obtiene la posicion Y de la tetura PERO vigila que  el 
+					valor obtenido NO SEA MAYOR que la propia altura de la 
+					textura. (overflow)
 				//int texY = (int)texPos & (texHeight - 1);
 				//Avanzamos step pixels en la textura
 				//texPos += step;
 				//Aqui obtiene el color de la textura que ha de pintar... 
 				//Uint32 color = texture[texNum][texHeight * texY + texX];
 				//OPCIONAL:
-					//Oscurece las texturas que han chocado con Y ( imagino que para dar mas sensacion de profundidad.)
-					//make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
+					//Oscurece las texturas que han chocado con Y (imagino que
+						 para dar mas sensacion de profundidad.)
+					//make color darker for y-sides: R, G and B byte each 
+						divided through two with a "shift" and an "and"
 					//if(side == 1) color = (color >> 1) & 8355711;
 				//Pintamos el pixel.
 				//buffer[y][x] = color;
 			//}
 */
 
-
-static uint32_t	get_pixel_of_wall(double *texPos, t_texture texture, double step, int texX)
+static uint32_t	get_pixel_of_wall(double *tex_pos, t_texture texture, \
+					double step, int tex_x)
 {
 	uint32_t	wall_color;
-	int			texY;
+	int			tex_y;
 	int			row_texture;
 
-	texY = (int)*texPos & (texture.height - 1);
-	*texPos += step;
-	row_texture = texture.width * texY + texX;
-	wall_color = color_new_mlx(texture.mlx_texture->pixels[row_texture*4],texture.mlx_texture->pixels[row_texture*4 + 1],texture.mlx_texture->pixels[row_texture*4 + 2]);	
+	tex_y = ((int)(*tex_pos)) & (texture.height - 1);
+	(*tex_pos) += step;
+	row_texture = texture.width * tex_y + tex_x;
+	wall_color = color_new_mlx(texture.mlx_texture->pixels[row_texture * 4], \
+					texture.mlx_texture->pixels[row_texture * 4 + 1], \
+					texture.mlx_texture->pixels[row_texture * 4 + 2]);
 	return (wall_color);
 }
 
-static	int get_point_of_wall(t_texture texture, t_dda_raycasting dda)
+static	int	get_point_of_wall(t_texture texture, t_dda_raycasting dda)
 {
-	int		texX;
+	int		tex_x;
 	double	intersection;
 
 	if (dda.side == 0)
@@ -84,8 +96,12 @@ static	int get_point_of_wall(t_texture texture, t_dda_raycasting dda)
 	else
 		intersection = dda.origin.x + dda.perpWallDist * dda.ray.x;
 	intersection -= floor(intersection);
-	texX = intersection * ((double)texture.width);
-	return (texX);
+	tex_x = intersection * ((double)texture.width);
+	if(dda.side == 0 && dda.ray.x > 0)
+		tex_x = texture.width - tex_x - 1;
+	if(dda.side == 1 && dda.ray.y < 0)
+		tex_x = texture.width - tex_x - 1;
+	return (tex_x);
 }
 
 bool engine_render_paint_wall(t_engine engine, t_render_column render_col, \
@@ -95,19 +111,20 @@ bool engine_render_paint_wall(t_engine engine, t_render_column render_col, \
 	int 		texX;
 	double		step;
 	double		texPos;
-	uint32_t	wall_color;
 	int			j;
 
 	if (!choose_texture(&engine, &dda , &texture))
 		return (false);
 	step = 1.0 * texture.height / render_col.wall_size;
 	texX = get_point_of_wall(texture, dda);
-	texPos = (render_col.ceiling_end - engine.screen.middle_y + render_col.wall_size / 2) * step;
+	texPos = (render_col.ceiling_end - engine.screen.middle_y + \
+				render_col.wall_size / 2) * step;
 	j = 0;
-	while(j <= render_col.wall_size)
+	while(j < render_col.wall_size)
 	{
-		wall_color = get_pixel_of_wall(&texPos, texture, step, texX);
-		mlx_put_pixel(engine.img, render_col.column, render_col.ceiling_end + j, wall_color);
+		mlx_put_pixel(engine.img, render_col.column, \
+			render_col.ceiling_end + j, get_pixel_of_wall(&texPos, texture, \
+											step, texX));
 		j++;
 	}
 	return (true);

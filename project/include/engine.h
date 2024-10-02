@@ -6,7 +6,7 @@
 /*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:43:45 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/02 19:25:27 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/02 20:47:55 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ void	engine_render_paint_floor(t_engine engine, \
 //engine/engine_render_column_wall.c
 bool engine_render_paint_wall(t_engine engine, t_render_column render_col, \
 				 t_dda_raycasting dda);
+//bool engine_gabriel(t_engine engine, t_dda_raycasting dda, int sky_end, int floor_start, int screen_height, unsigned int num_pixels_wall, int i, int x);
 					
 #endif

@@ -6,7 +6,7 @@
 /*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/02 19:43:12 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/02 20:43:22 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall, 
 		render_col.ceiling_end = 0;
 	render_col.floor_start = engine.screen.middle_y + (num_pixels_wall / 2);
 	if ((size_t)render_col.floor_start >= engine.screen.y)
-		render_col.floor_start =engine.screen.y - 1;	
+		render_col.floor_start = engine.screen.y - 1;	
 	i = 0;
 	engine_render_paint_ceiling(engine,render_col, &i);
 	
@@ -111,9 +111,10 @@ bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall, 
 		mlx_put_pixel(engine.img, x, i, wall_color);
 		i++;
 	}
-*/
-	
-	engine_render_paint_wall(engine, render_col, dda);
+	//(void)dda;
+*/	
+	//engine_render_paint_wall(engine, render_col, dda);
+	engine_gabriel(engine, dda, render_col.ceiling_end, render_col.floor_start, engine.screen.y, render_col.wall_size, i, render_col.column);
 	i = render_col.floor_start;
 	engine_render_paint_floor(engine, render_col, &i);
 	/*
