@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 21:08:30 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/01 18:25:05 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:27:01 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ bool	config_is_header_initialized(t_config config)
 bool	config_init(t_config *cfg, const char *filename)
 {
 	int fd;
-
+	
 	config_init_vars(cfg);
 	fd = open (filename, O_RDONLY);
 	if (fd < 0)

@@ -27,37 +27,6 @@ NOTA 19.09
 - https://harm-smits.github.io/42docs/projects/cub3d.html
 - https://github.com/jareste/Cub3d/blob/main/SRC/main.c
 
+Arreglar ./cube3d ./
+./cube3d ./carpeta.cub
 
-
-
-
-float aprox_angulo;
-
-if (vector.x < 0.00000000001f && vector.x > 0.0f  || vector.x > -0.00000000001f && vector.x < 0.0f)
-{
-	if (vector.y < 0)
-		return(90);
-	else
-		return (270)
-}
-
-m = vector.y / vector.x;
-if (m > 0 && m < 1)
-{
-	if (vector.x < 0)
-		return(200);
-}	
-
-tangetes.
-de 0 a 1 		=> de 0 a 45
-de 1 a inf  	=> de 45 a 90
-de -inf a -1  	=> de 90 a 135
-de -1 a 0  		=> de 135 a 180
-de  0 a 1 		=> de 180 a 225
-de 1 a inf 		=> de 225 a 270
-de -inf a -1 	=> de 270 a 315
-de  -1  a 0    	=> de 315 a 0
-
-
-si tenemos que quedarnos con la X, hacemos destino.x - origen.x => es la distancia "oficial"
-Si tenemos que quedarnos con la Y, hcemos destino.y - origen.y => es la distancia "oficial"
