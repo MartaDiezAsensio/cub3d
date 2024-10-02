@@ -6,7 +6,7 @@
 /*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/02 18:04:53 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/02 19:24:25 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,23 +91,34 @@ bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall, 
 	if (render_col.ceiling_end < 0)
 		render_col.ceiling_end = 0;
 	render_col.floor_start = engine.screen.middle_y + (num_pixels_wall / 2);
-	wall_color = color_new_mlx(60, 60, 60);
+	if ((size_t)render_col.floor_start >= engine.screen.y)
+		render_col.floor_start =engine.screen.y - 1;
 	i = 0;
+	engine_render_paint_ceiling(engine,render_col, &i);
+	
+	/*	
 	while ((int)i <= render_col.ceiling_end)
 	{
 		mlx_put_pixel(engine.img, x, i, color_2_mlx(engine.cfg->ceiling_color));
 		i++;
 	}
+	*/
+	wall_color = color_new_mlx(60, 60, 60);
 	while ((int)i <= render_col.floor_start)
 	{
 		mlx_put_pixel(engine.img, x, i, wall_color);
 		i++;
 	}
+	
+	i = render_col.floor_start;
+	engine_render_paint_floor(engine, render_col, &i);
+	/*
 	while (i < engine.screen.y)
 	{
-		mlx_put_pixel(engine.img, x, i, color_2_mlx(engine.cfg->ceiling_color));
+		mlx_put_pixel(engine.img, x, i, color_2_mlx(engine.cfg->floor_color));
 		i++;
 	}
+	*/
 	return(true);
 
 }

@@ -6,7 +6,7 @@
 /*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:43:45 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/02 18:14:12 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/02 19:24:42 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,16 +81,14 @@ size_t	fps_counter(double *old_time);
 
 
 //engine/engine_render_column_ceiling.c
-/*
+
 void	engine_render_paint_ceiling(t_engine engine, \
 					t_render_column render_col, size_t *i);
-*/
 
 //engine/engine_render_column_floor.c
-/*
 void	engine_render_paint_floor(t_engine engine, \
 					t_render_column render_col, size_t *i);
-*/
+
 //engine/engine_render_column_wall.c
 /*
 bool engine_render_paint_wall(t_engine engine, t_render_column render_col, \

@@ -6,7 +6,7 @@
 #    By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-#    Updated: 2024/10/02 18:11:57 by greus-ro         ###   ########.fr        #
+#    Updated: 2024/10/02 19:07:35 by greus-ro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,17 +103,17 @@ SRC		+=	config/config_colors.c				\
 SRC		+=	dda/dda.c							\
 			dda/dda_raycasting.c
 
-#			engine/engine_render_column.c			\
-#			engine/engine_render_column_ceiling.c	\
-#			engine/engine_render_column_wall.c		\
-#			engine/engine_render_column_floor.c		\
 
+#			engine/engine_render_column_copy.c		\
 
 SRC		+=	engine/engine.c							\
 			engine/engine_mlx_config.c				\
 			engine/engine_render.c					\
 			engine/engine_textures.c				\
-			engine/engine_render_column_copy.c		\
+			engine/engine_render_column.c			\
+			engine/engine_render_column_ceiling.c	\
+			engine/engine_render_column_wall.c		\
+			engine/engine_render_column_floor.c		\
 			engine/fps_counter.c
 
 
