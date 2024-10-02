@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   texture_config.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:47:52 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/01 21:40:05 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/02 17:07:12 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 #include "dda.h"
-#include "textures.h"
+#include "texture.h"
 #include "error.h"
-#include <stdio.h>
 
 bool    choose_texture(t_engine *engine, t_dda_raycasting *dda_ray, t_texture *texture)
 {

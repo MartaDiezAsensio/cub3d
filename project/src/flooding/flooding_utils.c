@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flooding_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 18:44:13 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/29 14:35:39 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/02 16:26:59 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ bool	flood_init(t_config cfg, t_flooding *flood)
 	tile = (t_tile *)malloc(sizeof(t_tile));
 	if (tile == NULL)
 		return(error_perror_critical(), false);
-	printf("PRE-tile-new p.position x %f p.position y %f \n",cfg.player_position.x, cfg.player_position.y);
 	*tile = tile_new(cfg.player_position.x, cfg.player_position.y, \
 				cfg.map.map[(int)cfg.player_position.y][(int)cfg.player_position.x]);
 	node = ft_lstnew(tile);

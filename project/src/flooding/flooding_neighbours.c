@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flooding_neighbours.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 21:32:13 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/29 22:55:14 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/02 16:26:34 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,29 +48,20 @@ static bool	flood_add_neighbour(t_config cfg, t_flooding *flood, int x, int y)
 {
 	t_list	*node;
 
-	printf("\tAnyadiendo vecinos... x %d y %d \n", x, y);
 	if (!flood_get_neighbour(cfg, &node, x, y))
 		return (false);
 	if (node != NULL)
 	{
 		if (ft_lstcontains(flood->visited, node->content, tile_node_compare) == 0 && ft_lstcontains(flood->to_visit, node->content, tile_node_compare) == 0)
-		{
-			printf("\t\tNodo NO encontrado!!\n");
 			ft_lstadd_back(&flood->to_visit, node);
-			//ft_lstadd_front(&flood->to_visit, node);
-		}
 		else
-		{
-			printf("\t\tNodo encontrado!!\n");
 			ft_lstdelone(node, free);
-		}
 	}
 	return (true);
 }
 
 bool	flood_add_neighbours(t_config cfg, t_flooding *flood, t_tile tile)
 {
-	printf("Anyadiendo vecinos... x %ld y  %ld \n", tile.x, tile.y);
 	if (!flood_add_neighbour(cfg, flood, tile.x + 1 , tile.y))
 		return (false);
 	if (!flood_add_neighbour(cfg, flood, tile.x - 1 , tile.y))

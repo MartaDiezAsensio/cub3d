@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dpoint.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 21:41:24 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:18:23 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:28:06 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ double	dpoint_calculate_distance(t_dpoint point1, t_dpoint point2)
 	x = point2.x - point1.x;
 	y = point2.y - point1.y;
 	distance = sqrt(x*x + y*y);
-	printf("x %f, y %f, d %f\n",x*x, y*y, distance);
 	return (distance);
 }
 

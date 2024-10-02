@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 20:43:22 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/01 18:25:52 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:28:00 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,9 @@ static bool	check_line_is_wall_or_empty(char *line_map)
 	while (line_map[x] != '\0')
 	{
 		if (line_map[x] != MAP_TILE_VOID && line_map[x] != MAP_TILE_WALL)
-		{
-			printf("CHECK: La linea incorrecta es x: %ld, char : %c \n", x,line_map[x]);
 			return (false);
-		}
 		x++;
 	}
-	printf("CHECK: line ok \n");
 	return (true);
 }
 
@@ -90,30 +86,22 @@ bool	map_validator(t_map map)
 	char	*line;
 	size_t	len;
 
-	printf("INIT\n");
 	if (!check_line_is_wall_or_empty(map.map[0]) || \
 			!check_line_is_wall_or_empty(map.map[map.height - 1]))
 		return (false);
 	y = 1;
-	printf("PRE-While\n");
 	while (y < map.height - 1)
 	{
-		printf("validate line %ld\n",y);
 		line = ft_strtrim(map.map[y]," ");
-		printf("line original : _%s_ trimmed: _%s_\n", map.map[y], line);
 		if (line == NULL)
 			return (false);
-//		len = ft_strlen(map.map[y]);
 		len = ft_strlen(map.map[y]);
-		printf("Validando que el inicio y final de linea sea paredes %c y %c . \n",  line[0], line[len -1]);
 		if (line[0] != MAP_TILE_WALL || line[len - 1] != MAP_TILE_WALL)
 			return(free(line), false);
-		printf("Validando la linea con la top y bottom\n");
 		if (!check_line (line, len, map.map[y - 1], map.map[y + 1]))
 			return (free (line), false);
 		free (line);
 		y++;
 	}
-	printf("END\n");
 	return (true);
 }

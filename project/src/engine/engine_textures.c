@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 22:12:40 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/01 20:38:21 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:26:53 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ bool	engine_texture_load(const char *filename, t_texture *texture)
 
 bool	engine_textures_load(t_engine *engine)
 {
-	printf("\t\t\t\t\tTEXTURAS LOAD\n");
 	t_config	*cfg;
 
 	cfg = engine->cfg;

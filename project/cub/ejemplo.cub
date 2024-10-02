@@ -1,4 +1,4 @@
-WE ./textures/brick_rectangular2.png
+WE ./textures/bricks.png
 SO ./textures/bigote.png
 NO ./textures/protoblue.png
 EA ./textures/switches.png

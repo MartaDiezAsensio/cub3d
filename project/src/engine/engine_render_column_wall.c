@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   engine_render_column.c                             :+:      :+:    :+:   */
+/*   engine_render_column_wall.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/02 17:34:04 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/02 17:44:06 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "texture.h"
 #include "color.h"
 #include "render.h"
-
 
 /*	
 	//Primero calculamos que textura utilizar. (Funcion de Marta de  choose_texture).
@@ -61,45 +60,55 @@
 			//}
 */
 
-//VIGILA!!! TExPos es un double y sky_end es un int por eso mismo NO SON IGUALES aunque matematicamente lo parezcan.
-bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall, t_dda_raycasting dda)
+
+static uint32_t	get_pixel_of_wall(double texPos, t_texture texture, double step, double texX)
 {
-	size_t     		i;
-	t_render_column	render_col;
-	
-	render_col.column = x;
-	render_col.ceiling_end = engine.screen.middle_y - (num_pixels_wall / 2);
-	if (render_col.ceiling_end < 0)
-		render_col.ceiling_end = 0;
-	render_col.floor_start = engine.screen.middle_y + (num_pixels_wall / 2);
-	if ((size_t)render_col.floor_start >= engine.screen.y)
-		render_col.floor_start =engine.screen.y - 1;
-	render_col.wall_size = num_pixels_wall;
-	i = 0;
-	engine_render_paint_ceiling(engine, render_col, &i);
-	engine_render_paint_wall(engine, render_col, dda);
-	i+= num_pixels_wall; 
-	engine_render_paint_floor(engine, render_col, &i);
-	return (true);
+	uint32_t	wall_color;
+	double		texY;
+	int			row_texture;
+
+	texY = (int)texPos & (texture.height - 1);
+	texPos += step;
+	row_texture = texture.width * texY + texX;
+	wall_color = color_new_mlx(texture.mlx_texture->pixels[row_texture*4],texture.mlx_texture->pixels[row_texture*4 + 1],texture.mlx_texture->pixels[row_texture*4 + 2]);	
+	return (wall_color);
 }
 
-//Modo plano...
-/*	
-	(void)dda;
-	wall_color = color_new_mlx(60, 60, 60);
-	while (i <= sky_end)
+static	int get_point_of_wall(t_texture texture, t_dda_raycasting dda)
+{
+	int		texX;
+	double	intersection;
+
+	if (dda.side == 0)
+		intersection = dda.origin.y + dda.perpWallDist * dda.ray.y;
+	else
+		intersection = dda.origin.x + dda.perpWallDist * dda.ray.x;
+	intersection -= floor(intersection);
+	texX = intersection * ((double)texture.width);
+	return (texX);
+}
+
+static bool engine_render_paint_wall(t_engine engine, t_render_column render_col, \
+				 t_dda_raycasting dda)
+{
+	t_texture   texture;
+	int 		texX;
+	double		step;
+	double		texPos;
+	uint32_t	wall_color;
+	int			j;
+
+	if (!choose_texture(&engine, &dda , &texture))
+		return (false);
+	step = 1.0 * texture.height / render_col.wall_size;
+	texX = get_point_of_wall(texture, dda);
+	texPos = (render_col.ceiling_end - engine.screen.middle_y + render_col.wall_size / 2) * step;
+	j = 0;
+	while(j < render_col.wall_size)
 	{
-		mlx_put_pixel(engine.img, x, i, sky_color);
-		i++;
+		wall_color = get_pixel_of_wall(texPos, texture, step, texX);
+		mlx_put_pixel(engine.img, render_col.column, render_col.ceiling_end + j, wall_color);
+		j++;
 	}
-	while (i <= floor_start)
-	{
-		mlx_put_pixel(engine.img, x, i, wall_color);
-		i++;
-	}
-	while (i < screen_height)
-	{
-		mlx_put_pixel(engine.img, x, i, floor_color);
-		i++;
-	}
-*/
+	return (true);
+}

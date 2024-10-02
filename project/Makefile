@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+         #
+#    By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-#    Updated: 2024/10/01 19:24:05 by mdiez-as         ###   ########.fr        #
+#    Updated: 2024/10/02 17:31:03 by greus-ro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,11 +103,14 @@ SRC		+=	config/config_colors.c				\
 SRC		+=	dda/dda.c							\
 			dda/dda_raycasting.c
 
-SRC		+=	engine/engine.c						\
-			engine/engine_mlx_config.c			\
-			engine/engine_render.c				\
-			engine/engine_textures.c			\
-			engine/engine_render_column.c		\
+SRC		+=	engine/engine.c							\
+			engine/engine_mlx_config.c				\
+			engine/engine_render.c					\
+			engine/engine_textures.c				\
+			engine/engine_render_column.c			\
+			engine/engine_render_column_ceiling.c	\
+			engine/engine_render_column_wall.c		\
+			engine/engine_render_column_floor.c		\
 			engine/fps_counter.c
 
 
@@ -157,6 +160,7 @@ HEADERS			=	camera.h		\
 					point.h			\
 					radiants.h		\
 					raycasting.h	\
+					render.h		\
 					screen.h		\
 					texture.h		\
 					tile.h			\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flooding.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 22:03:17 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/29 15:20:39 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/02 16:27:27 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ static bool	flood_update_lists(t_flooding *flood, t_tile *tile)
 	t_list	*node;
 
 	if (!tile_copy_ptr(tile, &copy_tile))
-	{
-		printf("\t\t\tBAD tile_copy\n");
 		return (false);
-	}
 	node = ft_lstnew(copy_tile);
 	if (node == NULL)
 		return (error_print_critical("Cannot create new node."), false);
@@ -50,7 +47,6 @@ static	bool	flood_map_next_iteration(t_config cfg, t_flooding *flood)
 	tile_copy_ptr((t_tile *)node->content, &tile);
 	//tile = (t_tile *)node->content;
 	
-	printf("Nodo tratado x %ld y %ld ; width %ld height %ld tipo %d\n", tile->x, tile->y, cfg.map.width, cfg.map.height ,tile->type);	
 	ft_lstdel_front(&flood->to_visit);
 	if (tile->type == TILE_UNKNOWN || tile->type == TILE_VOID || \
 			tile->y == 0 || tile->y >= cfg.map.height - 1|| \
