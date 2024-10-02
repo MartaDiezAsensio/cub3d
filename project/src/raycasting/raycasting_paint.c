@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:15:21 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/01 19:50:19 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/02 20:58:58 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include "dda.h"
 #include "error.h"
 
-static int  raycasting_calculate_wall(double distance, int screen_height)
+static int	raycasting_calculate_wall(double distance, int screen_height)
 {
-	int line_height;
+	int	line_height;
 
 	line_height = (int) (screen_height / distance);
 	return (line_height);
@@ -36,7 +36,7 @@ static double  get_cos_between_vectors(t_vector camera_dir, t_vector ray_dir)
 }
 */
 
-bool    raycasting_paint(t_engine *engine)
+bool	raycasting_paint(t_engine *engine)
 {
 	size_t				x;
 	t_vector			ray_direction;
