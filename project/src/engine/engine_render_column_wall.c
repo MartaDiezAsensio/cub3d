@@ -6,7 +6,7 @@
 /*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/02 17:44:06 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/02 17:52:33 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static	int get_point_of_wall(t_texture texture, t_dda_raycasting dda)
 	return (texX);
 }
 
-static bool engine_render_paint_wall(t_engine engine, t_render_column render_col, \
+bool engine_render_paint_wall(t_engine engine, t_render_column render_col, \
 				 t_dda_raycasting dda)
 {
 	t_texture   texture;

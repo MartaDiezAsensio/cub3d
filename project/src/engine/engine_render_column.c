@@ -6,7 +6,7 @@
 /*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/02 17:34:04 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:04:53 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall, 
 {
 	size_t     		i;
 	t_render_column	render_col;
-	
+/*	
 	render_col.column = x;
 	render_col.ceiling_end = engine.screen.middle_y - (num_pixels_wall / 2);
 	if (render_col.ceiling_end < 0)
@@ -77,10 +77,39 @@ bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall, 
 	render_col.wall_size = num_pixels_wall;
 	i = 0;
 	engine_render_paint_ceiling(engine, render_col, &i);
-	engine_render_paint_wall(engine, render_col, dda);
-	i+= num_pixels_wall; 
+	(void)dda;
+	//engine_render_paint_wall(engine, render_col, dda);
+	i+= num_pixels_wall;
 	engine_render_paint_floor(engine, render_col, &i);
 	return (true);
+*/
+	uint32_t wall_color;
+
+	(void)dda;
+	render_col.column = x;
+	render_col.ceiling_end = engine.screen.middle_y - (num_pixels_wall / 2);
+	if (render_col.ceiling_end < 0)
+		render_col.ceiling_end = 0;
+	render_col.floor_start = engine.screen.middle_y + (num_pixels_wall / 2);
+	wall_color = color_new_mlx(60, 60, 60);
+	i = 0;
+	while ((int)i <= render_col.ceiling_end)
+	{
+		mlx_put_pixel(engine.img, x, i, color_2_mlx(engine.cfg->ceiling_color));
+		i++;
+	}
+	while ((int)i <= render_col.floor_start)
+	{
+		mlx_put_pixel(engine.img, x, i, wall_color);
+		i++;
+	}
+	while (i < engine.screen.y)
+	{
+		mlx_put_pixel(engine.img, x, i, color_2_mlx(engine.cfg->ceiling_color));
+		i++;
+	}
+	return(true);
+
 }
 
 //Modo plano...
