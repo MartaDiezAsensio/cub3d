@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdel_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 19:24:16 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/07 19:32:57 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/03 17:33:51 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
 #include "libft.h"
 
-void ft_lstdel_back(t_list **list)
+void	ft_lstdel_back(t_list **list)
 {
 	t_list	*last;
 	t_list	*pre_last;

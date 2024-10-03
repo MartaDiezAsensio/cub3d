@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 15:59:18 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/15 16:01:19 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/03 17:33:05 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
-int		ft_strcmp(const char *str1, const char *str2)
+int	ft_strcmp(const char *str1, const char *str2)
 {
 	size_t	i;
 
