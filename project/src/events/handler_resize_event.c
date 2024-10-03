@@ -6,13 +6,17 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 00:19:52 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/03 23:43:17 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/03 23:46:27 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 #include "screen.h"
 #include "error.h"
+
+/*
+	Hay que actualizat la posicion del raton ya que no es la misma en la nueva pantalla.
+*/
 
 void	on_resize(int width, int height, void *param)
 {
