@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine_render_column_wall.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/03 08:04:32 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:25:12 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,23 +108,23 @@ bool	engine_render_paint_wall(t_engine engine, t_render_column render_col, \
 				t_dda_raycasting dda)
 {
 	t_texture	texture;
-	int			texX;
+	int			tex_x;
 	double		step;
-	double		texPos;
+	double		tex_pos;
 	int			j;
 
 	if (!choose_texture(&engine, &dda, &texture))
 		return (false);
 	step = 1.0 * texture.height / render_col.wall_size;
-	texX = get_point_of_wall(texture, dda);
-	texPos = (render_col.ceiling_end - engine.screen.middle_y + \
+	tex_x = get_point_of_wall(texture, dda);
+	tex_pos = (render_col.ceiling_end - engine.screen.middle_y + \
 				render_col.wall_size / 2) * step;
 	j = render_col.ceiling_end;
 	while (j < render_col.floor_start)
 	{
 		mlx_put_pixel(engine.img, render_col.column, \
-			j, get_pixel_of_wall(&texPos, texture, \
-											step, texX));
+			j, get_pixel_of_wall(&tex_pos, texture, \
+											step, tex_x));
 		j++;
 	}
 	return (true);
