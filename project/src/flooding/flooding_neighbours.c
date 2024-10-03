@@ -6,14 +6,14 @@
 /*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 21:32:13 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/03 18:27:43 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/03 18:49:00 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
 #include "flooding.h"
-#include "error.h"
+#include "error.h"	
 
 static bool	flood_get_neighbour(t_config cfg, t_list **node, int x, int y)
 {

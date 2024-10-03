@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_validator_map.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:49:35 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/01 18:24:24 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:24:02 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ bool	config_map_find_player(t_config *cfg)
 		while (cfg->map.map[i][j] != '\0')
 		{
 			if(!map_cell_is_valid(cfg->map.map[i][j]))
-				return (error_print_critical("Found not valid char."), false);
+				return (error_print_critical("Found not valid Player char."), \
+							false);
 			if (map_cell_is_player(cfg->map.map[i][j]))
 			{
 				if (!config_is_player_position_uninit(cfg->player_position))
