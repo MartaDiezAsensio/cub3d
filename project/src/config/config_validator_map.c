@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_validator_map.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:49:35 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/03 19:24:02 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:14:07 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 static	void	config_map_save_player_data(t_config *cfg, size_t i, size_t j)
 {
-	cfg->player_position = dpoint_new(j,i);
+//	cfg->player_position = dpoint_new(j + 0.5f,i + 0.5f);
+	cfg->player_position = dpoint_new(j + 0.5f, i + 0.5f);
 	if (cfg->map.map[i][j] == MAP_TILE_PLAYER_NORTH)
 		cfg->player_orientation = NORTH;
 	if (cfg->map.map[i][j] == MAP_TILE_PLAYER_SOUTH)
@@ -44,7 +45,7 @@ bool	config_map_find_player(t_config *cfg)
 		while (cfg->map.map[i][j] != '\0')
 		{
 			if(!map_cell_is_valid(cfg->map.map[i][j]))
-				return (error_print_critical("Found not valid Player char."), \
+				return (error_print_critical("Found not valid MAP char."), \
 							false);
 			if (map_cell_is_player(cfg->map.map[i][j]))
 			{
