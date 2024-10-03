@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_arithmetic.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 21:35:14 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:18:39 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/03 23:13:59 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,11 @@ t_point		vector_calculate_new_point(t_point origin, t_vector direction, double n
 	new_point.x = origin.x + n_times * direction.x;
 	new_point.y = origin.y + n_times * direction.y;
 	return (new_point);
+}
+
+float		vector_cos_between_vectors(t_vector v1, t_vector v2)
+{
+	float cos;
+	cos = (v1.x*v2.x + v1.y*v2.y) / (v1.modulus * v2.modulus);
+	return (cos);
 }

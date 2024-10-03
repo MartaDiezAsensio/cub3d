@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:04:45 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/30 22:09:59 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/03 23:30:46 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static float	calculate_angle(double deltaX, t_orientations orientation)
 	return (angle);
 }
 
+#include <stdio.h>
 //void (*mlx_cursorfunc)(double xpos, double ypos, void* param)
 void	on_mouse_move_event(double xpos, double ypos, void* param)
 {
@@ -75,6 +76,9 @@ void	on_mouse_move_event(double xpos, double ypos, void* param)
 //	printf("mouse: x %f  y %f\n", xpos, ypos);
 	angle = calculate_angle(engine->screen.mouse_position.x - xpos, \
 				engine->cfg->player_orientation);
+	(void)angle;
+	(void)ypos;
+	printf("\tMOVIMIENTO!!! angle: %f, pixels: mouse %f %f\n", angle, engine->screen.mouse_position.x, xpos);
 	camera_rotate(&engine->camera, angle);
 	engine->screen.mouse_position.x = xpos;
 	engine->screen.mouse_position.y = ypos;

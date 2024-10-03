@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda_raycasting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:32:51 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/01 19:46:45 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/03 23:15:15 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static void	dda_raycasting_init_y(t_dpoint origin, t_vector direction,t_dda_rayc
 	}
 }
 
+#include <stdio.h>
+
 static void	dda_raycasting_init(t_dpoint origin, t_vector direction, t_dda_raycasting *dda_ray)
 {
 	dda_ray->map_point.x = origin.x;
@@ -73,7 +75,7 @@ static void	dda_raycasting_init(t_dpoint origin, t_vector direction, t_dda_rayca
 bool	dda_raycasting_calculate_hit(t_dpoint	origin, t_vector direction, \
 			t_map map, t_dda_raycasting *dda_ray)
 {
-	int hit; //was there a wall hit?	
+	int hit;
 
 	hit = 0;
 	dda_raycasting_init(origin, direction, dda_ray);
@@ -98,5 +100,23 @@ bool	dda_raycasting_calculate_hit(t_dpoint	origin, t_vector direction, \
 		dda_ray->perpWallDist = (dda_ray->sideDistX - dda_ray->deltaDistX);
 	else
 		dda_ray->perpWallDist = (dda_ray->sideDistY - dda_ray->deltaDistY);	
+
+/*
+
+float	compute_dist(t_player *pl, t_ray *r)
+{
+	if (r->side == 0)
+		return ((r->mapx - pl->locx + (1 - r->stepx) / 2) / r->raydirx);
+	else
+		return ((r->mapy - pl->locy + (1 - r->stepy) / 2) / r->raydiry);
+}
+*/
+/*
+	if (dda_ray->side == 0)
+		dda_ray->perpWallDist = (dda_ray->map_point.x - dda_ray->origin.x + (1 - dda_ray->stepX) / 2) / dda_ray->ray.x;
+	else
+		dda_ray->perpWallDist = (dda_ray->map_point.y - dda_ray->origin.y + (1 - dda_ray->stepY) / 2) / dda_ray->ray.y;
+//		dda_ray->perpWallDist = (r->mapy - pl->locy + (1 - r->stepy) / 2) / r->raydiry;
+*/
 	return (true);
 }

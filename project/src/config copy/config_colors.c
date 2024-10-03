@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   config_colors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:27:45 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/03 21:31:47 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/03 19:12:45 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "config.h"
 #include "error.h"
 
@@ -34,8 +33,7 @@ static bool	config_color_valid_chars(const char *token)
 	i = 0;
 	while (token[i] != '\0')
 	{
-		if (token[i] != '+' && token[i] != '-' && !ft_isdigit(token[i]) \
-				&& token[i] != ' ')
+		if (token[i] != '+' && token[i] != '-' && !ft_isdigit(token[i]))
 		{
 			error_print_critical("A colour channel has invalid value.");
 			return (false);
@@ -55,7 +53,14 @@ static void	color_save(int color_component, size_t order, t_color *color)
 		color->b = color_component;
 }
 
-static bool	config_parse_colors(t_color *color, const char *colors_line)
+bool config_is_color_line(const char * line)
+{
+	if (ft_strncmp(line, "F ", 2) == 0 || ft_strncmp(line, "C ", 2) == 0)
+		return (true);
+	return (false);
+}
+
+bool	config_parse_colors(t_color *color, const char *colors_line)
 {
 	char	**token_list;
 	size_t	i;
@@ -82,35 +87,5 @@ static bool	config_parse_colors(t_color *color, const char *colors_line)
 		i++;
 	}
 	ft_ptr_free_double_ptr(token_list);
-	return (true);
-}
-
-bool	config_set_colors(t_config *cfg, const char *line)
-{
-	size_t	length;
-	char	*str_colors;
-	t_color	rgb;
-	
-	length = ft_strlen(line);
-	str_colors = ft_substr(line, 2, length -2);
-	if (str_colors == NULL)
-		return (error_perror_critical(), false);
-	if (!config_parse_colors(&rgb, str_colors))
-		return (free (str_colors), false);
-	free (str_colors);
-	if (ft_strncmp(line, "F ", 2) == 0)
-	{
-		if (cfg->floor_color.r < 0)
-			cfg->floor_color = rgb;
-		else
-			return (error_print_critical("Found Colour F duplicated."), false);			
-	}
-	if (ft_strncmp(line, "C ", 2) == 0)
-	{
-		if (cfg->ceiling_color.r < 0)
-			cfg->ceiling_color = rgb;
-		else
-			return (error_print_critical("Found Colour C duplicated."), false);
-	}
 	return (true);
 }

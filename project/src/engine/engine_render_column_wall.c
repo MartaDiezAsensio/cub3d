@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine_render_column_wall.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/03 17:25:12 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:38:51 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,10 @@ static	int	get_point_of_wall(t_texture texture, t_dda_raycasting dda)
 		intersection = dda.origin.x + dda.perpWallDist * dda.ray.x;
 	intersection -= floor(intersection);
 	tex_x = intersection * ((double)texture.width);
-	if (dda.side == 0 && dda.ray.x > 0)
-		tex_x = texture.width - tex_x - 1;
-	if (dda.side == 1 && dda.ray.y < 0)
-		tex_x = texture.width - tex_x - 1;
+//	if (dda.side == 0 && dda.ray.x > 0)
+//		tex_x = texture.width - tex_x - 1;
+//	if (dda.side == 1 && dda.ray.y < 0)
+//		tex_x = texture.width - tex_x - 1;
 	return (tex_x);
 }
 

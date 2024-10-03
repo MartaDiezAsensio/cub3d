@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 21:08:30 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/03 20:56:00 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/03 21:30:27 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
-
+	
 #include "libft.h"
 #include "config.h"
 #include "error.h"
@@ -90,7 +90,7 @@ void	config_destroy(t_config *cfg)
 		cfg->east_texture = ft_ptr_free(cfg->east_texture);
 }
 
-/*
+
 bool	config_get_trimmed_line(char **trim_line, int fd)
 {
 	char	*line;
@@ -107,7 +107,7 @@ bool	config_get_trimmed_line(char **trim_line, int fd)
 		*trim_line = NULL;
 	return (true);		
 }
-*/
+
 void	config_debug(t_config cfg)
 {
 	t_list	*node;

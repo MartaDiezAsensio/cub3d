@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 21:58:10 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:05:28 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/03 23:12:39 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ bool		vector_calculate_slope(t_vector vector, double *slope);
 t_vector	vector_rotate(t_vector vector, float rad_angle, bool normalize);
 t_vector	vector_add(t_vector vector1, t_vector vector2, bool normalize);
 t_point		vector_calculate_new_point(t_point origin, t_vector direction, double n_times);
+float		vector_cos_between_vectors(t_vector v1, t_vector v2);
 
 //geometry/vector_orientation.c
 bool    vector_get_orientation(t_vector vector, t_orientations *orientation);
