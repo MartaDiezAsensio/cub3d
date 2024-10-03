@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine_render_column_wall.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/02 21:00:46 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/03 08:04:32 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,35 +97,79 @@ static	int	get_point_of_wall(t_texture texture, t_dda_raycasting dda)
 		intersection = dda.origin.x + dda.perpWallDist * dda.ray.x;
 	intersection -= floor(intersection);
 	tex_x = intersection * ((double)texture.width);
-	if(dda.side == 0 && dda.ray.x > 0)
+	if (dda.side == 0 && dda.ray.x > 0)
 		tex_x = texture.width - tex_x - 1;
-	if(dda.side == 1 && dda.ray.y < 0)
+	if (dda.side == 1 && dda.ray.y < 0)
 		tex_x = texture.width - tex_x - 1;
 	return (tex_x);
 }
 
-bool engine_render_paint_wall(t_engine engine, t_render_column render_col, \
-				 t_dda_raycasting dda)
+bool	engine_render_paint_wall(t_engine engine, t_render_column render_col, \
+				t_dda_raycasting dda)
 {
-	t_texture   texture;
-	int 		texX;
+	t_texture	texture;
+	int			texX;
 	double		step;
 	double		texPos;
 	int			j;
 
-	if (!choose_texture(&engine, &dda , &texture))
+	if (!choose_texture(&engine, &dda, &texture))
 		return (false);
 	step = 1.0 * texture.height / render_col.wall_size;
 	texX = get_point_of_wall(texture, dda);
 	texPos = (render_col.ceiling_end - engine.screen.middle_y + \
 				render_col.wall_size / 2) * step;
-	j = 0;
-	while(j < render_col.wall_size)
+	j = render_col.ceiling_end;
+	while (j < render_col.floor_start)
 	{
 		mlx_put_pixel(engine.img, render_col.column, \
-			render_col.ceiling_end + j, get_pixel_of_wall(&texPos, texture, \
+			j, get_pixel_of_wall(&texPos, texture, \
 											step, texX));
 		j++;
 	}
 	return (true);
 }
+
+/*
+bool engine_gabriel(t_engine engine, t_dda_raycasting dda, int sky_end, 
+		int floor_start, int screen_height, 
+		unsigned int num_pixels_wall, int i, int x)
+{
+	t_texture   texture;
+	//double		intersection;
+	int 		texX;
+	//int			texY;
+	double		step;
+	double		texPos;
+	//int			row_texture;
+
+	uint32_t    wall_color;
+	
+	if (!choose_texture(&engine, &dda , &texture))
+		return (false);
+	(void)screen_height;
+
+	texX = get_point_of_wall(texture, dda);
+	//ES curioso pero si le quitamos el if y le dejamos el texX 
+	//por defecto, parece que funciona igual.
+//	if (dda.side == 0 && dda.ray.x > 0.0f)
+//		texX = texture.width - texX - 1;
+//	if (dda.side == 1 && dda.ray.y < 0.0f)
+//		texX = texture.width - texX - 1;
+	step = 1.0 * texture.height / num_pixels_wall;
+	//texPos = (sky_end - screen_height / 2 + num_pixels_wall / 2) * step;
+	texPos = (sky_end - engine.screen.middle_y + num_pixels_wall / 2) * step;
+	while (i <= floor_start)
+	{
+		
+		wall_color = get_pixel_of_wall(&texPos, texture, step, texX);
+		//Añadido para el oscurecido del color....
+		//if(dda.side == 1) wall_color = (wall_color >> 1) & 8355711;
+//		if(dda.side == 1) wall_color = (wall_color >> 1) & 0xFFFFFFFF;
+		//FIn añadido
+		mlx_put_pixel(engine.img, x, i, wall_color);
+		i++;
+	}
+	return (true);
+}
+*/

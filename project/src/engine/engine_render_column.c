@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine_render_column.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/02 20:43:22 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/03 07:34:25 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ bool	engine_render_column(t_engine engine, int x, unsigned int num_pixels_wall, 
 	}
 	//(void)dda;
 */	
-	//engine_render_paint_wall(engine, render_col, dda);
-	engine_gabriel(engine, dda, render_col.ceiling_end, render_col.floor_start, engine.screen.y, render_col.wall_size, i, render_col.column);
+	engine_render_paint_wall(engine, render_col, dda);
+	//engine_gabriel(engine, dda, render_col.ceiling_end, render_col.floor_start, engine.screen.y, render_col.wall_size, i, render_col.column);
 	i = render_col.floor_start;
 	engine_render_paint_floor(engine, render_col, &i);
 	/*

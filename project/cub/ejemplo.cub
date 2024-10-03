@@ -1,5 +1,5 @@
 WE ./textures/bricks.png
-SO ./textures/bigote.png
+SO ./textures/eagle.png
 NO ./textures/protoblue.png
 EA ./textures/switches.png
 
@@ -7,7 +7,7 @@ F 100,100,100
 C 225,200,200
 
 11111111
-10100001
+10100001  
 10000101
 100S0101    
 10000001

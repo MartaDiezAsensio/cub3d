@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 19:53:01 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/02 19:02:51 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/03 08:28:41 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,14 @@ int	main(int argc, char **argv)
 {
 	t_engine	engine;
 	t_config	cfg;
-	printf("PRE- PASA 2\n");
 	if (!main_validate_args(argc, argv))
 		return (EXIT_FAILURE);
-	printf("PRE- PASA\n");
 	if(!config_init(&cfg, argv[1]))
 		return (config_destroy(&cfg), EXIT_FAILURE);
-	config_debug(cfg);
+	//config_debug(cfg);
 	if (!config_validator(&cfg))
 		return (config_destroy(&cfg), EXIT_FAILURE);
-	//config_debug(cfg);
+	config_debug(cfg);
 	if (!engine_init(&engine, &cfg))
 		return (engine_destroy(&engine), EXIT_FAILURE);
 	//printf("Engine: %d  \n", engine.camera.position.y);
