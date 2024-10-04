@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 20:43:00 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:22:48 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:21:20 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ t_camera	camera_new(t_dpoint origin, t_orientations orientation)
 
 	camera.position = origin;
 	if (orientation == NORTH)
-		camera.direction = vector_new_from_values(0.0f,-1.0f, true);
+		camera.direction = vector_new_from_values(0.0f,-1.0f, false);
 	if (orientation == SOUTH)
-		camera.direction = vector_new_from_values(0.0f, 1.0f, true);
+		camera.direction = vector_new_from_values(0.0f, 1.0f, false);
 	if (orientation == WEST)
-		camera.direction = vector_new_from_values(-1.0f, 0.0f, true);
+		camera.direction = vector_new_from_values(-1.0f, 0.0f, false);
 	if (orientation == EAST)
-		camera.direction = vector_new_from_values(1.0f,0.0f, true);
+		camera.direction = vector_new_from_values(1.0f,0.0f, false);
 	camera.camera_panel = camera_init_screen_plan(orientation);
 	return (camera);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine_mlx_config.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:16:53 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/01 18:25:20 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:52:54 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,14 @@
 
 	//I have tested MLX_STRETCH IMAGE and it does NOT print correcctly the 
 		half of the screen.
+	//MLX_MAXIMIZED DOES NOT maximize the screen in some ubuntus... 
+		so i maximize it manually.
+	//mlx_set_setting(MLX_MAXIMIZED, true);
+	//mlx_set_setting(MLX_STRETCH_IMAGE, true);
+}
 */
 void	engine_mlx_settings(void)
 {
-	//mlx_set_setting(MLX_MAXIMIZED, true);
-	//mlx_set_setting(MLX_STRETCH_IMAGE, true);
 }
 
 void	engine_mlx_hooks(t_engine *engine)
@@ -36,8 +39,4 @@ void	engine_mlx_hooks(t_engine *engine)
 	mlx_close_hook(engine->mlx, on_destroy, engine);
 	mlx_resize_hook(engine->mlx, on_resize, engine);
 	mlx_cursor_hook(engine->mlx, on_mouse_move_event, engine);
-//	void mlx_cursor_hook(mlx_t* mlx, mlx_cursorfunc func, void* param);
-
-//	mlx_mouse_hook(engine->mlx, on_mouse_event, engine);
-
 }

@@ -6,20 +6,14 @@
 /*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 22:12:40 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/02 16:26:53 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:47:53 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-#include "texture.h"
 #include "engine.h"
 #include "MLX42/MLX42.h"
-#include "libft.h"
 #include "error.h"
 #include "texture.h"
-
-#include <stdio.h>
 
 bool	engine_texture_load(const char *filename, t_texture *texture)
 {
@@ -36,15 +30,19 @@ bool	engine_textures_load(t_engine *engine)
 	t_config	*cfg;
 
 	cfg = engine->cfg;
-	if (!engine_texture_load(cfg->north_texture, &engine->textures[TEXTURE_NORTH]))
+	if (!engine_texture_load(cfg->north_texture, \
+				&engine->textures[TEXTURE_NORTH]))
 		return (false);
-	if (!engine_texture_load(cfg->south_texture, &engine->textures[TEXTURE_SOUTH]))
+	if (!engine_texture_load(cfg->south_texture, \
+				&engine->textures[TEXTURE_SOUTH]))
 		return (false);
-	if (!engine_texture_load(cfg->west_texture, &engine->textures[TEXTURE_WEST]))
+	if (!engine_texture_load(cfg->west_texture, \
+				&engine->textures[TEXTURE_WEST]))
 		return (false);
-	if (!engine_texture_load(cfg->east_texture, &engine->textures[TEXTURE_EAST]))
+	if (!engine_texture_load(cfg->east_texture, \
+				&engine->textures[TEXTURE_EAST]))
 		return (false);
-	return (true);	
+	return (true);
 }
 
 void	engine_textures_destroy(t_engine *engine)

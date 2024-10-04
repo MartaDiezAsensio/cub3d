@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdel_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 19:24:19 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/07 19:26:23 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/03 17:33:31 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
 #include "libft.h"
 
-void ft_lstdel_front(t_list **list)
+void	ft_lstdel_front(t_list **list)
 {
-	t_list *begin;
+	t_list	*begin;
 
 	if (*list == NULL)
 		return ;

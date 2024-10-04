@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tile.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 19:48:58 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/01 18:26:02 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/03 18:29:35 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	tile_copy_ptr(t_tile *origin, t_tile **destiny)
 {
 	*destiny = (t_tile *)malloc(sizeof(t_tile));
 	if (*destiny == NULL)
-		return (false);
+		return (error_perror_critical(), false);
 	(*destiny)->type = origin->type;
 	(*destiny)->x = origin->x;
 	(*destiny)->y = origin->y;

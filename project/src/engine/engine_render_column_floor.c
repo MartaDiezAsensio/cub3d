@@ -6,7 +6,7 @@
 /*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/02 17:53:21 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:48:12 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	engine_render_paint_floor(t_engine engine, \
 {
 	uint32_t	floor_color;
 
-	floor_color  = color_2_mlx(engine.cfg->floor_color);
+	floor_color = color_2_mlx(engine.cfg->floor_color);
 	while (*i < engine.screen.y)
 	{
 		mlx_put_pixel(engine.img, render_col.column, *i, floor_color);

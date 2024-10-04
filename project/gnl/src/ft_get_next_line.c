@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_next_line.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 16:34:45 by greus-ro          #+#    #+#             */
-/*   Updated: 2024/08/29 21:39:45 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/03 17:36:03 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,9 @@ static char	*get_line_from_buffer(char	**buffer, int num_bytes_read)
 	pos = ft_istrchr(*buffer, "\n\r");
 	if (pos >= 0)
 	{
-//		line = ft_substr(*buffer, 0, pos);
 		line = ft_substr(*buffer, 0, pos + 1);
 		aux = *buffer;
 		*buffer = ft_substr(*buffer, pos + 1, len);
-//		*buffer = ft_substr(*buffer, pos + 1, len);
 		free (aux);
 		return (line);
 	}

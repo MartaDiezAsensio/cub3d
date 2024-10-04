@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 20:37:22 by greus-ro          #+#    #+#             */
-/*   Updated: 2024/09/15 15:59:06 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/03 17:34:24 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,5 @@ void	ft_lstdel_back(t_list **lst);
 void	ft_lstdel_front(t_list **lst);
 int		ft_lstcontains(t_list *list, void *content, int (*f)(void *c1, \
 			void *c2));
-
 
 #endif

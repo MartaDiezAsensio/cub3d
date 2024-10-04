@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   engine_render.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 22:20:03 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/01 18:25:25 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:46:02 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 
 #include "engine.h"
@@ -19,7 +18,7 @@
 #include "raycasting.h"
 #include "libft.h"
 
-static bool engine_render_fps(t_engine *engine)
+static bool	engine_render_fps(t_engine *engine)
 {
 	size_t		fps;
 	char		*text;
@@ -33,13 +32,14 @@ static bool engine_render_fps(t_engine *engine)
 	str_number = ft_itoa(fps);
 	if (str_number == NULL)
 		return (error_perror_critical(), false);
-	text = ft_strjoin("fps: ", str_number);	
+	text = ft_strjoin("fps: ", str_number);
 	if (text == NULL)
 	{
 		free (str_number);
 		return (error_perror_critical(), false);
 	}
-	engine->fps_img= mlx_put_string(engine->mlx, text, engine->screen.x - 90, 10);
+	engine->fps_img = mlx_put_string(engine->mlx, text, engine->screen.x - 90, \
+						10);
 	free (str_number);
 	free (text);
 	return (true);
@@ -47,7 +47,6 @@ static bool engine_render_fps(t_engine *engine)
 
 static bool	engine_render_create_frame(t_engine *engine)
 {
-//	engine_render_background(engine);
 	if (!raycasting_paint(engine))
 		return (false);
 	if (!engine_render_fps(engine))
@@ -55,16 +54,11 @@ static bool	engine_render_create_frame(t_engine *engine)
 	return (true);
 }
 
-//https://gontjarow.github.io/MiniLibX/mlx-tutorial-create-image.html
 void	engine_render(void *param)
 {
 	t_engine	*engine;
 
 	engine = (t_engine *)param;
 	if (!engine_render_create_frame(engine))
-	{
 		engine_stop(engine);
-		//engine_destroy(engine);
-		//exit(EXIT_FAILURE);
-	}
-}	
+}

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstcontains.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 20:31:13 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/12 20:37:13 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/03 17:34:07 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_lstcontains(t_list *list, void *content, int (*f)(void *c1, \
+int	ft_lstcontains(t_list *list, void *content, int (*f)(void *c1, \
 			void *c2))
 {
 	t_list	*node;

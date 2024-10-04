@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:33:19 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/01 18:25:43 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:54:43 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	engine_init(t_engine *engine, t_config *cfg)
 	texture_init(&engine->textures[TEXTURE_EAST]);
 	engine->screen.title = NULL;
 	engine->img = NULL;
-	engine->camera = camera_new(cfg->player_position, cfg->player_orientation); // Inicializado camera
+	engine->camera = camera_new(cfg->player_position, cfg->player_orientation);
 	engine->time = 0.0f;
 	engine->fps_img = NULL;
 	return (true);
@@ -41,19 +41,22 @@ bool	engine_start(t_engine *engine)
 	engine_mlx_settings();
 	if (!screen_init(&(engine->screen)))
 		return (false);
-	if(!engine_textures_load(engine))
+	if (!engine_textures_load(engine))
 		return (false);
-	engine->mlx = mlx_init(engine->screen.x, engine->screen.y, engine->screen.title, engine->screen.resize);
+	engine->mlx = mlx_init(engine->screen.x, engine->screen.y, \
+						engine->screen.title, engine->screen.resize);
 	if (engine->mlx == NULL)
 		return (error_print_mlx_perror(), false);
-	mlx_get_monitor_size(0, (int32_t *)&engine->screen.x, (int32_t *)&engine->screen.y);
+	mlx_get_monitor_size(0, (int32_t *)&engine->screen.x, \
+		(int32_t *)&engine->screen.y);
 	engine->screen.middle_y = engine->screen.y / 2;
 	mlx_set_window_size(engine->mlx, engine->screen.x, engine->screen.y);
-	engine->img = mlx_new_image(engine->mlx, engine->screen.x, engine->screen.y);
+	engine->img = mlx_new_image(engine->mlx, engine->screen.x, \
+					engine->screen.y);
 	if (engine->img == NULL)
-		return(error_print_mlx_perror(), false);
+		return (error_print_mlx_perror(), false);
 	if (mlx_image_to_window(engine->mlx, engine->img, 0, 0) == -1)
-		return(error_print_mlx_perror(), false);
+		return (error_print_mlx_perror(), false);
 	engine_mlx_hooks(engine);
 	return (true);
 }
@@ -78,7 +81,7 @@ void	engine_loop(t_engine *engine)
 	mlx_loop(engine->mlx);
 }
 
-void engine_stop(t_engine *engine)
+void	engine_stop(t_engine *engine)
 {
 	mlx_close_window(engine->mlx);
 }
