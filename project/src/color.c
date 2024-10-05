@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 20:58:02 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:24:52 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/05 23:44:57 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_color	color_new_3(unsigned char _r, unsigned char _g, unsigned char _b)
 {
-	t_color color;
+	t_color	color;
 
 	color.r = _r;
 	color.g = _g;
@@ -23,9 +23,10 @@ t_color	color_new_3(unsigned char _r, unsigned char _g, unsigned char _b)
 	return (color);
 }
 
-t_color	color_new(unsigned char _r, unsigned char _g, unsigned char _b, unsigned char _a)
+t_color	color_new(unsigned char _r, unsigned char _g, unsigned char _b, \
+			unsigned char _a)
 {
-	t_color color;
+	t_color	color;
 
 	color.r = _r;
 	color.g = _g;
@@ -44,7 +45,7 @@ uint32_t	color_2_mlx(t_color tcolor)
 
 uint32_t	color_new_mlx(unsigned char _r, unsigned char _g, unsigned char _b)
 {
-	t_color color;
+	t_color	color;
 
 	color.r = _r;
 	color.g = _g;

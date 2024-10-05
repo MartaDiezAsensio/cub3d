@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tile.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 21:32:39 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:05:15 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/05 23:16:34 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef	TILE_H
+#ifndef TILE_H
 # define TILE_H
 
 # include "types.h"
@@ -38,7 +37,7 @@ typedef struct s_tile
 }	t_tile;
 
 t_tile		tile_new(size_t _x, size_t _y, char _type);
-t_tile_type tile_determine_type(char tile);
+t_tile_type	tile_determine_type(char tile);
 bool		tile_copy_ptr(t_tile *origin, t_tile **destinty);
 bool		tile_is_player(t_tile tile);
 int			tile_node_compare(void *c1, void *c2);

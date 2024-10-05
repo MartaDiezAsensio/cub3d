@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 22:43:14 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:25:08 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/05 23:45:10 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "error.h"
 #include "libft.h"
 #include "MLX42/MLX42.h"
-
 
 void	error_print_warning(const char *msg)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 21:34:40 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:05:21 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/05 23:16:59 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 # include <stdbool.h>
 
 typedef enum e_orientations
-{	
+{
 	NONE,
 	NORTH,
 	EAST,
 	SOUTH,
 	WEST
-} t_orientations;
+}	t_orientations;
 
 #endif

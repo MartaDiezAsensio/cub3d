@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 20:53:17 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/03 23:39:57 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/06 00:54:20 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_config
 	t_dpoint		player_position;
 	t_orientations	player_orientation;
 	bool			valid_cfg;
-	
 }	t_config;
 
 //config.c
@@ -63,18 +62,16 @@ bool	config_get_trimmed_line(char **line, int fd);
 bool	config_set_texture(t_config *cfg, const char *line);
 
 //config_colors.c
-//bool	config_parse_colors(t_color *color, const char *colors_line);
-//bool	config_is_color_line(const char * line);
 bool	config_set_colors(t_config *cfg, const char *line);
 
-
+//config/config_colors_parser.c
+bool	config_parse_colors(t_color *color, const char *colors_line);
 
 //config/config_line.c
 bool	config_line_get_trimmed(char **trim_line, int fd);
-bool	config_line_is_color(const char * line);
+bool	config_line_is_color(const char *line);
 bool	config_line_is_texture(const char *line);
 bool	config_line_is_valid(const char *line);
 bool	config_line_is_map(const char *line);
-
 
 #endif

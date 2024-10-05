@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:49:35 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/03 22:38:03 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/06 00:49:49 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,16 @@
 #include "error.h"
 #include "flooding.h"
 
-static	void	config_map_save_player_data(t_config *cfg, size_t i, size_t j)
+static bool	config_is_player_position_uninit(t_dpoint player_position)
 {
-//	cfg->player_position = dpoint_new(j + 0.5f,i + 0.5f);
+	return (player_position.x < 0.0f && player_position.y < 0.0f);
+}
+
+static	bool	config_map_save_player_data(t_config *cfg, size_t i, size_t j)
+{
+	if (!config_is_player_position_uninit(cfg->player_position))
+		return (error_print_critical("Found more than one player"), \
+				false);
 	cfg->player_position = dpoint_new(j + 0.5f, i + 0.5f);
 	if (cfg->map.map[i][j] == MAP_TILE_PLAYER_NORTH)
 		cfg->player_orientation = NORTH;
@@ -25,12 +32,8 @@ static	void	config_map_save_player_data(t_config *cfg, size_t i, size_t j)
 	if (cfg->map.map[i][j] == MAP_TILE_PLAYER_EAST)
 		cfg->player_orientation = EAST;
 	if (cfg->map.map[i][j] == MAP_TILE_PLAYER_WEST)
-		cfg->player_orientation =WEST;	
-}
-
-static bool config_is_player_position_uninit(t_dpoint player_position)
-{
-	return (player_position.x < 0.0f && player_position.y < 0.0f);
+		cfg->player_orientation = WEST;
+	return (true);
 }
 
 bool	config_map_find_player(t_config *cfg)
@@ -44,15 +47,13 @@ bool	config_map_find_player(t_config *cfg)
 		j = 0;
 		while (cfg->map.map[i][j] != '\0')
 		{
-			if(!map_cell_is_valid(cfg->map.map[i][j]))
+			if (!map_cell_is_valid(cfg->map.map[i][j]))
 				return (error_print_critical("Found not valid MAP char."), \
 							false);
 			if (map_cell_is_player(cfg->map.map[i][j]))
 			{
-				if (!config_is_player_position_uninit(cfg->player_position))
-					return(error_print_critical("Found more than one player")\
-								, false);
-				config_map_save_player_data(cfg, i, j);
+				if (!config_map_save_player_data(cfg, i, j))
+					return (false);
 			}
 			j++;
 		}
@@ -63,27 +64,21 @@ bool	config_map_find_player(t_config *cfg)
 	return (error_print_critical("Cannot find player at map."), false);
 }
 
-//Revisar
 static bool	config_map_is_closed(t_config *cfg, bool *is_closed)
 {
 	*is_closed = false;
-
 	if (!flood_map(*cfg, is_closed))
 		return (false);
-//	if (!map_validator(cfg->map))
-//		return (false);
 	return (true);
 }
 
-bool config_validate_map(t_config *cfg)
+bool	config_validate_map(t_config *cfg)
 {
 	bool	is_closed;
 
 	if (!config_map_find_player(cfg))
-		return(false);
+		return (false);
 	if (!config_map_is_closed(cfg, &is_closed) || !is_closed)
 		return (false);
-//	if (is_closed)
-//		return(error_print_critical("The map is NOT closed."), false);
 	return (true);
 }

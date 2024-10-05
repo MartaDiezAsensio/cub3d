@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 22:14:40 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/03 08:33:43 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/05 23:34:51 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static bool	map_generate_padding(int len, char **padding)
 		return (true);
 	}
 	*padding = (char *)malloc(len + 1);
-	if  (*padding == NULL)
+	if (*padding == NULL)
 		return (error_perror_critical(), false);
 	*padding = ft_memset(*padding, ' ', len);
 	(*padding)[len] = '\0';
@@ -67,6 +67,7 @@ bool	map_normalize(t_map *map)
 	size_t	len;
 	char	*padding;
 	char	*aux;
+
 	i = 0;
 	while (map->map[i] != NULL)
 	{

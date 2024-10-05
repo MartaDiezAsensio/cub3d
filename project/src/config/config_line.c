@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:41:11 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/03 21:18:17 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/05 23:43:14 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "map.h"
 #include "libft.h"
 
-
 bool	config_line_is_map(const char *line)
 {
 	if (map_cell_is_valid(line[0]))
@@ -23,7 +22,7 @@ bool	config_line_is_map(const char *line)
 	return (false);
 }
 
-bool	config_line_is_color(const char * line)
+bool	config_line_is_color(const char *line)
 {
 	if (ft_strncmp(line, "F ", 2) == 0 || ft_strncmp(line, "C ", 2) == 0)
 		return (true);
@@ -54,7 +53,7 @@ bool	config_line_is_valid(const char *line)
 bool	config_line_get_trimmed(char **trim_line, int fd)
 {
 	char	*line;
-	
+
 	line = ft_get_next_line_many_fds(fd);
 	if (line != NULL)
 	{
@@ -65,5 +64,5 @@ bool	config_line_get_trimmed(char **trim_line, int fd)
 	}
 	else
 		*trim_line = NULL;
-	return (true);		
+	return (true);
 }

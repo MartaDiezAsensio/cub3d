@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/03 22:38:51 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/05 23:42:38 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,21 +86,21 @@ static uint32_t	get_pixel_of_wall(double *tex_pos, t_texture texture, \
 	return (wall_color);
 }
 
+//	if (dda.side == 0 && dda.ray.x > 0)
+//		tex_x = texture.width - tex_x - 1;
+//	if (dda.side == 1 && dda.ray.y < 0)
+//		tex_x = texture.width - tex_x - 1;
 static	int	get_point_of_wall(t_texture texture, t_dda_raycasting dda)
 {
 	int		tex_x;
 	double	intersection;
 
 	if (dda.side == 0)
-		intersection = dda.origin.y + dda.perpWallDist * dda.ray.y;
+		intersection = dda.origin.y + dda.perp_wall_dist * dda.ray.y;
 	else
-		intersection = dda.origin.x + dda.perpWallDist * dda.ray.x;
+		intersection = dda.origin.x + dda.perp_wall_dist * dda.ray.x;
 	intersection -= floor(intersection);
 	tex_x = intersection * ((double)texture.width);
-//	if (dda.side == 0 && dda.ray.x > 0)
-//		tex_x = texture.width - tex_x - 1;
-//	if (dda.side == 1 && dda.ray.y < 0)
-//		tex_x = texture.width - tex_x - 1;
 	return (tex_x);
 }
 

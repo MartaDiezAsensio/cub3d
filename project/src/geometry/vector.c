@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 22:06:56 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:18:57 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/05 23:56:13 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ t_vector	vector_new_from_values(double _x, double _y, bool normalize)
 	return (vector);
 }
 
-void		vector_calculate_modulus(t_vector *vector)
+void	vector_calculate_modulus(t_vector *vector)
 {
 	double	x_square;
 	double	y_square;
-	
+
 	x_square = pow(vector->x, 2.0f);
 	y_square = pow(vector->y, 2.0f);
 	vector->modulus = sqrt(x_square + y_square);
@@ -54,7 +54,7 @@ void		vector_calculate_modulus(t_vector *vector)
 void	vector_normalize(t_vector	*vector)
 {
 	vector_calculate_modulus(vector);
-	vector->x = vector->x /  vector->modulus;
+	vector->x = vector->x / vector->modulus;
 	vector->y = vector->y / vector->modulus;
 	vector->modulus = 1.0f;
 }
@@ -63,15 +63,15 @@ bool	vector_calculate_slope(t_vector vector, double *slope)
 {
 	*slope = 0;
 	if (vector.x == 0.0f || vector.y == 0.0f)
-		return(error_print_critical("Found vector with x = 0 & y = 0"), false);
+		return (error_print_critical("Found vector with x = 0 & y = 0"), false);
 	if (vector.x == 0.0f)
 	{
-		if (vector.y < 0.0f )
-			return(error_print_critical("Found vector with slope inf"), false);
+		if (vector.y < 0.0f)
+			return (error_print_critical("Found vector with slope inf"), false);
 		else
-			return(error_print_critical("Found vector with slope -inf"), false);
+			return (error_print_critical("Found vector with slope -inf"), \
+						false);
 	}
 	*slope = vector.y / vector.x;
 	return (true);
-	
 }

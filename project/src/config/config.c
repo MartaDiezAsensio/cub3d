@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 21:08:30 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/03 20:56:00 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/06 00:41:52 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ bool	config_is_header_initialized(t_config config)
 
 bool	config_init(t_config *cfg, const char *filename)
 {
-	int fd;
-	
+	int	fd;
+
 	config_init_vars(cfg);
 	fd = open (filename, O_RDONLY);
 	if (fd < 0)
@@ -70,7 +70,7 @@ bool	config_init(t_config *cfg, const char *filename)
 	if (!config_map_list_2_ptr(cfg))
 		return (false);
 	ft_lstclear(&cfg->map_lines, free);
-	if(!map_normalize(&cfg->map))
+	if (!map_normalize(&cfg->map))
 		return (false);
 	return (true);
 }
@@ -91,23 +91,6 @@ void	config_destroy(t_config *cfg)
 }
 
 /*
-bool	config_get_trimmed_line(char **trim_line, int fd)
-{
-	char	*line;
-	
-	line = ft_get_next_line_many_fds(fd);
-	if (line != NULL)
-	{
-		*trim_line = ft_strtrim(line, "\n\r");
-		free (line);
-		if (*trim_line == NULL)
-			return (false);
-	}
-	else
-		*trim_line = NULL;
-	return (true);		
-}
-*/
 void	config_debug(t_config cfg)
 {
 	t_list	*node;
@@ -119,8 +102,10 @@ void	config_debug(t_config cfg)
 	printf("\t WE: %s\n", cfg.west_texture);
 	printf("\t EA: %s\n", cfg.east_texture);
 	printf("\n");
-	printf("\t F %d, %d, %d\n", cfg.floor_color.r, cfg.floor_color.g, cfg.floor_color.b);
-	printf("\t C %d, %d, %d\n", cfg.ceiling_color.r, cfg.ceiling_color.g, cfg.ceiling_color.b);
+	printf("\t F %d, %d, %d\n", cfg.floor_color.r, cfg.floor_color.g, \
+				cfg.floor_color.b);
+	printf("\t C %d, %d, %d\n", cfg.ceiling_color.r, cfg.ceiling_color.g, \
+				cfg.ceiling_color.b);
 	printf("\n");
 	printf("\t MAP LIST ***\n");
 	node = cfg.map_lines;
@@ -144,3 +129,4 @@ void	config_debug(t_config cfg)
 	printf("\t MAP PTR ***\n");
 	printf("DEBUG CONFIG********************************\n");	
 }
+*/

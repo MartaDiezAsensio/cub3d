@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42barcel>       +#+  +:+       +#+        */
+/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 00:23:16 by greus-ro          #+#    #+#             */
-/*   Updated: 2024/10/04 14:18:17 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/03 18:59:25 by greus-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static int	ft_check_sign(char **nbr)
 	if (ft_isdigit(**nbr) == 1)
 		return (1);
 	sign = 1;
-	while (**nbr != '\0' && (**nbr == '-' || **nbr == '+' || \
-								ft_is_removable_char(**nbr)))
+	while (**nbr != '\0' && (**nbr == '-' || **nbr == '+' ||\
+								 ft_is_removable_char(**nbr)))
 	{
 		if (**nbr == '-')
 			sign = sign * (-1);

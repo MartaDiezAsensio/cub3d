@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 22:29:37 by gabriel           #+#    #+#             */
-/*   Updated: 2024/09/27 16:04:13 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/05 23:04:46 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "vector.h"
 # include "point.h"
 
-typedef	struct s_player
+typedef struct s_player
 {
 	t_point			position;
 	t_orientations	orientation;

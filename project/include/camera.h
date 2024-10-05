@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 20:35:03 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/03 23:23:49 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/05 23:07:54 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ typedef struct s_camera
 	t_dpoint	position;
 	t_vector	direction;
 	t_vector	camera_panel;
-} t_camera;
+}	t_camera;
 
 //camera/camera.c
 t_camera	camera_new(t_dpoint origin, t_orientations orientation);
 
 //camera/camerea_mov.c
-void	camera_move(t_camera *camera, t_map map, t_dpoint new_position);
-void	camera_rotate(t_camera *camera, float angle);
+void		camera_move(t_camera *camera, t_map map, t_dpoint new_position);
+void		camera_rotate(t_camera *camera, float angle);
 
 #endif

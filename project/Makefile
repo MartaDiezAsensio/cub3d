@@ -6,7 +6,7 @@
 #    By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 19:39:15 by gabriel           #+#    #+#              #
-#    Updated: 2024/10/03 21:20:32 by gabriel          ###   ########.fr        #
+#    Updated: 2024/10/06 01:27:57 by gabriel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,17 +91,8 @@ SRC		=	color.c							\
 SRC		+=	camera/camera.c					\
 			camera/camera_mov.c
 
-#SRC		+=	config/config_colors.c				\
-			config/config_header_parser.c		\
-			config/config_line.c				\
-			config/config_loader.c				\
-			config/config_map_parser.c			\
-			config/config_textures.c			\
-			config/config_validator_map.c		\
-			config/config_validator.c			\
-			config/config.c
-
 SRC		+=	config/config_colors.c				\
+			config/config_colors_parser.c		\
 			config/config_line.c				\
 			config/config_loader.c				\
 			config/config_map_parser.c			\
@@ -112,9 +103,6 @@ SRC		+=	config/config_colors.c				\
 
 SRC		+=	dda/dda.c							\
 			dda/dda_raycasting.c
-
-
-#			engine/engine_render_column_copy.c		\
 
 SRC		+=	engine/engine.c							\
 			engine/engine_mlx_config.c				\
@@ -150,12 +138,8 @@ SRC		+=	textures_config/texture_config.c
 
 SRC		+=	map/map.c							\
 			map/map_cell.c						\
-			map/map_validator.c					\
 			map/tile.c
 
-#SRC_TEST = 		${SRC} \
-#				ray_test.c
-				
 SRC		+=	main.c
 
 HEADERS			=	camera.h		\
@@ -168,7 +152,6 @@ HEADERS			=	camera.h		\
 					events.h		\
 					flooding.h		\
 					map.h			\
-					mlx_image.h		\
 					player.h		\
 					point.h			\
 					radiants.h		\
@@ -188,10 +171,6 @@ HDRS			=	$(addprefix ${INC_DIR}/, ${HEADERS})
 SRC_TEST		=   $(patsubst main.c, ray_test.c, ${SRC})
 OBJS_TEST		=	$(patsubst %.c, ${BUILD_DIR}/%.o, ${SRC_TEST})
 
-#SRCS			=	$(addprefix ${SRC_DIR}/, $(addsuffix .c, ${SRC}))
-#OBJS			=	$(patsubst %.c)$(addprefix ${BUILD_DIR}/, $(addsuffix .o, ${SRC}))
-#HDRS			=	$(addprefix ${INC_DIR}/, ${HEADERS})
-#DEPS			=	$(addprefix ${BUILD_DIR}/, $(addsuffix .d, ${SRC}))
 
 ################################################################################
 # Rules 
@@ -264,7 +243,6 @@ fclean			:	clean
 re				:	fclean all
 
 norm:	
-#	$(shell norminette)
 	@norminette ${HDRS}
 	@norminette ${SRCS}
 	

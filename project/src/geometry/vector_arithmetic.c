@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 21:35:14 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/03 23:13:59 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/06 00:42:08 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_vector	vector_rotate(t_vector vector, float rad_angle, bool normalize)
 	t_vector	result;
 
 	result.x = vector.x * cos(rad_angle) - vector.y * sin(rad_angle);
-	result.y = vector.x * sin(rad_angle) + vector.y * cos(rad_angle);	
+	result.y = vector.x * sin(rad_angle) + vector.y * cos(rad_angle);
 	if (normalize)
 		vector_normalize(&result);
 	else
@@ -37,10 +37,11 @@ t_vector	vector_add(t_vector vector1, t_vector vector2, bool normalize)
 		vector_normalize(&result);
 	else
 		vector_calculate_modulus(&result);
-	return (result); 
+	return (result);
 }
 
-t_point		vector_calculate_new_point(t_point origin, t_vector direction, double n_times)
+t_point	vector_calculate_new_point(t_point origin, t_vector direction, \
+			double n_times)
 {
 	t_point	new_point;
 
@@ -49,9 +50,20 @@ t_point		vector_calculate_new_point(t_point origin, t_vector direction, double n
 	return (new_point);
 }
 
-float		vector_cos_between_vectors(t_vector v1, t_vector v2)
+t_dpoint	vector_calculate_new_dpoint(t_dpoint origin, t_vector direction, \
+			double n_times)
 {
-	float cos;
-	cos = (v1.x*v2.x + v1.y*v2.y) / (v1.modulus * v2.modulus);
+	t_dpoint	new_point;
+
+	new_point.x = origin.x + n_times * direction.x;
+	new_point.y = origin.y + n_times * direction.y;
+	return (new_point);
+}
+
+float	vector_cos_between_vectors(t_vector v1, t_vector v2)
+{
+	float	cos;
+
+	cos = (v1.x * v2.x + v1.y * v2.y) / (v1.modulus * v2.modulus);
 	return (cos);
 }

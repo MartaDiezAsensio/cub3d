@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tile.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 19:48:58 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/03 18:29:35 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/05 23:33:07 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include "map.h"
 #include "error.h"
 #include "screen.h"
-
-#include <stdio.h>
 
 t_tile	tile_new(size_t _x, size_t _y, char _type)
 {
@@ -29,7 +27,7 @@ t_tile	tile_new(size_t _x, size_t _y, char _type)
 	return (tile);
 }
 
-t_tile_type tile_determine_type(char tile)
+t_tile_type	tile_determine_type(char tile)
 {
 	if (tile == MAP_TILE_EMPTY)
 		return (TILE_EMPTY);
@@ -50,7 +48,7 @@ bool	tile_copy_ptr(t_tile *origin, t_tile **destiny)
 	(*destiny)->type = origin->type;
 	(*destiny)->x = origin->x;
 	(*destiny)->y = origin->y;
-	return (true);	
+	return (true);
 }
 
 bool	tile_is_player(t_tile tile)
@@ -65,14 +63,13 @@ bool	tile_is_player(t_tile tile)
 	return (false);
 }
 
-int tile_node_compare(void *c1, void *c2)
+int	tile_node_compare(void *c1, void *c2)
 {
 	t_tile	*t1;
 	t_tile	*t2;
 
-	t1 = (t_tile*) c1;
-	t2 = (t_tile*) c2;
-
+	t1 = (t_tile *) c1;
+	t2 = (t_tile *) c2;
 	if (t1->x == t2->x && t1->y == t2->y && t1->type == t2->type)
 		return (0);
 	return (1);
