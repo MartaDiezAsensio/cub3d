@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:15:21 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/06 00:34:29 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/06 21:04:21 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 #include "dda.h"
 #include "error.h"
 
+/*
+	Here we calculate the number of pixels that we have to paint corresponding
+	to the wall
+*/
 static int	raycasting_calculate_wall(double distance, int screen_height)
 {
 	int	line_height;
@@ -23,6 +27,13 @@ static int	raycasting_calculate_wall(double distance, int screen_height)
 	return (line_height);
 }
 
+/*
+	for each column of pixels, we throw  a ray from the camera/player position
+	and we calculate the axis where the ray hits.
+
+	We get the number of pixelsof wall and then we have to render the column, 
+	ceiling, wall and floor.
+*/
 bool	raycasting_paint(t_engine *engine)
 {
 	size_t				x;

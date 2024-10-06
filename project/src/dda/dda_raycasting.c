@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 20:32:51 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/06 00:30:11 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/06 21:53:18 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ static bool	dda_raycasting_check_hit(t_point point, t_map map)
 }
 */
 
+/* We init the distance to axis X counter , the steps and
+	the distance that the vectro grow everytime it jumps 1 unit in an axis.
+	depending of the direction of the direction of ray.
+*/
 static void	dda_raycasting_init_x(t_dpoint origin, t_vector direction, \
 				t_dda_raycasting *dda_ray)
 {
@@ -43,6 +47,10 @@ static void	dda_raycasting_init_x(t_dpoint origin, t_vector direction, \
 	}
 }
 
+/* We init the distance to axis Y counter , the steps and
+	the distance that the vectro grow everytime it jumps 1 unit in an axis.
+	depending of the direction of the direction of ray.
+*/
 static void	dda_raycasting_init_y(t_dpoint origin, t_vector direction, \
 				t_dda_raycasting *dda_ray)
 {
@@ -64,6 +72,9 @@ static void	dda_raycasting_init_y(t_dpoint origin, t_vector direction, \
 	}
 }
 
+/*
+	We init the ray_casting structures
+*/
 static void	dda_raycasting_init(t_dpoint origin, t_vector direction, \
 				t_dda_raycasting *dda_ray)
 {
@@ -75,6 +86,14 @@ static void	dda_raycasting_init(t_dpoint origin, t_vector direction, \
 	dda_raycasting_init_y(origin, direction, dda_ray);
 }
 
+/*
+	This is the main loop of dda.
+		We look for the first intercept with x or y axis. 
+		We look for it depending which is the less distance x or y
+		if we advance in x and we found a hit, we have hit an x side of object
+		if we advance in y and we found a hit, we have hit an y side of object
+
+*/
 static void	dda_loop(int *hit, t_dda_raycasting *dda, t_map map)
 {
 	if (dda->side_dist_x < dda->side_dist_y)
@@ -93,6 +112,9 @@ static void	dda_loop(int *hit, t_dda_raycasting *dda, t_map map)
 		*hit = 1;
 }
 
+/*
+	Here is the main funciton to find the hit, we loop.
+*/
 bool	dda_raycasting_calculate_hit(t_dpoint	origin, t_vector direction, \
 			t_map map, t_dda_raycasting *dda_ray)
 {

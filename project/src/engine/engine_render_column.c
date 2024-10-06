@@ -3,16 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   engine_render_column.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/03 17:31:35 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/06 21:19:16 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 #include "render.h"
 
+/*
+		Here we paint aa column
+		We calculate the end of ceiling , the size of the wall and 
+		the start of floor.
+		Then we paint ceiling, wall and floor.
+*/
 bool	engine_render_column(t_engine engine, int x, \
 			unsigned int num_pixels_wall, t_dda_raycasting dda)
 {

@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:47:52 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/05 23:31:05 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/06 21:10:24 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 #include "texture.h"
 #include "error.h"
 
+/*
+	Here, we choose the texture we will use.
+*/
 bool	choose_texture(t_engine *engine, t_dda_raycasting *dda_ray, \
 			t_texture *texture)
 {

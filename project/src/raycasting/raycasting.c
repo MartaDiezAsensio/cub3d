@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 19:35:14 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/06 00:32:55 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/06 21:06:16 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 #include "raycasting.h"
 #include "error.h"
 
+/*
+	This function create a new ray.
+	It depends the column of the screen and goes from 
+	-camera_panel until  camera_panel
+	and we add to the camera direction to get the new ray dir.
+*/
 t_vector	raycasting_new_ray(int x, int w, t_camera camera)
 {
 	t_vector	ray;

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   engine_render.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 22:20:03 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/03 17:46:02 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/06 21:17:15 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
 #include "engine.h"
 #include "error.h"
 #include "MLX42/MLX42.h"
@@ -45,6 +44,9 @@ static bool	engine_render_fps(t_engine *engine)
 	return (true);
 }
 
+/*
+	Here we paint the frame and then we render fps text.
+*/
 static bool	engine_render_create_frame(t_engine *engine)
 {
 	if (!raycasting_paint(engine))
@@ -54,6 +56,9 @@ static bool	engine_render_create_frame(t_engine *engine)
 	return (true);
 }
 
+/*
+	Here we render the screen and if we detect an error, we stop the engine.
+*/
 void	engine_render(void *param)
 {
 	t_engine	*engine;

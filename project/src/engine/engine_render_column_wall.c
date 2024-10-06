@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 18:55:05 by mdiez-as          #+#    #+#             */
-/*   Updated: 2024/10/05 23:42:38 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/06 21:37:30 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,12 @@
 			//}
 */
 
+/* 
+	We get the y coord of the texture (we check the maximum with the & 
+	of the max height , it will be  less than height -1)
+	then we gete wall color of the position of texture in the pixels 
+	array. NOTE: EVery position of the array is 4 bytes.
+*/
 static uint32_t	get_pixel_of_wall(double *tex_pos, t_texture texture, \
 					double step, int tex_x)
 {
@@ -86,10 +92,12 @@ static uint32_t	get_pixel_of_wall(double *tex_pos, t_texture texture, \
 	return (wall_color);
 }
 
-//	if (dda.side == 0 && dda.ray.x > 0)
-//		tex_x = texture.width - tex_x - 1;
-//	if (dda.side == 1 && dda.ray.y < 0)
-//		tex_x = texture.width - tex_x - 1;
+/*
+	Here we get the exact point (in float) where the point intersects
+	the axis and then...
+	We remove the integer part to get the porportion of the x part of 
+	the texture and finally we multiply by the width of the texture.
+*/
 static	int	get_point_of_wall(t_texture texture, t_dda_raycasting dda)
 {
 	int		tex_x;
@@ -104,6 +112,14 @@ static	int	get_point_of_wall(t_texture texture, t_dda_raycasting dda)
 	return (tex_x);
 }
 
+/*
+	First we get the texture ....
+	Then we calculate how many pixels of texture we advance when 
+		we paint a screen y pixel.
+	We find the initial texture x position and the we
+		paint all the  y pixels of the wall recalculating the y texture
+		pixel.
+*/
 bool	engine_render_paint_wall(t_engine engine, t_render_column render_col, \
 				t_dda_raycasting dda)
 {
@@ -129,47 +145,3 @@ bool	engine_render_paint_wall(t_engine engine, t_render_column render_col, \
 	}
 	return (true);
 }
-
-/*
-bool engine_gabriel(t_engine engine, t_dda_raycasting dda, int sky_end, 
-		int floor_start, int screen_height, 
-		unsigned int num_pixels_wall, int i, int x)
-{
-	t_texture   texture;
-	//double		intersection;
-	int 		texX;
-	//int			texY;
-	double		step;
-	double		texPos;
-	//int			row_texture;
-
-	uint32_t    wall_color;
-	
-	if (!choose_texture(&engine, &dda , &texture))
-		return (false);
-	(void)screen_height;
-
-	texX = get_point_of_wall(texture, dda);
-	//ES curioso pero si le quitamos el if y le dejamos el texX 
-	//por defecto, parece que funciona igual.
-//	if (dda.side == 0 && dda.ray.x > 0.0f)
-//		texX = texture.width - texX - 1;
-//	if (dda.side == 1 && dda.ray.y < 0.0f)
-//		texX = texture.width - texX - 1;
-	step = 1.0 * texture.height / num_pixels_wall;
-	//texPos = (sky_end - screen_height / 2 + num_pixels_wall / 2) * step;
-	texPos = (sky_end - engine.screen.middle_y + num_pixels_wall / 2) * step;
-	while (i <= floor_start)
-	{
-		
-		wall_color = get_pixel_of_wall(&texPos, texture, step, texX);
-		//Añadido para el oscurecido del color....
-		//if(dda.side == 1) wall_color = (wall_color >> 1) & 8355711;
-//		if(dda.side == 1) wall_color = (wall_color >> 1) & 0xFFFFFFFF;
-		//FIn añadido
-		mlx_put_pixel(engine.img, x, i, wall_color);
-		i++;
-	}
-	return (true);
-}
-*/

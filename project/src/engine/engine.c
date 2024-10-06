@@ -3,23 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:33:19 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/03 17:54:43 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/10/06 21:13:44 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "engine.h"
-#include "events.h"
 #include "MLX42/MLX42.h"
-#include "libft.h"
 #include "error.h"
 #include "texture.h"
 
+/* init the engine struct.*/
 bool	engine_init(t_engine *engine, t_config *cfg)
 {
 	engine->mlx = NULL;
@@ -36,6 +32,7 @@ bool	engine_init(t_engine *engine, t_config *cfg)
 	return (true);
 }
 
+/*Starts the engine.*/
 bool	engine_start(t_engine *engine)
 {
 	engine_mlx_settings();
