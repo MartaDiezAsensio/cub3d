@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_colors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:27:45 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/06 01:28:23 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/08 20:04:58 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,28 @@ bool	config_set_colors(t_config *cfg, const char *line)
 	size_t	length;
 	char	*str_colors;
 	t_color	rgb;
+	char	*trim;
 
-	length = ft_strlen(line);
-	str_colors = ft_substr(line, 2, length -2);
+	trim = ft_strtrim(line, " \t");
+	if (trim == NULL)
+		return(error_perror_critical(), false);
+	length = ft_strlen(trim);
+	str_colors = ft_substr(trim, 2, length -2);
 	if (str_colors == NULL)
-		return (error_perror_critical(), false);
+		return (free(trim), error_perror_critical(), false);
 	if (!config_parse_colors(&rgb, str_colors))
-		return (free (str_colors), false);
+		return (free(trim), free (str_colors), false);
 	free (str_colors);
-	if (ft_strncmp(line, "F ", 2) == 0)
+	if (ft_strncmp(trim, "F ", 2) == 0)
 	{
 		if (!config_set_floor_color(cfg, rgb))
-			return (false);
+			return (free(trim), false);
 	}
-	if (ft_strncmp(line, "C ", 2) == 0)
+	if (ft_strncmp(trim, "C ", 2) == 0)
 	{
 		if (!config_set_ceiling_color(cfg, rgb))
-			return (false);
+			return (free(trim), false);
 	}
+	free(trim);
 	return (true);
 }

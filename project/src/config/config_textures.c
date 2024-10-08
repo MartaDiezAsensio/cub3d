@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:24:04 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/03 20:42:04 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/10/08 19:57:16 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,28 @@ bool	config_set_texture(t_config *cfg, const char *line)
 {
 	size_t	length;
 	char	*texture;
+	char	*trim;
 
-	length = ft_strlen(line);
-	texture = ft_substr(line, 3, length - 3);
+	trim = ft_strtrim(line," \t");
+	if (trim == NULL)
+		return(error_perror_critical(), false);
+	length = ft_strlen(trim);
+	texture = ft_substr(trim, 3, length - 3);
 	if (texture == NULL)
 		return (error_perror_critical(), false);
-	if (ft_strncmp(line, "NO ", 3) == 0)
-		return (config_save_texture(&cfg->north_texture, &texture, \
-					"NO texture duplicated."));
-	if (ft_strncmp(line, "SO ", 3) == 0)
-		return (config_save_texture(&cfg->south_texture, &texture, \
-					"SO texture duplicated."));
-	if (ft_strncmp(line, "WE ", 3) == 0)
-		return (config_save_texture(&cfg->west_texture, &texture, \
-					"WE texture duplicated."));
-	if (ft_strncmp(line, "EA ", 3) == 0)
-		return (config_save_texture(&cfg->east_texture, &texture, \
-					"WA texture duplicated."));
+	if (ft_strncmp(trim, "NO ", 3) == 0)
+		return (free(trim), config_save_texture(&cfg->north_texture, \
+				&texture, "NO texture duplicated."));
+	if (ft_strncmp(trim, "SO ", 3) == 0)
+		return (free(trim), config_save_texture(&cfg->south_texture, \
+				&texture, "SO texture duplicated."));
+	if (ft_strncmp(trim, "WE ", 3) == 0)
+		return (free(trim), config_save_texture(&cfg->west_texture, \
+				&texture, "WE texture duplicated."));
+	if (ft_strncmp(trim, "EA ", 3) == 0)
+		return (free(trim), config_save_texture(&cfg->east_texture, \
+				&texture, "EA texture duplicated."));
 	free (texture);
+	free(trim);
 	return (true);
 }
