@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:41:11 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/08 19:26:51 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/08 20:15:00 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	config_line_is_color(const char *line)
 	if (trimmed == NULL)
 		return (error_perror_critical(), false);
 	if (ft_strncmp(trimmed, "F ", 2) == 0 || ft_strncmp(trimmed, "C ", 2) == 0)
-		return (free(trimmed) ,true);
+		return (free(trimmed), true);
 	return (free(trimmed), false);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:27:45 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/08 20:04:58 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/08 20:24:39 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,22 @@ static bool	config_set_ceiling_color(t_config *cfg, t_color rgb)
 		return (error_print_critical("Found Colour C duplicated."), false);
 }
 
+static bool	config_check_color_line(const char *trim, t_config *cfg, \
+				t_color rgb)
+{
+	if (ft_strncmp(trim, "F ", 2) == 0)
+	{
+		if (!config_set_floor_color(cfg, rgb))
+			return (false);
+	}
+	if (ft_strncmp(trim, "C ", 2) == 0)
+	{
+		if (!config_set_ceiling_color(cfg, rgb))
+			return (false);
+	}
+	return (true);
+}
+
 bool	config_set_colors(t_config *cfg, const char *line)
 {
 	size_t	length;
@@ -45,7 +61,7 @@ bool	config_set_colors(t_config *cfg, const char *line)
 
 	trim = ft_strtrim(line, " \t");
 	if (trim == NULL)
-		return(error_perror_critical(), false);
+		return (error_perror_critical(), false);
 	length = ft_strlen(trim);
 	str_colors = ft_substr(trim, 2, length -2);
 	if (str_colors == NULL)
@@ -53,16 +69,8 @@ bool	config_set_colors(t_config *cfg, const char *line)
 	if (!config_parse_colors(&rgb, str_colors))
 		return (free(trim), free (str_colors), false);
 	free (str_colors);
-	if (ft_strncmp(trim, "F ", 2) == 0)
-	{
-		if (!config_set_floor_color(cfg, rgb))
-			return (free(trim), false);
-	}
-	if (ft_strncmp(trim, "C ", 2) == 0)
-	{
-		if (!config_set_ceiling_color(cfg, rgb))
-			return (free(trim), false);
-	}
+	if (!config_check_color_line(trim, cfg, rgb))
+		return (free(trim), false);
 	free(trim);
 	return (true);
 }

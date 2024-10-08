@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:24:04 by gabriel           #+#    #+#             */
-/*   Updated: 2024/10/08 19:57:16 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2024/10/08 20:30:12 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ bool	config_set_texture(t_config *cfg, const char *line)
 	char	*texture;
 	char	*trim;
 
-	trim = ft_strtrim(line," \t");
+	trim = ft_strtrim(line, " \t");
 	if (trim == NULL)
-		return(error_perror_critical(), false);
+		return (error_perror_critical(), false);
 	length = ft_strlen(trim);
 	texture = ft_substr(trim, 3, length - 3);
 	if (texture == NULL)
@@ -58,6 +58,5 @@ bool	config_set_texture(t_config *cfg, const char *line)
 		return (free(trim), config_save_texture(&cfg->east_texture, \
 				&texture, "EA texture duplicated."));
 	free (texture);
-	free(trim);
-	return (true);
+	return (free(trim), true);
 }
