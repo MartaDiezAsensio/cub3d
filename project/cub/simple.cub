@@ -1,7 +1,7 @@
-NO ./textures/north.xpm
-SO ./textures/south.xpm
-WE ./textures/west.xpm
-EA ./textures/east.xpm
+NO ./textures/bricks.png
+SO ./textures/eagle.png
+WE ./textures/protoblue.png
+EA ./textures/switches.png
 
 F 100,100,100
 C 225,200,200

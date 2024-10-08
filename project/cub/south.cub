@@ -1,15 +1,11 @@
-NO ./textures/north.png
-SO ./textures/south.png
-
-WE ./textures/west.png
-EA ./textures/east.png
+NO ./textures/bricks.png
+SO ./textures/eagle.png
+WE ./textures/protoblue.png
+EA ./textures/switches.png
 
 F 100,100,100
 
 C 30,144,255
-
-
-
 
 
 
